@@ -56,14 +56,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .lead { font-size: 19px; color: var(--slate-600); max-width: 62ch; }
 
-/* ---------- Header ---------- */
+/* ---------- Header (auto-hide vid skroll ned, tillbaka vid skroll upp) ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(255, 255, 255, .88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
+  transform: translateY(0);
+  transition: transform .28s cubic-bezier(.4, 0, .2, 1), box-shadow .2s ease;
+  will-change: transform;
 }
+.site-header.is-scrolled { box-shadow: var(--shadow-sm); }
+.site-header.is-hidden { transform: translateY(-102%); }
 .site-header .inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 20px; }
+body.nav-open .site-header.is-hidden { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .site-header { transition: none; }
+}
 .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--navy-900); letter-spacing: -.02em; }
 .brand .mark {
   width: 34px; height: 34px; border-radius: 9px; flex: 0 0 34px;

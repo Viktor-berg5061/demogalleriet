@@ -336,10 +336,36 @@
     </div>
     <div class="bottom">
       <span>&copy; 2026 Demogalleriet. Alla rättigheter förbehållna.</span>
-      <span>Byggt 2026-09-28 09:37 UTC &middot; demosajterna är markerade noindex</span>
+      <span>Byggt 2026-09-28 09:54 UTC &middot; demosajterna är markerade noindex</span>
     </div>
   </div>
 </footer>
+
+<script>
+// Header som göms när man skrollar ned och kommer tillbaka när man skrollar upp.
+(() => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const THRESHOLD = 8;   // px innan riktningsbyte räknas
+  const OFFSET = 140;    // px innan headern får gömmas
+  let last = window.scrollY, ticking = false;
+  const update = () => {
+    const y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 8);
+    if (Math.abs(y - last) > THRESHOLD) {
+      header.classList.toggle('is-hidden', y > last && y > OFFSET);
+      last = y;
+    }
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  update();
+})();
+</script>
 
 </body>
 </html>
