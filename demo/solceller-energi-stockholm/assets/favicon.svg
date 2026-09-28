@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Solceller &amp; Energi Stockholm">
+  <defs>
+    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#233246"/>
+      <stop offset="1" stop-color="#0f1720"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4c85a"/>
+      <stop offset="1" stop-color="#d99a22"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#ink)"/>
+  <circle cx="41" cy="19" r="9" fill="url(#gold)"/>
+  <g fill="url(#gold)">
+    <rect x="9" y="32" width="12" height="7" rx="1.6"/>
+    <rect x="24" y="32" width="12" height="7" rx="1.6"/>
+    <rect x="39" y="32" width="12" height="7" rx="1.6"/>
+    <rect x="9" y="43" width="12" height="7" rx="1.6"/>
+    <rect x="24" y="43" width="12" height="7" rx="1.6"/>
+    <rect x="39" y="43" width="12" height="7" rx="1.6"/>
+  </g>
+</svg>

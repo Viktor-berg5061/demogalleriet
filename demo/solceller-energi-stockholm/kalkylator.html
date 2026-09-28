@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<!-- Krymp head-mallen till varje sida. Tokens på formen dubbelklammer-token ersätts av _shared/tools/assemble.py.
+     Delas av alla sidor — ändra aldrig per sida. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solcellskalkylator – räkna ut besparing och payback</title>
+<meta name="description" content="Fyll i takyta, lutning, förbrukning och elpris. Kalkylatorn visar hur många kWp ditt tak ger, vad du sparar per år och när anläggningen är betald.">
+<link rel="canonical" href="https://solceller-energi-stockholm.se/kalkylator.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Solceller &amp; Energi Stockholm AB">
+<meta name="theme-color" content="#0f1720">
+<meta name="geo.region" content="SE-AB">
+<meta name="geo.placename" content="Stockholm">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Solceller &amp; Energi Stockholm">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Solcellskalkylator – räkna ut besparing och payback">
+<meta property="og:description" content="Fyll i takyta, lutning, förbrukning och elpris. Kalkylatorn visar hur många kWp ditt tak ger, vad du sparar per år och när anläggningen är betald.">
+<meta property="og:url" content="https://solceller-energi-stockholm.se/kalkylator.html">
+<meta property="og:image" content="https://images.pexels.com/photos/8853509/pexels-photo-8853509.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Närbild på solpaneler med solljus i modulerna">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Solcellskalkylator – räkna ut besparing och payback">
+<meta name="twitter:description" content="Fyll i takyta, lutning, förbrukning och elpris. Kalkylatorn visar hur många kWp ditt tak ger, vad du sparar per år och när anläggningen är betald.">
+<meta name="twitter:image" content="https://images.pexels.com/photos/8853509/pexels-photo-8853509.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/familjen-grotesk-latin-7eb7ec31.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-b2c9031d.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":["LocalBusiness","Electrician"],"@id":"https://solceller-energi-stockholm.se/#organization","name":"Solceller & Energi Stockholm AB","alternateName":"Solceller & Energi Stockholm","description":"Installatör av solceller, batterilagring och laddboxar för villor och bostadsrätter i Stockholmsområdet. Grundat 2016, egen installatörsbehörighet.","url":"https://solceller-energi-stockholm.se/","telephone":"+46704949087","email":"vberg024@gmail.com","image":"https://images.pexels.com/photos/13558357/pexels-photo-13558357.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800","logo":"https://solceller-energi-stockholm.se/assets/favicon.svg","foundingDate":"2016","numberOfEmployees":{"@type":"QuantitativeValue","value":14},"priceRange":"89000-320000 SEK","currenciesAccepted":"SEK","paymentAccepted":"Faktura, kort, Swish","vatID":"SE559214935101","address":{"@type":"PostalAddress","streetAddress":"Kungsgatan 12","postalCode":"111 43","addressLocality":"Stockholm","addressRegion":"Stockholm","addressCountry":"SE"},"geo":{"@type":"GeoCoordinates","latitude":59.3342,"longitude":18.0626},"areaServed":[{"@type":"City","name":"Stockholm"},{"@type":"AdministrativeArea","name":"Stockholms län"},{"@type":"Place","name":"Bromma"},{"@type":"Place","name":"Nacka"},{"@type":"Place","name":"Täby"},{"@type":"Place","name":"Sollentuna"},{"@type":"Place","name":"Danderyd"},{"@type":"Place","name":"Solna"},{"@type":"Place","name":"Sundbyberg"},{"@type":"Place","name":"Lidingö"},{"@type":"Place","name":"Värmdö"},{"@type":"Place","name":"Huddinge"},{"@type":"Place","name":"Järfälla"},{"@type":"Place","name":"Österåker"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:30","closes":"17:00"}],"knowsAbout":["Solceller","Batterilagring","Laddbox","Elbesparing","Grön teknik","Växelriktare","Effekttoppar"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Tjänster","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Solceller på taket"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Batterilagring"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Laddbox till elbil"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Energikoll och styrning"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Service och drift"}}]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Solcellskalkylator Stockholm","url":"https://solceller-energi-stockholm.se/kalkylator.html","applicationCategory":"UtilityApplication","operatingSystem":"Webbläsare","description":"Fyll i takyta, lutning, förbrukning och elpris. Kalkylatorn visar hur många kWp ditt tak ger, vad du sparar per år och när anläggningen är betald.","offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"},"provider":{"@id":"https://solceller-energi-stockholm.se/#organization"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://solceller-energi-stockholm.se/"},{"@type":"ListItem","position":2,"name":"Solcellskalkylator","item":"https://solceller-energi-stockholm.se/kalkylator.html"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Till innehållet</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Solceller &amp; Energi Stockholm – till startsidan">
+      <svg class="brand__mark" viewBox="0 0 32 32" role="img" aria-hidden="true" focusable="false">
+        <rect x="1" y="12" width="30" height="19" rx="3" fill="var(--ink)"/>
+        <path d="M4.5 15.5h10.2v5.2H4.5zM17.3 15.5h10.2v5.2H17.3zM4.5 22.4h10.2v5.2H4.5zM17.3 22.4h10.2v5.2H17.3z" fill="var(--gold)"/>
+        <circle cx="16" cy="5.6" r="3.1" fill="var(--gold)"/>
+        <path d="M16 0.4v2M16 8.8v2M10.8 5.6h-2M23.2 5.6h-2M12.3 2l1.4 1.4M20.3 9.2l1.4 1.4M19.7 2l-1.4 1.4M11.7 9.2l-1.4 1.4" stroke="var(--gold-deep)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <span class="brand__name">Solceller &amp; Energi</span>
+        <span class="brand__sub">Stockholm</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Huvudmeny">
+      <div class="nav__item"><a class="nav__link" href="index.html">Start</a></div>
+      <div class="nav__item">
+        <a class="nav__link" href="tjanster/index.html">Tjänster</a>
+        <ul class="nav__sub">
+          <li><a href="tjanster/solceller.html">Solceller på taket</a></li>
+          <li><a href="tjanster/batterilagring.html">Batterilagring</a></li>
+          <li><a href="tjanster/laddbox.html">Laddbox till elbil</a></li>
+          <li><a href="tjanster/energikoll.html">Energikoll och styrning</a></li>
+          <li><a href="tjanster/service.html">Service och drift</a></li>
+        </ul>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="projekt.html">Projekt</a></div>
+      <div class="nav__item"><a class="nav__link" href="priser.html">Priser</a></div>
+      <div class="nav__item"><a class="nav__link" href="om-oss.html">Om oss</a></div>
+      <div class="nav__item"><a class="nav__link" href="kontakt.html">Kontakt</a></div>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+46704949087">+46 70 494 90 87</a>
+      <a class="btn btn--gold btn--sm header-cta" href="kalkylator.html">Räkna på din villa</a>
+      <button class="burger" type="button" data-drawer-open aria-expanded="false" aria-controls="site-drawer">
+        <span class="burger__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        Meny
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="backdrop" data-open="false"></div>
+
+<aside class="drawer" id="site-drawer" data-open="false" aria-hidden="true" aria-label="Meny">
+  <div class="drawer__top">
+    <span class="mono-label">Meny</span>
+    <button class="drawer__close" type="button" data-drawer-close aria-label="Stäng menyn">×</button>
+  </div>
+  <nav class="drawer__nav" aria-label="Mobilmeny">
+    <a href="index.html">Start</a>
+    <span class="drawer__group">Tjänster</span>
+    <a href="tjanster/index.html">Alla tjänster</a>
+    <a href="tjanster/solceller.html">Solceller på taket</a>
+    <a href="tjanster/batterilagring.html">Batterilagring</a>
+    <a href="tjanster/laddbox.html">Laddbox till elbil</a>
+    <a href="tjanster/energikoll.html">Energikoll och styrning</a>
+    <a href="tjanster/service.html">Service och drift</a>
+    <span class="drawer__group">Företaget</span>
+    <a href="projekt.html">Projekt</a>
+    <a href="priser.html">Priser</a>
+    <a href="kalkylator.html">Solcellskalkylator</a>
+    <a href="om-oss.html">Om oss</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="tel:+46704949087">Ring +46 70 494 90 87</a>
+    <a href="mailto:vberg024@gmail.com">vberg024@gmail.com</a>
+  </nav>
+  <div class="drawer__cta">
+    <a class="btn btn--gold btn--wide" href="kalkylator.html">Räkna ut din besparing</a>
+    <p class="note mt-2">Kostnadsfri takkoll och offert inom 48 timmar i Stockholmsområdet.</p>
+  </div>
+</aside>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <ol class="crumbs">
+      <li><a href="index.html">Start</a></li>
+      <li>Solcellskalkylator</li>
+    </ol>
+    <div class="page-head__grid">
+      <div>
+        <p class="eyebrow">Kalkylator</p>
+        <h1>Räkna ut din besparing på 60 sekunder</h1>
+        <p class="lede">Dra i reglagen och se hur många kWp ditt tak ger, vad du sparar per år
+          och när anläggningen är betald. Du behöver inte lämna några uppgifter för att räkna.</p>
+        <div class="btn-row mt-2">
+          <a class="btn btn--gold" href="#kalkyl">Börja räkna</a>
+          <a class="btn btn--ghost" href="kontakt.html">Boka kostnadsfri takkoll</a>
+        </div>
+      </div>
+      <figure class="page-head__media">
+        <img src="https://images.pexels.com/photos/8853509/pexels-photo-8853509.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=800"
+             alt="Närbild på solpaneler med solljus i modulerna"
+             width="1200" height="800" loading="eager" decoding="async">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<dl class="factbar">
+  <div><dt>Kostar inget</dt><dd>Kalkylen är gratis och utan bindning</dd></div>
+  <div><dt>Ingen registrering</dt><dd>Du får svaret direkt i webbläsaren</dd></div>
+  <div><dt>Vill du ha exakta siffror?</dt><dd>Skriftlig offert inom 48 timmar</dd></div>
+</dl>
+
+<section class="section" id="kalkyl-sektion">
+  <div class="wrap">
+    <form class="calc" id="kalkyl">
+      <div class="calc__panel">
+        <p class="eyebrow">1. Ditt tak</p>
+        <h2>Så ser ditt tak ut</h2>
+        <p>Mät den yta som är skuggfri och kan bära paneler. Räkna bort skorsten, takfönster
+          och ytor som skuggas av träd. Ett vanligt villatak i Stockholm ger 40–60 m²
+          användbar yta.</p>
+
+        <div class="field mt-2">
+          <div class="calc__range">
+            <div class="calc__range-top">
+              <label for="c-yta">Skuggfri takyta</label>
+              <span class="calc__value" id="v-yta">45 m²</span>
+            </div>
+            <input type="range" id="c-yta" name="yta" min="10" max="200" step="1" value="45"
+                   aria-describedby="hint-yta">
+            <span class="field__hint" id="hint-yta">10–200 m². 1 m² skuggfri takyta ger ca 0,2 kWp.</span>
+          </div>
+        </div>
+
+        <div class="field mt-2">
+          <div class="calc__range">
+            <div class="calc__range-top">
+              <label for="c-lutning">Taklutning</label>
+              <span class="calc__value" id="v-lutning">35°</span>
+            </div>
+            <input type="range" id="c-lutning" name="lutning" min="0" max="60" step="1" value="35"
+                   aria-describedby="hint-lutning">
+            <span class="field__hint" id="hint-lutning">Bäst utbyte mellan 30° och 45°.
+              Under 10° ger panelerna något mindre.</span>
+          </div>
+        </div>
+
+        <div class="field mt-2">
+          <span class="mono-label" id="label-riktning">Vilket väderstreck lutar taket mot?</span>
+          <div class="seg" role="radiogroup" aria-labelledby="label-riktning">
+            <label><input type="radio" name="c-riktning" value="syd" checked><span>Söder</span></label>
+            <label><input type="radio" name="c-riktning" value="sydost"><span>Sydost / sydväst</span></label>
+            <label><input type="radio" name="c-riktning" value="ost"><span>Öster / väster</span></label>
+          </div>
+          <span class="field__hint">Söder ger 100 % av utbytet, sydost och sydväst ca 96 %,
+            öster och väster ca 86 %.</span>
+        </div>
+
+        <div class="divider mt-3"></div>
+
+        <p class="eyebrow mt-3">Din elförbrukning</p>
+        <h2>Så mycket el använder huset</h2>
+        <p>Årsförbrukningen står på elfakturan i kWh. Har du ingen framme duger ett riktvärde:
+          15 000 kWh för en villa med direktverkande el, 10 000 kWh för villa med bergvärme.</p>
+
+        <div class="field mt-2">
+          <div class="calc__range">
+            <div class="calc__range-top">
+              <label for="c-forbrukning">Elförbrukning per år</label>
+              <span class="calc__value" id="v-forbrukning">15 000 kWh/år</span>
+            </div>
+            <input type="range" id="c-forbrukning" name="forbrukning" min="2000" max="40000" step="500"
+                   value="15000" aria-describedby="hint-forbrukning">
+            <span class="field__hint" id="hint-forbrukning">Använder huset mycket el blir mer av
+              solelen egenanvänd och då kortare återbetalningstid.</span>
+          </div>
+        </div>
+
+        <div class="field mt-2">
+          <div class="calc__range">
+            <div class="calc__range-top">
+              <label for="c-elpris">Ditt elpris</label>
+              <span class="calc__value" id="v-elpris">1,80 kr/kWh</span>
+            </div>
+            <input type="range" id="c-elpris" name="elpris" min="0.8" max="3.5" step="0.05"
+                   value="1.8" aria-describedby="hint-elpris">
+            <span class="field__hint" id="hint-elpris">Totalt pris inkl. moms, nätavgift och skatt.
+              Står på elfakturan som kr/kWh.</span>
+          </div>
+        </div>
+
+        <div class="divider mt-3"></div>
+
+        <p class="eyebrow mt-3">Tillval</p>
+        <h2>Batteri och avdrag</h2>
+
+        <div class="field mt-2">
+          <span class="mono-label" id="label-batteri">Batteri 10 kWh (62 000 kr)</span>
+          <div class="seg" role="radiogroup" aria-labelledby="label-batteri">
+            <label><input type="radio" name="c-batteri" value="ja" checked><span>Ja</span></label>
+            <label><input type="radio" name="c-batteri" value="nej"><span>Nej</span></label>
+          </div>
+          <span class="field__hint">Med batteri använder du ca 78 % av solelen själv i stället
+            för ca 40 %. Batteriet kostar 62 000 kr före avdrag.</span>
+        </div>
+
+        <div class="field mt-2">
+          <span class="mono-label" id="label-agare">Äger du bostaden?</span>
+          <div class="seg" role="radiogroup" aria-labelledby="label-agare">
+            <label><input type="radio" name="c-agare" value="ja" checked><span>Ja</span></label>
+            <label><input type="radio" name="c-agare" value="nej"><span>Nej</span></label>
+          </div>
+          <span class="field__hint">Grön teknik-avdraget kräver att du äger bostaden och har
+            skatt att kvitta mot. Hyresrätt och bostadsrättsförening räknas inte som ägare här.</span>
+        </div>
+      </div>
+
+      <div class="calc__panel calc__panel--result">
+        <p class="eyebrow">2. Ditt resultat</p>
+        <h2>Uppskattad besparing</h2>
+
+        <div class="calc__result-main mt-2">
+          <span class="calc__result-label">Besparing per år</span>
+          <span class="calc__result-num"><span id="r-besparing">13 300</span> kr</span>
+        </div>
+
+        <dl class="calc__rows">
+          <div class="calc__row"><dt>Installerad effekt</dt><dd id="r-kwp">9,0 kWp</dd></div>
+          <div class="calc__row"><dt>Solel per år</dt><dd id="r-produktion">8 510 kWh</dd></div>
+          <div class="calc__row"><dt>Nettoinvestering efter grön teknik</dt><dd id="r-kostnad">128 000 kr</dd></div>
+          <div class="calc__row"><dt>varav grön teknik-avdrag</dt><dd id="r-avdrag">−55 300 kr</dd></div>
+          <div class="calc__row"><dt>Återbetalningstid</dt><dd id="r-aterbetalning">9,7 år</dd></div>
+          <div class="calc__row"><dt>Besparing över 25 år</dt><dd id="r-tjugofem">203 000 kr</dd></div>
+          <div class="calc__row"><dt>Egenanvänd solel</dt><dd id="r-egenanvant">6 640 kWh</dd></div>
+          <div class="calc__row"><dt>Såld solel</dt><dd id="r-overskott">1 870 kWh</dd></div>
+        </dl>
+
+        <div class="calc__bar">
+          <div class="calc__bar-track"><div class="calc__bar-fill" id="r-bar" style="width:78%"></div></div>
+          <div class="calc__legend">
+            <span id="legend-egen">Egenanvänd 78 %</span>
+            <span id="legend-salj">Såld till nätet</span>
+          </div>
+        </div>
+
+        <p class="note mt-2">Beräkningen: <span id="r-produktionsnot">9,0 kWp × 950 kWh/kWp ×
+          lutningsfaktor 1,0 × riktningsfaktor 1,0</span>. Uppskattning, inte en offert.</p>
+
+        <div class="btn-row mt-2">
+          <a class="btn btn--gold" href="#offert">Få det uträknat på riktigt</a>
+          <button class="btn btn--ghost" type="button" id="c-reset">Börja om</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section section--paper-2">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow">Underlaget</p>
+        <h2>Siffrorna vi räknar med</h2>
+      </div>
+      <p class="lede">Kalkylen bygger på samma antaganden som våra offerter. Får du en helt
+        annan siffra någon annanstans är det oftast försäljningspriset eller egenanvändningen
+        som skiljer.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="spec">
+        <caption>Antaganden i kalkylatorn</caption>
+        <thead>
+          <tr><th>Parameter</th><th class="n">Värde</th><th>Kommentar</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Effekt per takyta</th><td class="n">0,2 kWp/m²</td>
+            <td>Moderna paneler på 450–500 W, ca 1,9 m² per panel</td></tr>
+          <tr><th>Solel per installerad kWp</th><td class="n">950 kWh/år</td>
+            <td>Vid söderläge och 35–45° lutning i Stockholmsområdet</td></tr>
+          <tr><th>Lutning och riktning</th><td class="n">86–100 %</td>
+            <td>Öster/väster ca 86 %, sydost/sydväst ca 96 %, söder 100 %</td></tr>
+          <tr><th>Egenanvändning utan batteri</th><td class="n">ca 40 %</td>
+            <td>Resten säljs till nätet</td></tr>
+          <tr><th>Egenanvändning med batteri</th><td class="n">ca 78 %</td>
+            <td>Batteriet flyttar solelen till morgon och kväll</td></tr>
+          <tr><th>Elpris du slipper betala</th><td class="n">1,80 kr/kWh</td>
+            <td>Standardvärde inkl. moms, nät och skatt — ändra till ditt eget avtal</td></tr>
+          <tr><th>Pris för såld el</th><td class="n">0,70 kr/kWh</td>
+            <td>Spotpris plus skattereduktion, förenklat</td></tr>
+          <tr><th>Investeringskostnad</th><td class="n">13 500 kr/kWp</td>
+            <td>Snittpris, inkl. montage, elarbete och nätanmälan</td></tr>
+          <tr><th>Batteri 10 kWh</th><td class="n">62 000 kr</td>
+            <td>Inklusive installation. Räknas med om du väljer batteri</td></tr>
+          <tr><th>Grön teknik</th><td class="n">20 % / 50 %</td>
+            <td>20 % på solceller, 50 % på batteri, max 50 000 kr per år och åtgärd</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout mt-3">
+      <p><strong>Tre typfall i Stockholmsområdet.</strong> Räknat med 35° lutning i söderläge,
+        1,80 kr/kWh och grön teknik-avdrag. Batteri 10 kWh ingår i de två större exemplen.</p>
+    </div>
+
+    <div class="table-wrap mt-2">
+      <table class="spec">
+        <caption>Typfall</caption>
+        <thead>
+          <tr><th>Tak och hus</th><th class="n">Effekt</th><th class="n">Solel per år</th>
+            <th class="n">Besparing per år</th><th class="n">Netto efter avdrag</th>
+            <th class="n">Återbetalning</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Radhus, 25 m², 10 000 kWh</th><td class="n">5,0 kWp</td><td class="n">4 730 kWh</td>
+            <td class="n">5 400 kr</td><td class="n">54 000 kr</td><td class="n">10,0 år</td></tr>
+          <tr><th>Villa, 45 m², 15 000 kWh</th><td class="n">9,0 kWp</td><td class="n">8 510 kWh</td>
+            <td class="n">13 300 kr</td><td class="n">128 200 kr</td><td class="n">9,7 år</td></tr>
+          <tr><th>Stor villa, 70 m², 25 000 kWh</th><td class="n">14,0 kWp</td><td class="n">13 230 kWh</td>
+            <td class="n">20 600 kr</td><td class="n">182 200 kr</td><td class="n">8,8 år</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note mt-2">Kalkylen tar inte hänsyn till ränta på lån, elprisets utveckling över
+      tid eller framtida ändringar i skatteregler. Vi räknar alltid hem den exakta siffran för
+      ditt tak i offerten.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split split--aside">
+      <div class="prose">
+        <p class="eyebrow">Bra att veta</p>
+        <h2>Vad kalkylen inte ser</h2>
+        <p>Kalkylatorn jobbar med de uppgifter du anger. Tre saker brukar avgöra om siffran
+          håller i verkligheten:</p>
+        <ul>
+          <li><strong>Skuggning mitt på dagen.</strong> Ett träd i söderläge kan kosta 15–30 %
+            av produktionen. Vi mäter skuggning på plats och lägger optimerare där det behövs.</li>
+          <li><strong>Takets skick.</strong> Ska taket läggas om inom tio år är det billigare att
+            byta tak först och montera panelerna en gång.</li>
+          <li><strong>Din förbrukningsprofil.</strong> Värmer du huset med el och laddar bil
+            hemma blir mer av solelen egenanvänd — då betalar batteriet sig snabbare.</li>
+        </ul>
+        <p>Vi går igenom alla tre punkterna i den kostnadsfria takkollen. Du får en skriftlig
+          offert med fast pris, en produktionsberäkning per takfall och en tydlig lista på vad
+          som inte ingår.</p>
+        <div class="btn-row mt-2">
+          <a class="btn btn--gold" href="kontakt.html">Boka kostnadsfri takkoll</a>
+          <a class="link-arrow" href="priser.html">Se alla priser</a>
+        </div>
+      </div>
+
+      <aside class="aside-card aside-sticky">
+        <h3>Osäker på takytan?</h3>
+        <p>Mät längden gånger höjden på den skuggfria delen av taket. Har du ett sadeltak med
+          två användbara sidor lägger du ihop båda. Skicka gärna en bild på taket när du
+          skickar in kalkylen — då kan vi kontrollera siffrorna mot kartbilder.</p>
+        <ul class="checklist">
+          <li>1 m² skuggfri yta ≈ 0,2 kWp</li>
+          <li>En villa på 45 m² får plats med ca 25 paneler</li>
+          <li>Paneler behöver ca 0,5 m fri kant runt om</li>
+        </ul>
+        <a class="link-arrow" href="tjanster/solceller.html">Så fungerar montaget</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper-2" id="offert">
+  <div class="wrap wrap--narrow">
+    <div class="section-head">
+      <p class="eyebrow">Nästa steg</p>
+      <h2>Skicka in din kalkyl och få den kontrollräknad</h2>
+      <p class="lede">Vi tittar på din kalkyl, kontrollerar taket mot kartbilder och ringer upp
+        inom en arbetsdag. Vill du hellre prata direkt, ring
+        <a href="tel:+46704949087">+46 70 494 90 87</a>.</p>
+    </div>
+
+    <form class="form" data-lead-form novalidate>
+      <div class="form__row">
+        <div class="field">
+          <label for="namn">Namn</label>
+          <input id="namn" name="namn" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="telefon">Telefon</label>
+          <input id="telefon" name="telefon" type="tel" autocomplete="tel" required>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="field">
+          <label for="epost">E-post</label>
+          <input id="epost" name="epost" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="ort">Ort</label>
+          <input id="ort" name="ort" type="text" autocomplete="address-level2" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="meddelande">Något vi bör veta? (valfritt)</label>
+        <textarea id="meddelande" name="meddelande"
+          placeholder="Till exempel: taket lades om 2019, vi har elbil och värmepump, önskar batteri."></textarea>
+      </div>
+      <input type="hidden" id="kalkyl-summary" name="kalkyl" value="">
+      <div class="field field--check">
+        <input id="samtycke" name="samtycke" type="checkbox" required>
+        <label for="samtycke">Jag godkänner att Solceller &amp; Energi Stockholm sparar mina
+          uppgifter för att svara på min förfrågan. Uppgifterna används inte för något annat.</label>
+      </div>
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn--gold" type="submit">Skicka min kalkyl</button>
+      <p class="form__status" role="status" aria-live="polite"></p>
+      </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Frågor om kalkylen</p>
+      <h2>Vanliga frågor</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Hur exakt är kalkylatorn?</summary>
+        <div class="faq__body">
+          <p>Produktionsdelen är inom några procent för ett skuggfritt tak i Stockholmsområdet,
+            eftersom den bygger på 950 kWh per installerad kWp och år. Besparingen blir osäkrare,
+            eftersom den beror på ditt elavtal och hur mycket av solelen du använder själv.
+            Räkna med ett spann på ±15 % tills vi har mätt ditt tak.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Varför räknar kalkylatorn med 1,80 kr/kWh?</summary>
+        <div class="faq__body">
+          <p>1,80 kr/kWh är ett rimligt snitt i Stockholm när elpris, nätavgift, energiskatt och
+            moms är inräknade. Har du bundet avtal på 1,20 kr/kWh blir besparingen lägre, har du
+            timpris och hög förbrukning på vintern blir den högre. Dra i reglaget och räkna med
+            din egen siffra — den står på elräkningen.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Varför blir återbetalningen kortare med större anläggning?</summary>
+        <div class="faq__body">
+          <p>Priset per installerad kWp sjunker när anläggningen blir större, samtidigt som de
+            fasta kostnaderna för elarbete, ställning och nätanmälan delas på fler paneler.
+            6 kWp kostar 89 000 kr (14 800 kr/kWp) medan 10 kWp kostar 129 000 kr (12 900 kr/kWp).</p>
+        </div>
+      </details>
+      <details>
+        <summary>Räknar kalkylatorn med elbilen?</summary>
+        <div class="faq__body">
+          <p>Indirekt. Laddar du bilen hemma ökar din förbrukning, vilket gör att mer av solelen
+            används i huset i stället för att säljas. Höj elförbrukningen i kalkylen och välj
+            batteri — då ser du effekten av att styra laddningen till dagtid.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Sparas mina siffror någonstans?</summary>
+        <div class="faq__body">
+          <p>Nej. Kalkylen körs helt i din webbläsare och skickas inte någonstans förrän du
+            själv trycker på "Skicka min kalkyl". Då skickas kalkylen tillsammans med de
+            kontaktuppgifter du fyller i.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Vill du hellre att vi räknar?</h2>
+        <p>Skicka in din adress så mäter vi taket mot kartbilder, räknar per takfall och skickar
+          en skriftlig offert inom 48 timmar. Kostnadsfritt och utan bindning.</p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--gold" href="kontakt.html">Boka kostnadsfri takkoll</a>
+        <a class="btn btn--ghost" href="priser.html">Se priser</a>
+      </div>
+      <p class="cta-band__note">Ring <a href="tel:+46704949087">+46 70 494 90 87</a> vardagar
+        07.30–17.00 eller mejla <a href="mailto:vberg024@gmail.com">vberg024@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <svg viewBox="0 0 32 32" role="img" aria-label="Solceller &amp; Energi Stockholm" focusable="false">
+            <rect x="1" y="12" width="30" height="19" rx="3" fill="#ffffff"/>
+            <path d="M4.5 15.5h10.2v5.2H4.5zM17.3 15.5h10.2v5.2H17.3zM4.5 22.4h10.2v5.2H4.5zM17.3 22.4h10.2v5.2H17.3z" fill="#0f1720"/>
+            <circle cx="16" cy="5.6" r="3.1" fill="#e8b53c"/>
+          </svg>
+          <strong>Solceller &amp; Energi Stockholm</strong>
+        </div>
+        <p>Vi projekterar och installerar solceller, batterilagring och laddboxar för villor och
+          bostadsrättsföreningar i Stockholmsområdet. Egen elbehörighet, egen personal och
+          återkoppling inom en arbetsdag.</p>
+        <p class="note">Solceller &amp; Energi Stockholm AB · Org.nr 559214-9351 ·
+          Installatörsbehörighet, F-skatt och ID06.</p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Tjänster</h2>
+        <ul>
+          <li><a href="tjanster/solceller.html">Solceller på taket</a></li>
+          <li><a href="tjanster/batterilagring.html">Batterilagring</a></li>
+          <li><a href="tjanster/laddbox.html">Laddbox till elbil</a></li>
+          <li><a href="tjanster/energikoll.html">Energikoll och styrning</a></li>
+          <li><a href="tjanster/service.html">Service och drift</a></li>
+          <li><a href="tjanster/index.html">Alla tjänster</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Företaget</h2>
+        <ul>
+          <li><a href="om-oss.html">Om oss</a></li>
+          <li><a href="projekt.html">Projekt i Stockholm</a></li>
+          <li><a href="priser.html">Priser och paket</a></li>
+          <li><a href="kalkylator.html">Solcellskalkylator</a></li>
+          <li><a href="kontakt.html">Kontakt och offert</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-nap">
+        <h2>Kontakt</h2>
+        <strong>Solceller &amp; Energi Stockholm AB</strong>
+        <span>Kungsgatan 12, 111 43 Stockholm</span>
+        <a href="tel:+46704949087">+46 70 494 90 87</a>
+        <a href="mailto:vberg024@gmail.com">vberg024@gmail.com</a>
+        <span>Mån–fre 07.30–17.00, akut service vardagar till 20.00</span>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Solceller &amp; Energi Stockholm AB · Stockholm · Solceller, batteri och laddbox</span>
+      <span>
+        <a href="sitemap.xml">Sitemap</a> ·
+        <a href="tel:+46704949087">+46 70 494 90 87</a> ·
+        <a href="mailto:vberg024@gmail.com">vberg024@gmail.com</a>
+      </span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/kalkylator.js"></script>
+<script src="assets/js/main.js" defer></script>
+
+<a class="demo-back" href="../../index.html">&#8592; Demogalleriet &middot; alla demosajter</a>
+</body>
+</html>

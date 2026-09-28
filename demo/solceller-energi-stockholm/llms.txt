@@ -1,0 +1,38 @@
+# Solceller & Energi Stockholm AB
+
+> Installatör av solceller, batterilagring och laddboxar för villor och
+> bostadsrättsföreningar i Stockholmsområdet. Grundat 2016. Egen
+> installatörsbehörighet, 480 installationer och 4,2 MW installerad solel.
+
+Kontakt: +46 70 494 90 87 (telefon), vberg024@gmail.com (e-post),
+Kungsgatan 12, 111 43 Stockholm. Öppet mån–fre 07.30–17.00.
+Webbplats: https://solceller-energi-stockholm.se/
+
+## Tjänster
+- [Solceller på taket](https://solceller-energi-stockholm.se/tjanster/solceller.html): Takmonterade solceller från 89 000 kr (6 kWp). Cirka 950 kWh per installerad kWp och år i Stockholm.
+- [Batterilagring](https://solceller-energi-stockholm.se/tjanster/batterilagring.html): Hembatteri 10 kWh från 62 000 kr inklusive installation. Höjer egenanvändningen av solel från ca 40 % till ca 78 %.
+- [Laddbox till elbil](https://solceller-energi-stockholm.se/tjanster/laddbox.html): Laddbox 11 kW installerad från 11 500 kr inklusive elarbete, jordfelsbrytare och anmälan till nätägaren.
+- [Energikoll och styrning](https://solceller-energi-stockholm.se/tjanster/energikoll.html): Mätning per fas och timprisstyrning från 6 900 kr, eller 249 kr per månad utan bindningstid.
+- [Service och drift](https://solceller-energi-stockholm.se/tjanster/service.html): Årlig kontroll och rengöring från 1 450 kr per år. Vi servar även anläggningar vi inte byggt.
+- [Alla tjänster](https://solceller-energi-stockholm.se/tjanster/): Översikt över de fem tjänsterna.
+
+## Verktyg
+- [Solcellskalkylator](https://solceller-energi-stockholm.se/kalkylator.html): Räknar på takyta, lutning, riktning, elförbrukning och elpris och visar uppskattad besparing och återbetalningstid.
+
+## Företaget
+- [Om oss](https://solceller-energi-stockholm.se/om-oss.html): Grundat 2016, 14 anställda, egen elbehörighet, 480 installationer, 4,2 MW installerad effekt.
+- [Projekt](https://solceller-energi-stockholm.se/projekt.html): Tolv referensprojekt i Bromma, Nacka, Täby, Sollentuna och Värmdö.
+- [Priser](https://solceller-energi-stockholm.se/priser.html): Paketpriser, vad som ingår och vad grön teknik-avdraget ger.
+- [Kontakt](https://solceller-energi-stockholm.se/kontakt.html): Förfrågan, takkoll och offert inom 48 timmar.
+
+## Vanliga frågor (korta svar)
+- Vad ger solceller i Stockholm? Cirka 950 kWh per installerad kWp och år vid optimalt läge; ett normalvillatak på 40–50 m² ger 8–10 kWp.
+- Vad kostar solceller i Stockholm? Från 89 000 kr för 6 kWp installerat, cirka 13 500 kr per kWp.
+- Hur lång är återbetalningstiden? Oftast 8–12 år med dagens elpris och grön teknik-avdrag.
+- Hur snabbt får jag en offert? Offert inom 48 timmar efter kostnadsfri takkoll.
+- Vad ingår i garantin? 12 år produktgaranti på paneler, 10 år på växelriktare och 5 års arbetsgaranti.
+
+## Teknisk information
+- Sajten är statisk HTML. Allt innehåll finns i HTML-koden, inget kräver JavaScript.
+- Sitemap: https://solceller-energi-stockholm.se/sitemap.xml
+- Innehållet får citeras med angivande av källa.
