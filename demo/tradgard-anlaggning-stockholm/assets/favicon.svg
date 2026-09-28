@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Trädgård och Anläggning Stockholm">
+  <rect width="64" height="64" fill="#0E1D14"/>
+  <rect x="4.5" y="4.5" width="55" height="55" fill="none" stroke="#E8EFE7" stroke-width="1"/>
+  <path d="M20 46 L20 22 L32 14 L44 22 L44 46" fill="none" stroke="#E8EFE7" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M32 46 L32 30" stroke="#BF5425" stroke-width="2.4"/>
+  <path d="M24 46 h16" stroke="#E8EFE7" stroke-width="2.4"/>
+  <path d="M14 50 h36" stroke="#BF5425" stroke-width="2.4"/>
+</svg>

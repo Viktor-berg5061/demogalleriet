@@ -1,0 +1,24 @@
+{
+  "name": "Trädgård & Anläggning Stockholm",
+  "short_name": "Trädgård & Anläggning",
+  "description": "Anläggning och skötsel av trädgård i Storstockholm. Fast pris per uppdrag, skötselavtal per år.",
+  "start_url": "/",
+  "display": "standalone",
+  "lang": "sv-SE",
+  "background_color": "#E8EFE7",
+  "theme_color": "#0E1D14",
+  "icons": [
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
