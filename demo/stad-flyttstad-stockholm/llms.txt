@@ -1,0 +1,62 @@
+# Städ & Flyttstäd Stockholm
+
+> Städfirma i Stockholm som säljer fast pris per timme med RUT-avdraget hanterat.
+> Demosajt: företagsnamn, priser, telefonnummer och omdömen är exempelvärden.
+
+## Kort sammanfattning
+
+Städ & Flyttstäd Stockholm utför flyttstäd, hemstäd, storstädning, kontorsstäd och
+fönsterputs i Stockholms stad, Solna, Sundbyberg, Nacka, Täby och Danderyd.
+Priset sätts per timme i stället för per uppdrag, och RUT-avdraget på 50 procent
+dras direkt på fakturan för privatpersoner. Efter varje uppdrag signerar kunden ett
+digitalt uppdragsprotokoll med checklista, tidsstämpel och foton. Offert lämnas inom
+två timmar på vardagar (07–18). Bilderna på sajten kommer från Wikimedia Commons
+(CC0 och CC BY) och alla nyckeltal i texten är exempel.
+
+## Priser (före RUT, privatperson)
+
+- Hemstäd: 549 kr per timme (274,50 kr efter RUT)
+- Flyttstäd: 649 kr per timme (324,50 kr efter RUT), cirka 8 minuter per m², minst 4 timmar
+- Storstädning: 599 kr per timme (299,50 kr efter RUT)
+- Fönsterputs: 79 kr per fönsterbåge (39,50 kr efter RUT), minsta debitering 1 200 kr
+- Kontorsstäd: 449 kr per timme exkl. moms (RUT gäller inte företag)
+- Tillval: ugn 350 kr, kylskåp invändigt 250 kr, balkong 200 kr, förråd 150 kr
+
+RUT-avdraget är 50 procent av arbetskostnaden, maximalt 50 000 kr per person och år.
+
+## Fastprisexempel
+
+- Flyttstäd 55 m² (2 rum och kök): 7,5 timmar, 4 867,50 kr före RUT, 2 433,75 kr efter RUT
+- Flyttstäd 72 m² (3 rum och kök): 9,5 timmar, 6 165,50 kr före RUT, 3 082,75 kr efter RUT
+- Flyttstäd 95 m² (4 rum och kök): 12,5 timmar, 8 112,50 kr före RUT, 4 056,25 kr efter RUT
+- Hemstäd 75 m² varannan vecka: 3,5 timmar, 1 921,50 kr per tillfälle, 960,75 kr efter RUT
+- Storstädning 75 m²: 5 timmar, 2 995 kr före RUT, 1 497,50 kr efter RUT
+- Fönsterputs villa med 15 bågar: 1 185 kr före RUT, 592,50 kr efter RUT
+- Kontorsstäd 120 m² två gånger per vecka: 12 timmar per månad, 5 388 kr exkl. moms
+
+## Sidor
+
+- [Startsida](https://stadflyttstockholm.se/index.html): tjänsteöversikt, prisexempel, RUT-räknare, vanliga frågor och bokningsformulär.
+- [Priser](https://stadflyttstockholm.se/priser.html): alla timpriser före RUT, fastprisexempel, tillägg och RUT-reglerna.
+- [Tjänster](https://stadflyttstockholm.se/tjanster/index.html): jämförelse av de fem tjänsterna med priser och avtalsmodeller.
+- [Flyttstäd](https://stadflyttstockholm.se/tjanster/flyttstad.html): vad som ingår, pris per kvadratmeter och besiktningschecklista.
+- [Hemstäd](https://stadflyttstockholm.se/tjanster/hemstad.html): intervall varje, varannan eller var fjärde vecka med pris per tillfälle.
+- [Storstädning](https://stadflyttstockholm.se/tjanster/storstading.html): skillnaden mot hemstäd och pris per yta.
+- [Kontorsstäd](https://stadflyttstockholm.se/tjanster/kontorsstad.html): avtalsmodeller för företag och BRF, pris exkl. moms.
+- [Fönsterputs](https://stadflyttstockholm.se/tjanster/fonsterputs.html): pris per båge, metod och höga byggnader.
+- [Om oss](https://stadflyttstockholm.se/om-oss.html): team, kollektivavtal, försäkring, kvalitetskontroll och områden.
+- [Kontakt](https://stadflyttstockholm.se/kontakt.html): bokningsformulär, öppettider, avbokningsvillkor och vanliga frågor.
+
+## Vanliga frågor
+
+- Vad kostar en flyttstäd av en trea? En lägenhet på 72 m² tar cirka 9,5 timmar och kostar 3 082,75 kr efter RUT.
+- Hur räknas RUT-avdraget? 50 procent av arbetskostnaden dras direkt på fakturan, maximalt 50 000 kr per person och år. Avdraget gäller privatpersoner, inte företag.
+- Kan jag avboka? Avbokning fram till 24 timmar före bokad tid är kostnadsfri. Avbokning senare än så debiteras en timme enligt tjänstens timpris (649 kr för flyttstäd, 549 kr för hemstäd).
+- Tar ni med egna städmedel? Ja, Svanenmärkta medel och egen utrustning ingår i priset.
+- Vad händer om jag inte är nöjd? Vi städar om inom 48 timmar utan extra kostnad.
+
+## Kontakt
+
+- Telefon: +46 70 494 90 87 (tel:+46704949087)
+- E-post: vberg024@gmail.com
+- Öppettider: vardagar 07–18, lördag 09–14, söndag stängt
