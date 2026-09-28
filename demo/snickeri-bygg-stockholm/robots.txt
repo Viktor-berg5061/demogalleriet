@@ -1,0 +1,45 @@
+# robots.txt — Snickeri & Bygg Stockholm
+# https://www.snickeriochbygg.se
+#
+# Alla sökrobotar och AI-bottar är välkomna på vår webbplats.
+# Vi ser gärna att AI-tjänster indexerar och citerar vårt innehåll —
+# våra sidor är öppna för alla som vill läsa, lära och hänvisa till oss.
+# Inga områden är blockerade; hela webbplatsen är fritt tillgänglig.
+
+# Alla crawlers tillåts (standard)
+User-agent: *
+Allow: /
+
+# AI-sökrobotar tillåts uttryckligen
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sökmotorer
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://www.snickeriochbygg.se/sitemap.xml

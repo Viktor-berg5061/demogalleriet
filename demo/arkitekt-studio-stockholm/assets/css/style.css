@@ -1,0 +1,1843 @@
+/* ============================================================
+   Arkitekt & Studio Stockholm — shared stylesheet
+   Palette: cream #FAF6EF · ink #141210 · rust #B5563C · deep green #3F4A3C
+   Fonts: Fraunces (display serif) + Inter (sans body)
+   ============================================================ */
+
+:root {
+  --bg: #FAF6EF;
+  --bg-2: #F2ECE1;
+  --bg-3: #EAE2D3;
+  --ink: #141210;
+  --ink-soft: #4A4339;
+  --ink-faint: #6E655C;
+  --accent: #B5563C;
+  --accent-deep: #93401F;
+  --accent-soft: #F3E2D8;
+  --green: #3F4A3C;
+  --green-deep: #2C3529;
+  --line: rgba(20, 18, 16, 0.14);
+  --line-strong: rgba(20, 18, 16, 0.32);
+  --cream-on-dark: #F4EDE2;
+  --serif: "Fraunces", "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --maxw: 1240px;
+  --radius: 14px;
+  --shadow: 0 24px 60px -28px rgba(20, 18, 16, 0.35);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  /* overflow-x: clip (not hidden) — hidden would make <body> a scroll
+     container and break position: sticky on the header. clip prevents
+     horizontal overflow without killing sticky. */
+  overflow-x: clip;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; font-family: inherit; }
+
+/* Visible keyboard focus — every interactive element gets a clear,
+   accessible focus ring (directive: focus states on the mobile menu). */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.nav-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.container {
+  width: min(100% - 48px, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ---------- Reveal-on-scroll (progressive enhancement) ----------
+   Content is NEVER hidden by default. The hidden pre-state only applies
+   when JS is confirmed (html.js) AND the failsafe timer hasn't fired —
+   so no-JS crawlers, AI bots and full-page screenshots always see content. */
+html.js .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+html.js .reveal.is-visible { opacity: 1; transform: none; }
+.reveal, .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal:not(.is-visible), .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   Header / nav
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 246, 239, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s ease;
+}
+.site-header.is-scrolled { box-shadow: 0 10px 30px -18px rgba(20, 18, 16, 0.25); }
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 8px;
+  min-width: 0;
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--ink);
+}
+.brand .brand-studio { color: var(--ink); font-style: italic; }
+.brand .brand-city {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+.nav-links a {
+  display: block;
+  padding: 14px 16px;
+  font-size: 14.5px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink);
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-links a:hover { background: var(--bg-2); color: var(--accent); }
+.nav-links a[aria-current="page"]:not(.nav-cta) { color: var(--accent-deep); background: var(--accent-soft); font-weight: 600; }
+
+/* Header CTA — the one always-visible conversion point on desktop.
+   Terracotta accent keeps it distinct from the plain nav links. */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 14.5px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -10px rgba(181, 86, 60, 0.55);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-cta:hover { background: var(--accent-deep); color: #fff !important; transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(181, 86, 60, 0.65); }
+
+/* Burger (mobile only) */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  padding: 12px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.2s ease;
+}
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* While the drawer is open the burger is hidden from sight (the morph-X
+   animation stays for the a11y state change, but the button is invisible
+   and non-interactive) — the drawer's own 44px close button is the ONE
+   visible close control. No "two X icons" confusion. */
+.burger[aria-expanded="true"] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.burger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.burger:active { background: var(--bg-2); transform: scale(0.97); }
+
+/* Drawer close button (visible on mobile only — a dedicated 44px target
+   inside the open menu, independent of the burger). */
+.nav-close-li { display: none; }
+.nav-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 12px;
+  background: rgba(20, 18, 16, 0.08);
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.nav-close:hover { background: var(--bg-2); color: var(--accent); border-color: var(--line-strong); }
+.nav-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+/* Primary conversion buttons use the warm terracotta accent so the
+   money path is instantly recognizable on the cream background. */
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-deep); color: #fff; }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover { background: var(--accent-deep); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn-ghost:hover { border-color: var(--ink); background: var(--bg-2); }
+.btn-light { background: var(--cream-on-dark); color: var(--ink); }
+.btn-light:hover { background: #fff; }
+.btn-outline-light { background: transparent; color: var(--cream-on-dark); border-color: rgba(244, 237, 226, 0.45); }
+.btn-outline-light:hover { border-color: var(--cream-on-dark); background: rgba(244, 237, 226, 0.08); }
+
+/* Demoted CTA: plain text + arrow, no border, no fill. Used to keep
+   ONE dark-filled pill per viewport (primary conversion). */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 2px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--line-strong);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.link-arrow:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.link-arrow span { transition: transform 0.25s var(--ease); }
+.link-arrow:hover span { transform: translateX(4px); }
+.link-arrow--light { color: var(--cream-on-dark); text-decoration-color: rgba(244, 237, 226, 0.4); }
+.link-arrow--light:hover { color: #fff; text-decoration-color: var(--cream-on-dark); }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: clamp(56px, 9vw, 110px) 0 clamp(40px, 6vw, 72px);
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+.eyebrow .eyebrow-axo { width: 26px; height: 20px; flex-shrink: 0; }
+.eyebrow:has(.eyebrow-axo)::before { display: none; }
+.eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.hero h1 {
+  font-size: clamp(44px, 6.4vw, 84px);
+  font-weight: 450;
+  margin-bottom: 26px;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-lead {
+  font-size: clamp(16.5px, 1.6vw, 19px);
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin-bottom: 32px;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 40px; }
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+.hero-facts li {
+  padding-right: 26px;
+  margin-right: 26px;
+  border-right: 1px solid var(--line);
+}
+.hero-facts li:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.hero-facts li:nth-child(2) { max-width: 210px; }
+.hero-facts li:nth-child(2) span { display: block; max-width: 190px; }
+.hero-facts strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--accent);
+}
+.hero-facts span {
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.hero-media { position: relative; }
+.hero-bento {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  height: 100%;
+  min-height: 560px;
+}
+.bento-tile {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 0;
+}
+.bento-tile--main { grid-row: 1 / -1; }
+.bento-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Unified tone+contrast curve across ALL hero images (dusk exterior,
+     lime-washed facade, warm interior): the same filter is applied to
+     every tile so the trio reads as one tonally coherent series. */
+  filter: saturate(0.88) sepia(0.1) contrast(1.04) brightness(0.97);
+  transition: transform 0.8s var(--ease);
+}
+.bento-tile:hover img { transform: scale(1.03); }
+.bento-tile figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: rgba(20, 18, 16, 0.78);
+  color: var(--cream-on-dark);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 13px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+@media (max-width: 1020px) {
+  .hero-bento { min-height: 460px; }
+}
+@media (max-width: 720px) {
+  .hero-bento { min-height: 0; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+  .bento-tile--main { grid-column: 1 / -1; grid-row: auto; }
+  .bento-tile--main img, .bento-tile img { aspect-ratio: 4 / 3; height: auto; }
+  .bento-tile--main img { aspect-ratio: 16 / 9; }
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  margin-bottom: 22px;
+}
+.hero-badge::before {
+  content: "✓";
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ============================================================
+   Section scaffolding
+   ============================================================ */
+/* Anchor targets sit below the sticky header when jump-linked. */
+#projekt, #tjanster, #om, #omdomen, #fragor, #start {
+  scroll-margin-top: 96px;
+}
+
+.section { padding: clamp(64px, 8vw, 110px) 0; }
+.section-tight { padding: clamp(48px, 6vw, 80px) 0; }
+/* CTA band directly after the manifesto quote: less top padding so the
+   dark band lands as a deliberate next beat, not a separate block. */
+.section-tight--cta { padding-top: clamp(16px, 2vw, 32px); }
+.section-alt { background: var(--bg-2); }
+.section-dark { background: var(--ink); color: var(--cream-on-dark); }
+
+.section-head { max-width: 780px; margin-bottom: clamp(36px, 5vw, 60px); }
+.section-head.center { margin-inline: auto; text-align: center; }
+.section-head.center .eyebrow { justify-content: center; }
+.section-head h2 {
+  font-size: clamp(32px, 4.2vw, 52px);
+  margin-bottom: 16px;
+}
+.section-head h2 em { font-style: italic; color: var(--ink); }
+.section-head p { color: var(--ink-soft); font-size: 17px; max-width: 62ch; }
+.section-head.center p { margin-inline: auto; }
+.section-dark .section-head p { color: rgba(244, 237, 226, 0.72); }
+.section-dark .section-head h2 em { color: #E08A5F; }
+
+/* ============================================================
+   Projects (2-up alternating grid — no dead right half)
+   ============================================================ */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(24px, 3vw, 40px);
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(18px, 2.2vw, 28px);
+  align-items: stretch;
+  padding: clamp(18px, 2vw, 26px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.3s ease;
+}
+.project-row:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+
+/* Mirror every other card: image right, copy left. */
+.project-row:nth-child(even) .project-copy { order: -1; }
+
+/* Per-project accent swatch (signature element): the numeral badge
+   and the meta line take the project's own color. */
+.project-row--rust { --p-accent: var(--accent); }
+.project-row--green { --p-accent: var(--green); }
+.project-row--ink { --p-accent: var(--ink); }
+.project-row--cream { --p-accent: #8A6A4B; }
+
+.project-img {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 0;
+}
+/* Images fill their column height (object-fit cover) so every card in a
+   row is equal height — no dead cream below short images. The unifying
+   filter (same family as the hero bento) knocks the 6 stock photos into
+   one palette/temperature so the collage reads as one studio's work. */
+.project-img img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; filter: saturate(0.94) sepia(0.06) contrast(1.02); transition: transform 0.6s var(--ease); }
+.project-row:hover .project-img img { transform: scale(1.03); }
+
+/* Numeric index badge overlaid on the photo (signature element). */
+.project-num {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--p-accent, var(--accent));
+  background: rgba(250, 246, 239, 0.94);
+  padding: 7px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -8px rgba(20, 18, 16, 0.45);
+}
+.project-num span { display: block; }
+
+.project-copy h3 { font-size: clamp(22px, 2.2vw, 28px); margin-bottom: 8px; }
+.project-copy .project-meta {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p-accent, var(--ink-soft));
+  margin-bottom: 14px;
+}
+.project-copy p { color: var(--ink-soft); max-width: 46ch; }
+.project-copy .project-tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink-soft);
+}
+.card-cta,
+.project-row__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--line-strong);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.card-cta .arr,
+.project-row__link .arr { transition: transform 0.25s var(--ease); display: inline-block; }
+.card-cta:hover,
+.project-row__link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.card-cta:hover .arr,
+.project-row__link:hover .arr { transform: translateX(4px); }
+
+/* ============================================================
+   Services
+   ============================================================ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.service-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: var(--line-strong);
+}
+.service-card .svc-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--ink-soft);
+}
+.service-card h3 { font-size: 22px; }
+.service-card p { font-size: 14.5px; color: var(--ink-soft); flex-grow: 1; }
+.service-card .svc-link {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin: -10px 0;
+  padding: 8px 0;
+}
+.service-card .svc-link svg { transition: transform 0.25s var(--ease); }
+.service-card .svc-link:hover { color: var(--accent); }
+.service-card:hover .svc-link svg { transform: translateX(4px); }
+
+/* ============================================================
+   Process — horizontal timeline on desktop, vertical line on
+   mobile. Deliberately NOT numbered cards (that template is the
+   services grid's alone): the steps are nodes on a connecting
+   line, so the two sections read as different forms.
+   ============================================================ */
+.process-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+/* The connector line runs behind the icon nodes (desktop). */
+.process-grid::before {
+  content: "";
+  position: absolute;
+  top: 31px; /* centers on the 64px icon */
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: var(--line-strong);
+  opacity: 0.35;
+  z-index: 0;
+}
+.process-step {
+  position: relative;
+  text-align: center;
+  padding: 0 clamp(18px, 2.4vw, 32px);
+  z-index: 1;
+}
+/* Node: the icon sits ON the line, with a cream ring masking the
+   line behind it so it reads as a bead on a thread. */
+.step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line-strong);
+  color: var(--ink);
+  margin-bottom: 18px;
+  box-shadow: 0 0 0 6px var(--bg);
+}
+.step-icon svg { width: 44px; height: 44px; }
+.process-step h3 { font-size: 21px; margin-bottom: 8px; }
+.process-step p { font-size: 14.5px; color: var(--ink-soft); }
+
+/* ============================================================
+   Axonometric divider (architectural DNA motif)
+   ============================================================ */
+.axo-divider {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 0;
+  color: var(--accent);
+  opacity: 0.55;
+}
+.axo-divider svg { width: 120px; height: 90px; }
+
+/* ============================================================
+   Quote band (editorial pull-quote + supporting figures)
+   ============================================================ */
+.quote-band {
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: center;
+  padding: clamp(24px, 4vw, 40px) 0;
+  position: relative;
+}
+.axo-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(480px, 100%);
+  height: auto;
+  color: var(--ink);
+  opacity: 0.035;
+  pointer-events: none;
+}
+.quote-band > *:not(.axo-watermark) { position: relative; }
+.quote-band .eyebrow { justify-content: center; }
+.quote-band blockquote {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.4vw, 52px);
+  font-weight: 450;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 22px auto 14px;
+  max-width: 22ch;
+}
+.quote-band blockquote em { font-style: italic; color: var(--ink); }
+.quote-band .quote-author {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.quote-figs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(28px, 6vw, 64px);
+  margin-top: clamp(30px, 4vw, 44px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--line);
+}
+.qfig { max-width: 220px; }
+.qfig strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.4vw, 54px);
+  font-weight: 450;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.qfig span {
+  font-size: 12.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* ============================================================
+   Split / about
+   ============================================================ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.split-media {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.split-media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.split-media .split-media-2 {
+  position: absolute;
+  right: -18px;
+  bottom: -26px;
+  width: 46%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 6px solid var(--bg);
+  box-shadow: var(--shadow);
+}
+.split-media .split-media-2 img { aspect-ratio: 4 / 3.2; }
+.split-copy h2 { font-size: clamp(30px, 3.8vw, 46px); margin-bottom: 18px; }
+.split-copy h2 em { font-style: italic; color: var(--ink); }
+.split-copy p { color: var(--ink-soft); margin-bottom: 16px; }
+.split-copy .check-list { list-style: none; margin: 22px 0 28px; display: grid; gap: 12px; }
+.split-copy .check-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-weight: 500;
+}
+.split-copy .check-list svg { flex-shrink: 0; margin-top: 3px; }
+
+/* ============================================================
+   Testimonials — carousel (auto-rotate, prev/next, dots, keyboard)
+   ============================================================ */
+.t-carousel {
+  position: relative;
+  max-width: 820px;
+  margin-inline: auto;
+}
+.t-viewport { overflow: hidden; border-radius: var(--radius); }
+.t-track {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  transition: transform 0.55s var(--ease);
+}
+.t-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(32px, 5vw, 56px) clamp(26px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  align-items: center;
+}
+.t-slide .quote-mark {
+  font-family: var(--serif);
+  font-size: 58px;
+  line-height: 0.5;
+  color: var(--accent);
+}
+.t-slide blockquote {
+  font-family: var(--serif);
+  font-size: clamp(21px, 2.6vw, 28px);
+  font-weight: 450;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 26ch;
+}
+.t-slide .t-who {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-style: normal;
+}
+.t-slide .t-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--cream-on-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.t-slide .t-who > span:last-child { display: inline-flex; flex-direction: column; text-align: left; }
+.t-slide .t-name { font-weight: 600; font-size: 14.5px; color: var(--ink); }
+.t-slide .t-detail { font-size: 12.5px; color: var(--ink-soft); }
+.t-prev,
+.t-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  z-index: 2;
+}
+.t-prev { left: -24px; }
+.t-next { right: -24px; }
+.t-prev:hover, .t-next:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.t-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 22px;
+}
+.t-dot {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s ease;
+}
+.t-dot::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ink-faint);
+  background: transparent;
+  transition: background 0.25s ease, width 0.25s ease, border-color 0.25s ease;
+}
+.t-dot.is-active::before { background: var(--accent); border-color: var(--accent); width: 26px; }
+@media (max-width: 860px) {
+  .t-prev { left: -6px; }
+  .t-next { right: -6px; }
+}
+
+/* ============================================================
+   FAQ (details/summary — no JS needed)
+   ============================================================ */
+.faq-list { max-width: 820px; margin-inline: auto; display: grid; gap: 12px; }
+.faq-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  list-style: none;
+  min-height: 44px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary .faq-icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--ink);
+  transition: transform 0.3s var(--ease), background 0.2s ease;
+}
+.faq-item[open] summary .faq-icon { transform: rotate(45deg); background: var(--bg-2); }
+.faq-item .faq-body { padding: 0 24px 22px; color: var(--ink-soft); font-size: 15px; max-width: 70ch; }
+.faq-item .faq-body p + p { margin-top: 10px; }
+
+/* ============================================================
+   CTA band
+   ============================================================ */
+.cta-band {
+  background: var(--ink);
+  color: var(--cream-on-dark);
+  border-radius: 22px;
+  padding: clamp(44px, 6vw, 84px) clamp(28px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1.25fr auto;
+  gap: 28px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181, 86, 60, 0.35), transparent 70%);
+  top: -140px;
+  right: -80px;
+  pointer-events: none;
+}
+.cta-band h2 { font-size: clamp(28px, 3.6vw, 46px); margin-bottom: 12px; }
+.cta-band h2 em { font-style: italic; color: #E08A5F; }
+.cta-band p { color: rgba(244, 237, 226, 0.72); max-width: 52ch; }
+.cta-band .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; position: relative; z-index: 1; }
+.cta-band .cta-actions .btn { padding: 16px 34px; font-size: 16px; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer { background: var(--ink); color: var(--cream-on-dark); padding: 64px 0 0; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr 1fr 1.05fr;
+  gap: 40px;
+  padding-bottom: 48px;
+}
+.footer-brand .brand { color: var(--cream-on-dark); margin-bottom: 16px; }
+.footer-brand .brand-city { color: rgba(244, 237, 226, 0.6); }
+/* Signature motif (axonometric plan-sketch) in the footer — the same
+   plan-drawing glyph family used in the hero divider, section headers
+   and quote band, so the identity mark recurs through the whole page. */
+.footer-axo {
+  width: 40px;
+  height: 30px;
+  color: rgba(244, 237, 226, 0.4);
+  margin-bottom: 16px;
+  display: block;
+}
+.footer-brand p { font-size: 14px; color: rgba(244, 237, 226, 0.66); max-width: 34ch; }
+.footer-col h4,
+.footer-acc summary {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244, 237, 226, 0.55);
+  margin-bottom: 18px;
+  list-style: none;
+  cursor: default;
+}
+.footer-acc summary::-webkit-details-marker { display: none; }
+.footer-col ul, .footer-acc ul { list-style: none; display: grid; gap: 10px; }
+.footer-col a, .footer-acc a {
+  font-size: 14.5px;
+  color: rgba(244, 237, 226, 0.85);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover, .footer-acc a:hover { color: #E08A5F; }
+.footer-acc summary::after {
+  content: "";
+  display: none;
+}
+.maps-link {
+  color: #E08A5F !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.footer-nap { font-size: 14.5px; color: rgba(244, 237, 226, 0.85); display: grid; gap: 10px; }
+.footer-nap a { min-height: 44px; align-items: flex-start; }
+.footer-nap strong { color: var(--cream-on-dark); }
+.footer-bottom {
+  border-top: 1px solid rgba(244, 237, 226, 0.14);
+  padding: 22px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(244, 237, 226, 0.5);
+}
+
+/* ============================================================
+   Mobile sticky CTA (visible < 768px only)
+   One conversion bar, fixed to the bottom of the viewport.
+   Safe-area aware: on notched phones the bar grows to clear the
+   home indicator and <body> gets matching bottom padding so no
+   page content (footer, form submit) ever sits underneath it.
+   Scroll behavior: the bar slides away while scrolling DOWN and
+   returns on scroll-UP (body.cta-scrolled), so mid-scroll the bar
+   never covers interactive content — only a deliberate upward
+   flick brings it back as the conversion target.
+   ============================================================ */
+.mobile-cta-sticky { display: none; }
+
+@media (max-width: 767px) {
+  .mobile-cta-sticky {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    height: calc(50px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15.5px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 -6px 18px rgba(20, 18, 16, 0.22);
+    transition: transform 0.3s var(--ease), opacity 0.3s ease;
+  }
+  /* Hide on scroll-down (body.cta-scrolled set by main.js) — the bar
+     slides fully out of the viewport so it can never cover the form,
+     the footer or any tap target mid-scroll. */
+  body.cta-scrolled .mobile-cta-sticky {
+    transform: translateY(calc(100% + 12px));
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  body { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  /* Unambiguous behavior on the contact page: "Boka möte" would link
+     to the very page the visitor is already on. The sticky bar instead
+     becomes a direct call CTA — one clear action (tap to dial), while
+     the form's own submit button remains the on-page primary action. */
+  body.page-kontakt .mobile-cta-sticky { background: var(--green); }
+  body.page-kontakt .mobile-cta-sticky:active { background: var(--green-deep); }
+}
+
+/* ============================================================
+   Page hero (interior pages)
+   ============================================================ */
+.page-hero { padding: clamp(56px, 8vw, 96px) 0 clamp(32px, 4vw, 48px); }
+.page-hero .crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.page-hero .crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 6px;
+  margin: -8px -6px;
+}
+.page-hero .crumbs a:hover { color: var(--accent); }
+.page-hero .crumbs .sep { color: var(--ink-faint); }
+.page-hero h1 { font-size: clamp(38px, 5.4vw, 66px); margin-bottom: 20px; max-width: 18ch; }
+.page-hero h1 em { font-style: italic; color: var(--accent); }
+.page-hero .page-lead { font-size: clamp(16.5px, 1.7vw, 19px); color: var(--ink-soft); max-width: 64ch; }
+.page-hero .page-lead strong { color: var(--ink); }
+
+.page-hero-media { margin-top: clamp(28px, 4vw, 44px); }
+.page-hero-media img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ============================================================
+   Content blocks (service pages)
+   ============================================================ */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.content-body h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  margin: 0 0 16px;
+  scroll-margin-top: 100px;
+}
+.content-body h2 em { font-style: italic; color: var(--ink); }
+.content-body h3 { font-size: 21px; margin: 28px 0 10px; }
+.content-body p { color: var(--ink-soft); margin-bottom: 16px; }
+.content-body p strong { color: var(--ink); }
+.content-body a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.content-body a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.content-body ul, .content-body ol { margin: 0 0 20px 4px; padding-left: 20px; display: grid; gap: 10px; }
+.content-body li { color: var(--ink-soft); }
+.content-body li strong { color: var(--ink); }
+.content-body .lead-paragraph { font-size: 18px; color: var(--ink); }
+
+.fact-box {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin: 26px 0;
+  display: grid;
+  gap: 14px;
+}
+.fact-box h3 { font-size: 18px; margin: 0; font-family: var(--serif); }
+.fact-box .fact {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.fact-box .fact dt { font-size: 13.5px; color: var(--ink-soft); font-weight: 500; }
+.fact-box .fact dd { font-size: 14.5px; font-weight: 600; text-align: right; }
+
+.sidebar {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 20px;
+}
+.side-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+.side-card h3 { font-size: 18px; margin-bottom: 12px; font-family: var(--serif); }
+.side-card p { font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; }
+.side-card p a {
+  color: var(--ink);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: -8px 0;
+  padding: 8px 2px;
+}
+.side-card p a:hover { color: var(--accent); }
+.side-card .btn { width: 100%; }
+.side-card ul { list-style: none; display: grid; gap: 10px; }
+.side-card ul a {
+  font-size: 14.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  min-height: 44px;
+}
+.side-card ul a:hover { color: var(--accent); }
+.side-card ul a .arr { color: var(--ink-faint); }
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.related-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: grid;
+  gap: 10px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.related-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.related-card .rc-num { font-family: var(--serif); font-style: italic; color: var(--ink-faint); font-size: 20px; }
+.related-card h3 { font-size: 19px; }
+.related-card p { font-size: 14px; color: var(--ink-soft); }
+.related-card .rc-link { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+
+/* ============================================================
+   Team (om-oss)
+   ============================================================ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.team-card { text-align: left; }
+.team-card .t-photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.team-card .t-photo img { width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; }
+.team-card h3 { font-size: 20px; }
+.team-card .t-role { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+.team-card p { font-size: 14px; color: var(--ink-soft); }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.value-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  background: #fff;
+}
+.value-card .v-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--bg-2);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.value-card h3 { font-size: 19px; margin-bottom: 8px; }
+.value-card p { font-size: 14px; color: var(--ink-soft); }
+
+/* ============================================================
+   Contact page
+   ============================================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.contact-info { display: grid; gap: 14px; }
+.contact-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+.contact-item .ci-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--bg-2);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-item h3 { font-size: 16px; margin-bottom: 2px; }
+.contact-item p, .contact-item a { font-size: 14.5px; color: var(--ink-soft); }
+.contact-item a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 0;
+}
+.contact-item a:hover { color: var(--accent); }
+.contact-item .ci-sub { font-size: 12.5px; color: var(--ink-faint); margin-top: 2px; }
+
+.contact-form-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(26px, 3.5vw, 40px);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 96px;
+}
+.contact-form-card h2 { font-size: 28px; margin-bottom: 8px; }
+.contact-form-card > p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 24px; }
+
+.form-row { display: grid; gap: 18px; }
+.form-group { display: grid; gap: 7px; }
+.form-group.form-group--gap { margin-top: 18px; }
+.form-actions { margin-top: 22px; }
+.btn-block { width: 100%; }
+.form-privacy {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+.form-privacy a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 0;
+  margin: -8px 0;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.form-privacy a:hover { color: var(--ink-soft); }
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.form-group label .req {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 2px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 10px;
+  padding: 13px 16px;
+  min-height: 52px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.form-group textarea { min-height: 132px; resize: vertical; }
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  border-width: 2px;
+  box-shadow: 0 0 0 3px rgba(181, 86, 60, 0.15);
+}
+/* After a successful submit the form card is unmistakably DONE:
+   the input groups are dimmed (opacity ~0.5 + grayscale) so they read
+   as inert, the submit button swaps to a green "Skickat ✓" state at full
+   strength, and the green success box (which lives outside #leadForm)
+   stays readable. NOTE: the grayscale/dim must be applied to the field
+   groups, NOT to #leadForm itself — a filter on the parent also filters
+   every descendant, which would desaturate the green button too.
+   (Round 11 head directive: a fresh screenshot must read as "done", not
+   "still editable".) */
+#leadForm.is-complete .form-group {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+#leadForm.is-complete .btn-primary {
+  background: var(--green);
+  box-shadow: none;
+  opacity: 1;
+  filter: none;
+}
+#leadForm.is-complete input,
+#leadForm.is-complete textarea,
+#leadForm.is-complete button {
+  cursor: not-allowed;
+}
+#leadForm.is-complete input,
+#leadForm.is-complete textarea {
+  background: var(--bg-2);
+  color: var(--ink-faint);
+  border-color: var(--line);
+}
+.form-group .hint { font-size: 12px; color: var(--ink-faint); }
+
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+/* The honeypot <input> itself must be 1×1 too — otherwise it renders
+   at UA default size (~181×19) and shows up as a sub-44px "tap target"
+   in automated audits. It is not a real control for humans (off-screen,
+   aria-hidden, tabindex=-1), but making it physically 1×1 keeps the
+   audit honest and the layout clean. Bots still see and fill it. */
+.hp-field input {
+  width: 1px !important;
+  height: 1px !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font-size: 1px !important;
+  opacity: 0;
+}
+
+.form-status {
+  display: none;
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  /* Round 11: after a successful submit the success box is scrolled into
+     view — it must never land under the sticky header. */
+  scroll-margin-top: 96px;
+}
+.form-status.ok { display: block; background: #E5EFE4; color: #2C5230; border: 1px solid #BFD8BD; }
+.form-status.err { display: block; background: #F9E3DC; color: #8F3A1D; border: 1px solid #EBC0B0; }
+.form-status.sending { display: block; background: var(--bg-2); color: var(--ink-soft); border: 1px solid var(--line); }
+.form-status a { text-decoration: underline; }
+
+/* ============================================================
+   404
+   ============================================================ */
+.notfound { text-align: center; padding: clamp(80px, 14vw, 160px) 0; }
+.notfound .nf-code {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(90px, 16vw, 180px);
+  line-height: 1;
+  color: var(--ink);
+}
+.notfound h1 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 12px; }
+.notfound p { color: var(--ink-soft); margin-bottom: 28px; }
+
+/* Sidebar small note (service pages) */
+.side-note {
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+.side-note a {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* 404 actions */
+.nf-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+.contact-form-card { scroll-margin-top: 84px; }
+.form-status { scroll-margin-top: 84px; }
+
+@media (max-width: 1020px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  /* 2x2 tablet grid: the single horizontal connector no longer
+     maps cleanly, so hide it and let the icon nodes carry the
+     section alone. */
+  .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
+  .process-grid::before { display: none; }
+  .process-step { padding: 0 clamp(14px, 2vw, 24px); }
+  .content-grid { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .related-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-media { max-width: 640px; }
+  /* Projects: stack to one column, image first, copy below. The
+     card height becomes content-driven, so images switch from
+     fill-height to intrinsic ratio (controlled, no 0-height
+     circular reference, no two photos competing for space). */
+  .projects-list { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 1fr; gap: 16px; }
+  .project-row:nth-child(even) .project-copy { order: 0; }
+  .project-img { height: auto; }
+  .project-img img { height: auto; }
+  .split { grid-template-columns: 1fr; }
+  .split-media-2-wrap { margin-bottom: 30px; }
+  .cta-band { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  /* Mobile: the form is the money path — put it above the info
+     cards so the first viewport starts with capture, not details. */
+  .contact-form-card { order: 1; }
+  .contact-info { order: 2; }
+  /* Tighten the contact section so the form card lands high on the
+     mobile viewport: less dead space between the page hero and the
+     capture card (head directive: contact hierarchy on mobile). */
+  .contact-section { padding-top: clamp(20px, 4vw, 44px); }
+}
+
+@media (max-width: 767px) {
+  /* Inline links inside prose get an expanded invisible hit area:
+     padding grows the bounding box to >=44px while negative margins
+     keep the visual line-height unchanged (classic tap-target trick). */
+  .content-body a {
+    padding: 12px 4px;
+    margin: -12px -4px;
+  }
+  /* Fixed-position descendants need a clean containing block:
+     drop the header's backdrop-filter on mobile so the fullscreen
+     menu covers the real viewport, not the header box. With blur off,
+     the header must be fully opaque or scrolled content ghosts through. */
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--bg);
+  }
+  /* Top-sheet menu + scrim: the panel slides down over the page and
+     a dark backdrop dims everything behind it. */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    background: rgba(20, 18, 16, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .nav-backdrop.visible { opacity: 1; visibility: visible; }
+  /* Desktop nav list is hidden on mobile — only the burger is shown.
+     Exactly one CTA is visible at a time: the sticky bottom bar. */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-height: min(78dvh, 640px);
+    z-index: 200;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    background: rgba(250, 246, 239, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0 0 22px 22px;
+    box-shadow: 0 30px 60px -22px rgba(20, 18, 16, 0.45);
+    padding: calc(76px + 18px) 24px calc(28px + env(safe-area-inset-bottom, 0px));
+    gap: 4px;
+    transform: translateY(-110%);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    transition: transform 0.35s var(--ease), opacity 0.25s ease, visibility 0.35s;
+  }
+  .nav-links.open { transform: none; opacity: 1; visibility: visible; }
+  /* Dedicated close button: 44px, top-right of the open drawer content. */
+  .nav-close-li { display: flex; justify-content: flex-end; margin: 0 -8px 10px 0; }
+  .nav-links a { font-size: 19px; padding: 12px 16px; min-height: 48px; border-radius: 10px; }
+  /* Full-row hit areas + visible active-page state inside the drawer:
+     the whole row is tappable (block + min-height), the current page
+     gets a filled pill so it reads as "you are here" at a glance. */
+  .nav-links a[aria-current="page"] {
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-weight: 700;
+  }
+  /* Keyboard focus inside the drawer: clear ring + soft fill so the
+     focus position is obvious against the cream panel. */
+  .nav-links a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    background: var(--bg-2);
+  }
+  /* Pressed state: visible feedback on tap so the user knows the row
+     registered before navigation happens. */
+  .nav-links a:active { background: var(--accent-soft); }
+  .nav-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; background: var(--bg-2); }
+  .nav-cta { margin-top: 10px; justify-content: center; }
+  .burger { display: flex; position: relative; z-index: 210; }
+  body.no-scroll { overflow: hidden; }
+  /* While the drawer is open the sticky bottom CTA is hidden so exactly
+     ONE conversion point is visible at a time (the drawer's own pill). */
+  body.no-scroll .mobile-cta-sticky { display: none; }
+  /* While a form control is focused (mobile keyboard open) the fixed
+     bottom bar is hidden — a fixed bar floats above the keyboard and
+     would cover the very field being typed in. (Head directive:
+     "Dölj eller tona ned listen när formulärfältet är fokuserat".) */
+  body.form-focus .mobile-cta-sticky { display: none; }
+  /* Round 12 head: last service card's CTA must clear the sticky bottom bar. */
+  .page-tjanster .services-grid { padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (max-width: 720px) {
+  /* Mobile hero: headline first, then the 3-tile bento full-width
+     below it. One dark-filled pill per viewport — the sticky CTA
+     covers the primary conversion.
+     Spacing is tightened so the whole stats block clears the
+     fixed bottom CTA bar at scroll 0 (Round 9 head check: no
+     hero-facts element may sit underneath .mobile-cta-sticky). */
+  .hero { padding-top: clamp(20px, 4vw, 32px); }
+  .hero-copy .eyebrow { margin-bottom: 12px; }
+  .hero h1 { margin-bottom: 12px; }
+  .hero-lead { margin-bottom: 14px; font-size: 15.5px; }
+  .hero-badge { margin-bottom: 10px; }
+  .hero-ctas { margin-bottom: 16px; gap: 10px; }
+  .hero-ctas .link-arrow { min-height: 44px; }
+  /* One dark-filled pill per viewport: the sticky bottom bar is the
+     primary conversion on mobile, so the hero's primary CTA demotes to
+     an outline button (same target, same text — still tappable, still
+     links to /kontakt.html, but not a competing filled pill). */
+  .hero-ctas .btn-primary {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line-strong);
+    box-shadow: none;
+  }
+  .hero-ctas .btn-primary:hover {
+    background: var(--bg-2);
+    border-color: var(--ink);
+    color: var(--ink);
+    transform: none;
+  }
+  .hero-facts { padding-top: 12px; gap: 10px; }
+  .hero-facts li { padding: 0; margin: 0; border: 0; }
+  .hero-facts strong { font-size: 25px; line-height: 1.05; }
+  .hero-facts span { font-size: 11px; letter-spacing: 0.04em; }
+
+  .hero-grid { display: flex; flex-direction: column; }
+  .hero-copy { margin-top: 0; }
+  .hero-media { order: 2; max-width: none; width: 100%; margin-top: clamp(28px, 6vw, 44px); }
+
+  /* Interior page hero: tighter on mobile so the first content
+     block (contact cards, policy intro) clears the fixed bottom
+     CTA bar at scroll 0 instead of hiding behind it. */
+  .page-hero { padding-top: clamp(28px, 5vw, 44px); padding-bottom: 22px; }
+  .page-hero .crumbs { margin-bottom: 12px; }
+  .page-hero h1 { margin-bottom: 12px; }
+  .page-hero .page-lead { font-size: 15.5px; }
+  .page-hero-media { margin-top: 18px; }
+
+  /* Process: vertical timeline with a connected line. Steps stack,
+     the icon node sits on a vertical thread down the left edge. */
+  .process-grid { grid-template-columns: 1fr; gap: 0; }
+  .process-grid::before {
+    top: 0;
+    bottom: 0;
+    left: 31px; /* centers on the 64px icon */
+    right: auto;
+    width: 2px;
+    height: auto;
+    display: block;
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 22px;
+    text-align: left;
+    padding: 0 0 40px;
+  }
+  .process-step:last-child { padding-bottom: 0; }
+  .process-step .step-icon { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
+  .process-step h3 { grid-column: 2; grid-row: 1; }
+  .process-step p { grid-column: 2; grid-row: 2; font-size: 15px; }
+
+  /* Footer: group columns under <details> accordions. */
+  .footer-grid { grid-template-columns: 1fr; gap: 0; }
+  .footer-brand { padding-bottom: 26px; }
+  .footer-acc { border-top: 1px solid rgba(244, 237, 226, 0.14); }
+  .footer-acc:last-of-type { border-bottom: 1px solid rgba(244, 237, 226, 0.14); }
+  .footer-acc summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    margin-bottom: 0;
+    padding: 14px 0;
+    cursor: pointer;
+  }
+  .footer-acc summary::after {
+    content: "+";
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(244, 237, 226, 0.6);
+    transition: transform 0.3s var(--ease);
+  }
+  .footer-acc[open] summary::after { transform: rotate(45deg); }
+  .footer-acc ul, .footer-acc .footer-nap { padding-bottom: 20px; }
+}
+
+@media (max-width: 560px) {
+  .container { width: min(100% - 36px, var(--maxw)); }
+  .hero h1 { font-size: clamp(2rem, 9vw, 5rem); }
+  .hero-facts {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    border-top: 0;
+    border-left: 2px solid var(--ink);
+    padding-top: 0;
+    padding-left: 14px;
+  }
+  .hero-facts li { padding-right: 0; margin-right: 0; border-right: 0; }
+  .hero-facts strong { font-size: 24px; white-space: nowrap; }
+  .hero-facts span { white-space: nowrap; }
+  /* Tighten the hero column so all three stats clear the fixed
+     bottom CTA bar on the shortest common viewport (375×812). */
+  .hero { padding-top: 14px; }
+  .hero-copy .eyebrow { margin-bottom: 10px; }
+  .hero h1 { margin-bottom: 8px; }
+  .hero-lead { margin-bottom: 10px; }
+  .hero-badge { margin-bottom: 8px; }
+  .hero-ctas { margin-bottom: 12px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .quote-figs { gap: 26px 20px; }
+  .qfig { max-width: 150px; }
+  .page-hero-media img { aspect-ratio: 4 / 3; }
+  .btn { width: 100%; }
+  .hero-ctas .btn { width: 100%; flex: 1 1 100%; min-width: 0; }
+  .cta-band .btn { width: auto; }
+  .form-row { grid-template-columns: 1fr; }
+  .project-row { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
+  .t-prev, .t-next { display: none; }
+  /* Mobile contact hierarchy: the form is the money path, so the card
+     stays above the info cards (order:1) and gets tightened spacing so
+     heading → fields → submit → privacy all stay visible and the
+     complete form + primary action read as one unit above the fold. */
+  .contact-form-card { padding: 24px 20px; }
+  .contact-form-card h2 { font-size: 24px; }
+  .contact-form-card > p { margin-bottom: 18px; }
+  .form-actions .btn { min-height: 52px; }
+}
+
+/* ============================================================
+   Mobile type scale (head directive: h1/h2 clamp below 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  h1, .hero h1, .page-hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    line-height: 1.0;
+  }
+  h2, .section-head h2, .split-copy h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    line-height: 1.05;
+  }
+  .quote-band blockquote { font-size: clamp(24px, 7.5vw, 32px); line-height: 1.15; }
+}
+
+/* Reduce motion safety */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@media (max-width: 400px) {
+  /* Round 12 head: stack the brand lockup so Studio/STOCKHOLM never overlap. */
+  .brand { flex-wrap: wrap; row-gap: 2px; }
+  .brand .brand-city { flex-basis: 100%; letter-spacing: 0.14em; }
+}

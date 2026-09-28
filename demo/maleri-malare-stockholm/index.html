@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Måleri &amp; Målare Stockholm — Hantverksmåleri med garanti</title>
+<meta name="description" content="Måleri & Målare Stockholm målar bostadsrätter, villor, fasader och lokaler. Fast pris, egen personal, ROT-avdrag och upp till 10 års arbetsgaranti. Gratis offert inom 24 timmar.">
+<meta property="og:title" content="Måleri & Målare Stockholm — Hantverksmåleri med garanti">
+<meta property="og:description" content="Fast pris, egen personal och upp till 10 års arbetsgaranti. Gratis offert inom 24 timmar.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E2602A'/%3E%3Crect x='12' y='16' width='28' height='13' rx='3' fill='white'/%3E%3Cpath d='M40 22h9a4 4 0 0 1 4 4v3' stroke='white' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M26 29v15' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M18 44h16' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Måleri & Målare Stockholm",
+  "description": "Hantverksmåleri för bostadsrätter, villor, fasader och lokaler i Stockholm.",
+  "telephone": "+46 8 121 314 15",
+  "email": "info@maleri-malare-stockholm.se",
+  "address": {"@type": "PostalAddress", "streetAddress": "Götgatan 12", "postalCode": "118 46", "addressLocality": "Stockholm", "addressCountry": "SE"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "2413"},
+  "openingHours": "Mo-Fr 07:00-17:00",
+  "priceRange": "$$",
+  "areaServed": "Stockholm"
+}
+</script>
+<style>
+/* ============ TOKENS & BASE ============ */
+:root{
+  --paper:#F6EFE4; --paper-2:#EDE4D3; --card:#FFFFFF;
+  --ink:#1B1612; --ink-soft:#63594E; --line:rgba(27,22,18,.12);
+  --pine-ink:#0B2A22; --pine:#10352B; --pine-2:#16483C;
+  --accent:#E2602A; --accent-deep:#C04A18; --accent-soft:#F8DFCE;
+  --ok:#1E7D4F; --err:#B3261E;
+  --radius:22px; --radius-s:14px;
+  --font-display:"Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --shadow-sm:0 1px 2px rgba(27,22,18,.06), 0 14px 32px -12px rgba(27,22,18,.18);
+  --shadow-md:0 2px 4px rgba(27,22,18,.06), 0 20px 44px -14px rgba(27,22,18,.20);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+html,body{overflow-x:clip}
+body{margin:0;font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--accent);color:#fff;padding:.6rem 1rem;border-radius:10px;font-weight:700;transition:top .2s}
+.skip-link:focus{top:1rem}
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.25rem)}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.06;letter-spacing:-.015em;margin:0 0 1rem}
+h1{font-size:clamp(2.7rem,7vw,5.1rem)}
+h2{font-size:clamp(2rem,4.6vw,3.3rem)}
+h3{font-size:1.4rem}
+h1 em,h2 em{color:var(--accent);font-style:italic}
+h2 em{white-space:nowrap}
+p{margin:0 0 1rem}
+.section{padding-block:clamp(4.5rem,9vw,7.5rem)}
+.section-head{max-width:720px;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head .lede{font-size:1.125rem;color:var(--ink-soft);margin-top:1rem}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem}
+.eyebrow::before{content:"";width:26px;height:2px;background:currentColor;border-radius:2px}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,background .18s ease,box-shadow .18s ease,border-color .18s ease;font-family:var(--font-body)}
+.btn svg{width:1.1em;height:1.1em;flex:none}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px rgba(226,96,42,.55)}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px)}
+.btn-ghost{border-color:rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(4px)}
+.btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.btn-dark{background:var(--pine);color:#fff}
+.btn-dark:hover{background:var(--pine-2);transform:translateY(-2px)}
+
+/* ============ ANNOUNCEMENT ============ */
+.announce{background:var(--pine-ink);color:#EADFD2;font-size:.78rem;text-align:center;padding:.55rem 1rem}
+.announce strong{color:#fff}
+.announce .sep{margin:0 .5rem;opacity:.45}
+@media (max-width:480px){.announce{font-size:.68rem}}
+
+/* ============ HEADER ============ */
+.site-header{position:sticky;top:0;z-index:60;isolation:isolate;background:transparent;border-bottom:1px solid transparent;transition:border-color .25s,box-shadow .25s}
+.site-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(246,239,228,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.site-header.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -18px rgba(27,22,18,.25)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:76px}
+.logo{display:flex;align-items:center;gap:.7rem;font-family:var(--font-display);font-weight:700;font-size:1.35rem;letter-spacing:-.01em;line-height:1.1}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--accent);display:grid;place-items:center;color:#fff;flex:none;box-shadow:0 6px 14px -6px rgba(226,96,42,.6)}
+.logo-mark svg{width:22px;height:22px}
+.logo small{display:block;font-family:var(--font-body);font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+.nav{display:flex;align-items:center;gap:1.7rem}
+.nav a{font-size:.95rem;font-weight:600;color:var(--ink);position:relative;padding-block:.4rem}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.nav a:hover::after{transform:scaleX(1)}
+.header-cta{margin-left:.5rem;padding:.7rem 1.3rem}
+.nav-toggle{display:none;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;place-items:center;padding:0}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s}
+.nav-toggle span+span{margin-top:5px}
+.site-header.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.site-header.open .nav-toggle span:nth-child(2){opacity:0}
+.site-header.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:900px){
+  .nav-toggle{display:grid}
+  .nav,.header-cta{display:none}
+  .site-header.open .nav{display:flex;position:fixed;inset:0 0 0 auto;width:min(84vw,380px);background:var(--card);flex-direction:column;align-items:flex-start;gap:.35rem;padding:6.5rem 2rem 2.5rem;box-shadow:-20px 0 60px -20px rgba(27,22,18,.35);overflow-y:auto;z-index:61}
+  .site-header.open .nav a{font-family:var(--font-display);font-size:1.9rem;font-weight:600;padding:.4rem 0;width:100%}
+  .site-header.open .nav a::after{display:none}
+  .site-header.open .header-cta{display:inline-flex;position:fixed;bottom:1.5rem;right:1.5rem;z-index:62}
+}
+body.menu-open{overflow:hidden}
+
+/* ============ HERO ============ */
+.hero{position:relative;isolation:isolate;min-height:clamp(620px,88vh,800px);display:flex;align-items:center;color:#fff;background:var(--pine-ink);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(11,42,34,.97) 0%,rgba(11,42,34,.92) 58%,rgba(11,42,34,.62) 100%)}
+.hero-inner{padding-block:clamp(4.5rem,10vw,7rem);width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.36);padding:.5rem 1.05rem;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.06em;backdrop-filter:blur(6px)}
+.hero h1{color:#fff;margin:1.5rem 0 1.2rem;max-width:16ch}
+.hero h1 em{color:#FFC9A8}
+.hero-sub{max-width:56ch;color:rgba(255,255,255,.88);font-size:clamp(1.05rem,1.6vw,1.22rem)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.3rem}
+.hero-trust{display:flex;flex-wrap:wrap;gap:.75rem 1.7rem;margin-top:2.9rem;padding-top:1.7rem;border-top:1px solid rgba(255,255,255,.18)}
+.trust-item{display:flex;align-items:center;gap:.55rem;font-size:.9rem;font-weight:600;color:rgba(255,255,255,.94)}
+.trust-item svg{width:18px;height:18px;color:#FFB27D;flex:none}
+@media (max-width:640px){
+  .hero{min-height:640px}
+  .hero h1{font-size:clamp(2.5rem,13vw,3.2rem)}
+}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--ink);color:#EFE7DB;overflow:hidden;padding-block:.95rem}
+.marquee-track{display:flex;width:max-content;animation:marquee 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;gap:2.2rem;padding-right:2.2rem;font-family:var(--font-display);font-size:1.05rem;letter-spacing:.04em;white-space:nowrap}
+.marquee-group .dot{color:var(--accent)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ============ SERVICES ============ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.5vw,2rem)}
+.service-card{background:var(--card);border:1px solid rgba(27,22,18,.10);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease;box-shadow:var(--shadow-sm)}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.service-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2)}
+.service-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.service-card:hover .service-media img{transform:scale(1.06)}
+.service-num{position:absolute;top:12px;left:12px;z-index:2;background:rgba(255,255,255,.92);color:var(--pine);font-weight:800;font-size:.78rem;letter-spacing:.08em;padding:.3rem .65rem;border-radius:999px}
+.service-body{padding:1.5rem 1.5rem 1.7rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.service-body h3{margin:0}
+.service-body p{color:var(--ink-soft);margin:0;font-size:.97rem}
+.service-link{margin-top:auto;padding-top:.85rem;display:inline-flex;align-items:center;gap:.45rem;font-weight:700;color:var(--accent);font-size:.92rem}
+.service-link svg{transition:transform .2s ease}
+.service-card:hover .service-link svg{transform:translateX(4px)}
+@media (max-width:980px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.services-grid{grid-template-columns:1fr}}
+
+/* ============ PROCESS ============ */
+.process{background:var(--paper-2)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.2rem,2.5vw,2rem)}
+.step{background:var(--card);border:1px solid rgba(27,22,18,.10);border-radius:var(--radius);padding:1.7rem 1.6rem 1.9rem;position:relative;box-shadow:var(--shadow-sm)}
+.step-num{font-family:var(--font-display);font-size:3rem;font-weight:700;line-height:1;color:rgba(226,96,42,.22);display:block}
+.step h3{margin:.7rem 0 .45rem;font-size:1.2rem}
+.step p{color:var(--ink-soft);margin:0;font-size:.96rem}
+@media (max-width:980px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.process-grid{grid-template-columns:1fr}}
+
+/* ============ STATS ============ */
+.stats{background:linear-gradient(135deg,var(--pine-ink),var(--pine-2));color:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-num{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;line-height:1.05}
+.stat-num .suffix{color:#FFB27D}
+.stat-label{margin-top:.45rem;color:rgba(255,255,255,.75);font-size:.92rem}
+@media (max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.about-media{position:relative}
+.about-media img{width:100%;border-radius:var(--radius);aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow-md)}
+.about-badge{position:absolute;left:-1rem;bottom:1.5rem;background:var(--accent);color:#fff;padding:.85rem 1.25rem;border-radius:16px;box-shadow:0 16px 34px -12px rgba(226,96,42,.55);font-weight:700;line-height:1.25}
+.about-badge small{display:block;font-weight:600;opacity:.85;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.1rem}
+.about-checklist{display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.2rem;margin:1.6rem 0 2rem;padding:0;list-style:none}
+.about-checklist li{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;font-weight:600}
+.about-checklist svg{flex:none;width:20px;height:20px;color:var(--accent);margin-top:2px}
+.signature{display:flex;align-items:center;gap:1rem;margin-top:1.9rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.sig-name{font-family:var(--font-display);font-style:italic;font-size:1.5rem;line-height:1.2}
+.sig-role{font-size:.85rem;color:var(--ink-soft)}
+@media (max-width:960px){.about-grid{grid-template-columns:1fr}.about-media{max-width:560px}}
+@media (max-width:480px){.about-checklist{grid-template-columns:1fr}.about-badge{left:.75rem}}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials{background:var(--paper-2)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.5vw,2rem)}
+.t-card{background:var(--card);border:1px solid rgba(27,22,18,.10);border-radius:var(--radius);padding:1.8rem;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow-sm)}
+.t-stars{display:flex;gap:3px;color:var(--accent)}
+.t-stars svg{width:18px;height:18px}
+.t-quote{font-size:1.02rem;line-height:1.65;margin:0;color:var(--ink)}
+.t-quote::before{content:"”";display:block;font-family:var(--font-display);font-size:2.6rem;line-height:.6;color:var(--accent);margin-bottom:.7rem}
+.t-who{display:flex;align-items:center;gap:.9rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--line)}
+.t-ava{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-soft)}
+.t-name{font-weight:700;font-size:.95rem;line-height:1.3}
+.t-area{font-size:.82rem;color:var(--ink-soft)}
+@media (max-width:980px){.t-grid{grid-template-columns:1fr;max-width:620px;margin-inline:auto}}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:780px;margin-inline:auto;display:flex;flex-direction:column;gap:.8rem}
+.faq-item{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-s);overflow:hidden}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.15rem 1.3rem;background:none;border:0;cursor:pointer;font:inherit;font-weight:700;font-size:1.02rem;text-align:left;color:var(--ink)}
+.faq-icon{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s ease,background .3s ease,border-color .3s ease;color:var(--accent)}
+.faq-icon svg{width:14px;height:14px}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--accent);color:#fff;border-color:var(--accent)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.faq-a-inner{overflow:hidden}
+.faq-a p{margin:0;padding:0 1.3rem 1.25rem;color:var(--ink-soft);font-size:.97rem}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:stretch}
+.contact-info{background:linear-gradient(150deg,var(--pine-ink),var(--pine-2));color:#fff;border-radius:var(--radius);padding:clamp(1.8rem,4vw,2.6rem);display:flex;flex-direction:column;gap:1.5rem}
+.ci-row{display:flex;gap:1rem;align-items:flex-start}
+.ci-icon{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;color:#FFB27D}
+.ci-icon svg{width:20px;height:20px}
+.ci-label{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74);font-weight:700}
+.ci-value{font-weight:700;font-size:1.05rem;margin-top:.1rem}
+.ci-value a:hover{color:#FFB27D}
+.ci-note{margin-top:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-s);padding:1rem 1.1rem;font-size:.9rem;color:rgba(255,255,255,.85)}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.6rem,3.5vw,2.4rem);box-shadow:var(--shadow-md)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.field{display:flex;flex-direction:column;gap:.45rem;position:relative}
+.field.full{grid-column:1/-1}
+.field label{font-size:.85rem;font-weight:700}
+.field label .req{color:var(--accent)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(27,22,18,.42)}
+.field input,.field textarea{font:inherit;padding:.9rem 1rem;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);transition:border-color .18s,box-shadow .18s,background .18s;width:100%}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(226,96,42,.14);background:#fff}
+.field textarea{min-height:130px;resize:vertical}
+.field .err-msg{font-size:.8rem;color:var(--err);display:none;font-weight:600}
+.field.invalid input,.field.invalid textarea{border-color:var(--err)}
+.field.invalid .err-msg{display:block}
+.form-status{display:none;margin-top:1.1rem;padding:1rem 1.1rem;border-radius:12px;font-size:.95rem;font-weight:600}
+.form-status.ok{display:block;background:#E7F4EC;color:var(--ok);border:1px solid rgba(30,125,79,.3)}
+.form-status.err{display:block;background:#FBEAE8;color:var(--err);border:1px solid rgba(179,38,30,.3)}
+.hp-field{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.2rem}
+.form-foot p{font-size:.8rem;color:var(--ink-soft);margin:0}
+@media (max-width:940px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.form-grid{grid-template-columns:1fr}}
+
+/* ============ FOOTER ============ */
+.site-footer{background:var(--ink);color:#E8DFD2}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding-block:clamp(3rem,6vw,4.5rem) 2.5rem}
+.footer h4{color:#fff;font-family:var(--font-body);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 1rem}
+.footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.footer a{color:#C9BCAB;font-size:.95rem;transition:color .18s}
+.footer a:hover{color:#fff}
+.footer-brand p{color:#C9BCAB;font-size:.95rem;margin:.9rem 0 1.2rem;max-width:34ch}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-block:1.3rem;display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between;font-size:.82rem;color:#9C8F7E}
+@media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.footer-grid{grid-template-columns:1fr}}
+
+/* ============ TAP TARGETS — ≥44px ============ */
+.logo{min-height:44px;padding-block:.15rem}
+.service-link{min-height:44px;align-items:center}
+@media (max-width:900px){
+  .ci-value a{display:inline-flex;align-items:center;min-height:44px}
+}
+@media (max-width:640px){
+  .service-link{padding-block:.5rem}
+  .site-footer a{display:inline-flex;align-items:center;min-height:44px}
+}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;transition-delay:calc(var(--i,0)*90ms)}
+.reveal.in-view{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .marquee-track{animation:none}
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<!-- ===== ANNOUNCEMENT ===== -->
+<div class="announce"><strong>Gratis offert 24 h</strong><span class="sep">·</span>ROT-avdrag 30%<span class="sep">·</span>10 års garanti</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="logo" href="#top" aria-label="Måleri och Målare Stockholm — startsida">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="13" height="7" rx="1.5"/><path d="M15 8.5h5a1.5 1.5 0 0 1 1.5 1.5v1.5"/><path d="M12 12v7"/><path d="M8 19h8"/></svg>
+      </span>
+      <span>Måleri &amp; Målare<small>Stockholm · sedan 1998</small></span>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Huvudmeny">
+      <a href="#tjanster">Tjänster</a>
+      <a href="#process">Så går det till</a>
+      <a href="#om-oss">Om oss</a>
+      <a href="#omdomen">Omdömen</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn-primary header-cta" href="#kontakt">Begär offert
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Öppna meny">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?q=80&w=1920&h=1280&auto=format&fit=crop" alt="" width="1920" height="1280" fetchpriority="high" decoding="async">
+  </div>
+  <div class="container hero-inner">
+    <span class="hero-badge reveal">✦ Hantverksmåleri sedan 1998 — Stockholm</span>
+    <h1 class="reveal" style="--i:1">Vi målar ditt hem <em>vackert</em> &amp; <em>garanterat</em></h1>
+    <p class="hero-sub reveal" style="--i:2">Måleri &amp; Målare Stockholm är hantverksmåleriet för bostadsrätter, villor, fastigheter och lokaler. Fast pris, egen personal och upp till 10 års arbetsgaranti — från första samtal till färdig yta.</p>
+    <div class="hero-ctas reveal" style="--i:3">
+      <a class="btn btn-primary" href="#kontakt">Begär gratis offert
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#tjanster">Se våra tjänster</a>
+    </div>
+    <div class="hero-trust reveal" style="--i:4">
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>4,9/5 — 2 400+ projekt</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><path d="M5 5l14 14"/></svg>ROT-avdrag 30%</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>10 års garanti</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Egen personal</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span>Innemålning</span><span class="dot">✦</span><span>Fasad &amp; utomhus</span><span class="dot">✦</span><span>Tapetsering</span><span class="dot">✦</span><span>Badrum &amp; kök</span><span class="dot">✦</span><span>Fönster &amp; trä</span><span class="dot">✦</span><span>Totalentreprenad</span><span class="dot">✦</span><span>Gratis offert</span><span class="dot">✦</span><span>ROT-avdrag</span><span class="dot">✦</span>
+    </div>
+    <div class="marquee-group">
+      <span>Innemålning</span><span class="dot">✦</span><span>Fasad &amp; utomhus</span><span class="dot">✦</span><span>Tapetsering</span><span class="dot">✦</span><span>Badrum &amp; kök</span><span class="dot">✦</span><span>Fönster &amp; trä</span><span class="dot">✦</span><span>Totalentreprenad</span><span class="dot">✦</span><span>Gratis offert</span><span class="dot">✦</span><span>ROT-avdrag</span><span class="dot">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="tjanster">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Våra tjänster</span>
+      <h2>Allt inom måleri — <em>under ett tak</em></h2>
+      <p class="lede">Från enstaka rum till hela fastigheter. Vi projekterar, skyddar, målar och besiktigar med egen personal och material som håller.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card reveal" style="--i:0">
+        <div class="service-media">
+          <span class="service-num">01</span>
+          <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1200&h=900&auto=format&fit=crop" alt="Modern vardagsrum med djupt grön accentvägg målad av Måleri och Målare Stockholm" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="service-body">
+          <h3>Innemålning</h3>
+          <p>Tak, väggar och snickerier med täckande, hållbara resultat. Vi färgsätter tillsammans, provmålar och levererar skarpa linjer.</p>
+          <a class="service-link" href="#kontakt">Begär offert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="service-card reveal" style="--i:1">
+        <div class="service-media">
+          <span class="service-num">02</span>
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1200&h=900&auto=format&fit=crop" alt="Nyrenoverad trävilla med ommålad fasad" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="service-body">
+          <h3>Fasad &amp; utomhus</h3>
+          <p>Vi skyddar och förnyar din fasad — trä, puts och lockpanel. Rätt grundbehandling ger lång livslängd och ett hus du är stolt över.</p>
+          <a class="service-link" href="#kontakt">Begär offert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="service-card reveal" style="--i:2">
+        <div class="service-media">
+          <span class="service-num">03</span>
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1200&h=900&auto=format&fit=crop" alt="Nymålat badrum med mörk grå snickerifärg och vita ytskikt" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="service-body">
+          <h3>Badrum &amp; kök</h3>
+          <p>Våtrums- och ytbehandling som tål vardag. Täta, måla om eller fräscha upp skåpluckor och snickerier — med garantier.</p>
+          <a class="service-link" href="#kontakt">Begär offert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="service-card reveal" style="--i:3">
+        <div class="service-media">
+          <span class="service-num">04</span>
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&h=900&auto=format&fit=crop" alt="Ljust vardagsrum med nymålade vita väggar och fiskbensparkett" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="service-body">
+          <h3>Tapetsering &amp; dekor</h3>
+          <p>Tapet, våtrumstapet och dekorativa tekniker. Sömmar, mönsterpassning och hörn — noggrant utfört av erfarna tapetserare.</p>
+          <a class="service-link" href="#kontakt">Begär offert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="service-card reveal" style="--i:4">
+        <div class="service-media">
+          <span class="service-num">05</span>
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&h=900&auto=format&fit=crop" alt="Interiör i ljust trä och vitmålade ytor — fönster och snickerier" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="service-body">
+          <h3>Fönster, trä &amp; snickeri</h3>
+          <p>Fönster, dörrar, lister och träpaneler — skrapade, slipade och målade med rätt färgsystem för varje underlag.</p>
+          <a class="service-link" href="#kontakt">Begär offert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="service-card reveal" style="--i:5">
+        <div class="service-media">
+          <span class="service-num">06</span>
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&h=900&auto=format&fit=crop" alt="Modern villa med nymålad fasad i trä och mörka partier" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
+        <div class="service-body">
+          <h3>Totalentreprenad</h3>
+          <p>Från offert till slutbesiktning: en samordnad målning med tydlig tidplan, fast pris och en kontakt genom hela projektet.</p>
+          <a class="service-link" href="#kontakt">Begär offert
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section process" id="process">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Så går det till</span>
+      <h2>Från första samtal till <em>färdig yta</em></h2>
+      <p class="lede">Ett tydligt arbetssätt som gör målningen smidig — för dig som bor i huset eller förvaltar fastigheten.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal" style="--i:0">
+        <span class="step-num">01</span>
+        <h3>Kontakt &amp; offert</h3>
+        <p>Berätta om ditt projekt. Vi bokar en kostnadsfri besiktning och återkommer med fast pris inom 24 timmar.</p>
+      </div>
+      <div class="step reveal" style="--i:1">
+        <span class="step-num">02</span>
+        <h3>Förberedelse</h3>
+        <p>Vi skyddar dina ytor, spacklar, slipar och grundar. Allt görs dammtätt och prydligt — dagligen städat.</p>
+      </div>
+      <div class="step reveal" style="--i:2">
+        <span class="step-num">03</span>
+        <h3>Målningen</h3>
+        <p>Erfarna målare utför arbetet enligt plan — med rätt material, full täckning och precision i varje skarv.</p>
+      </div>
+      <div class="step reveal" style="--i:3">
+        <span class="step-num">04</span>
+        <h3>Besiktning &amp; garanti</h3>
+        <p>Vi går igenom resultatet tillsammans med dig. Nöjd? Då lämnar vi över med upp till 10 års arbetsgaranti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="section stats" aria-label="Företaget i siffror">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="reveal" style="--i:0">
+        <div class="stat-num"><span class="count" data-target="27" data-decimals="0">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">år i branschen</div>
+      </div>
+      <div class="reveal" style="--i:1">
+        <div class="stat-num"><span class="count" data-target="2400" data-decimals="0">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">genomförda projekt</div>
+      </div>
+      <div class="reveal" style="--i:2">
+        <div class="stat-num"><span class="count" data-target="98" data-decimals="0">0</span><span class="suffix">%</span></div>
+        <div class="stat-label">rekommenderar oss vidare</div>
+      </div>
+      <div class="reveal" style="--i:3">
+        <div class="stat-num"><span class="count" data-target="4.9" data-decimals="1">0</span><span class="suffix">/5</span></div>
+        <div class="stat-label">genomsnittsbetyg från kunder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="om-oss">
+  <div class="container about-grid">
+    <div class="about-media reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Heimwerker_-_Maler_%28DIY%29_01.jpg/1280px-Heimwerker_-_Maler_%28DIY%29_01.jpg" alt="Målare från Måleri och Målare Stockholm målar en vägg med roller under pågående renovering" width="1280" height="1280" loading="lazy" decoding="async">
+      <div class="about-badge"><small>Grundat</small>1998</div>
+    </div>
+    <div class="reveal" style="--i:1">
+      <span class="eyebrow">Om oss</span>
+      <h2>Ett hantverksmåleri med <em>stolthet</em></h2>
+      <p>Måleri &amp; Målare Stockholm startade 1998 med en enda målare, en skåpbil och en övertygelse: att måleri ska utföras av hantverkare som bryr sig. I dag är vi 14 anställda som tillsammans målar allt från sekelskiftesvåningar på Södermalm till nyproduktion i Barkarby.</p>
+      <p>Vi anlitar aldrig underentreprenader för själva måleriet. Det betyder att den som lämnar offert också är den som utför arbetet — med samma krav på kvalitet från första strykningen till slutbesiktningen.</p>
+      <ul class="about-checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Egen personal, inga underentreprenader</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ROT-avdrag hanteras åt dig</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Miljömärkta material</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Medlem i Måleribranschens Yrkesnämnd</li>
+      </ul>
+      <div class="signature">
+        <div>
+          <div class="sig-name">Anders Lindqvist</div>
+          <div class="sig-role">Grundare &amp; ägare</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section testimonials" id="omdomen">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Omdömen</span>
+      <h2>Kunder vi har <em>målat för</em></h2>
+      <p class="lede">4,9 av 5 i genomsnitt från över 2 400 genomförda projekt i Storstockholm.</p>
+    </div>
+    <div class="t-grid">
+      <figure class="t-card reveal" style="--i:0">
+        <div class="t-stars" aria-label="5 av 5 stjärnor">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote class="t-quote">Snabb offert, tydlig tidplan och ett resultat som överraskade oss. Tvårummaren på Södermalm känns som ny — färgen, listerna, allt.</blockquote>
+        <figcaption class="t-who">
+          <img class="t-ava" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop&crop=faces" alt="Porträtt av Elin M." width="200" height="200" loading="lazy" decoding="async">
+          <div><div class="t-name">Elin M.</div><div class="t-area">Södermalm, bostadsrätt</div></div>
+        </figcaption>
+      </figure>
+      <figure class="t-card reveal" style="--i:1">
+        <div class="t-stars" aria-label="5 av 5 stjärnor">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote class="t-quote">Professionellt från start till slut. Skyddade allt, målade felfritt och städade efter sig varje kväll. Vi märkte knappt att de var där.</blockquote>
+        <figcaption class="t-who">
+          <img class="t-ava" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop&crop=faces" alt="Porträtt av Johan K." width="200" height="200" loading="lazy" decoding="async">
+          <div><div class="t-name">Johan K.</div><div class="t-area">Bromma, villa</div></div>
+        </figcaption>
+      </figure>
+      <figure class="t-card reveal" style="--i:2">
+        <div class="t-stars" aria-label="5 av 5 stjärnor">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote class="t-quote">Fasaden blev som ny. Fick bra råd om färgval, ROT-avdraget drogs direkt på fakturan och tidplanen höll till dagen.</blockquote>
+        <figcaption class="t-who">
+          <img class="t-ava" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop&crop=faces" alt="Porträtt av Sara L." width="200" height="200" loading="lazy" decoding="async">
+          <div><div class="t-name">Sara L.</div><div class="t-area">Nacka, villa</div></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="fragor">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Vanliga frågor</span>
+      <h2>Svar på det <em>vanligaste</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          Hur snabbt får jag en offert?
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Vi återkommer med fast pris inom 24 timmar på vardagar. Brådskande projekt — till exempel inför en flytt eller försäljning — kan prioriteras.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          Fungerar ROT-avdraget?
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Ja. Vi hanterar allt pappersarbete och drar av 30 procent på arbetskostnaden direkt på fakturan. Du behöver bara godkänna avdraget digitalt.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          Vilka garantier ingår?
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Upp till 10 års arbetsgaranti på utfört arbete, plus tillverkarnas garantier på material. Garantin skrivs in i avtalet och följer med vid ägarbyte.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          Målar ni även på helger?
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Vid behov, ja — särskilt för fastigheter och verksamheter där störningar måste minimeras. Vi anpassar arbetstiderna efter ditt projekt.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          Kan ni hjälpa till med färgval?
+          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Absolut. Vi provmålar alltid innan vi målar hela ytor — på plats i ditt ljus, på din vägg. Då vet du exakt hur slutresultatet blir.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" id="kontakt">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Begär en <em>gratis offert</em></h2>
+      <p class="lede">Berätta kort om ditt projekt — vi återkommer med fast pris inom 24 timmar på vardagar.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="ci-row">
+          <span class="ci-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><div class="ci-label">Telefon</div><div class="ci-value"><a href="tel:+46812131415">08-121 314 15</a></div></div>
+        </div>
+        <div class="ci-row">
+          <span class="ci-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <div><div class="ci-label">E-post</div><div class="ci-value"><a href="mailto:info@maleri-malare-stockholm.se">info@maleri-malare-stockholm.se</a></div></div>
+        </div>
+        <div class="ci-row">
+          <span class="ci-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="ci-label">Besök oss</div><div class="ci-value">Götgatan 12, 118 46 Stockholm</div></div>
+        </div>
+        <div class="ci-row">
+          <span class="ci-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><div class="ci-label">Öppettider</div><div class="ci-value">Måndag–fredag 07.00–17.00</div></div>
+        </div>
+        <div class="ci-note">Vi svarar inom 24 timmar på vardagar. För brådskande ärenden — ring oss direkt, så hjälper vi dig på en gång.</div>
+      </div>
+
+      <div class="form-card reveal" style="--i:1">
+        <form id="leadForm" action="https://agrees-quoted-elvis-pleasant.trycloudflare.com/lead" method="post" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Namn <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="För- och efternamn" required>
+              <span class="err-msg" id="nameErr">Ange ditt namn.</span>
+            </div>
+            <div class="field">
+              <label for="phone">Telefon <span class="req" aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="07x-xxx xx xx" required>
+              <span class="err-msg" id="phoneErr">Ange ett giltigt telefonnummer.</span>
+            </div>
+            <div class="field full">
+              <label for="message">Meddelande <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" placeholder="T.ex. vilken typ av yta, ungefärlig storlek och önskad starttid…" required></textarea>
+              <span class="err-msg" id="messageErr">Berätta kort om ditt projekt (minst 10 tecken).</span>
+            </div>
+          </div>
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Lämna detta fält tomt</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="form-foot">
+            <p>Vi sparar dina uppgifter endast för att återkomma med offert.</p>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Skicka förfrågan
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#top" style="color:#fff">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="13" height="7" rx="1.5"/><path d="M15 8.5h5a1.5 1.5 0 0 1 1.5 1.5v1.5"/><path d="M12 12v7"/><path d="M8 19h8"/></svg>
+          </span>
+          <span>Måleri &amp; Målare<small style="color:#C9BCAB">Stockholm · sedan 1998</small></span>
+        </a>
+        <p>Hantverksmåleri för hem, fastigheter och lokaler i hela Storstockholm. Egen personal, fast pris och arbetsgaranti upp till 10 år.</p>
+      </div>
+      <div>
+        <h4>Tjänster</h4>
+        <ul>
+          <li><a href="#tjanster">Innemålning</a></li>
+          <li><a href="#tjanster">Fasad &amp; utomhus</a></li>
+          <li><a href="#tjanster">Tapetsering</a></li>
+          <li><a href="#tjanster">Badrum &amp; kök</a></li>
+          <li><a href="#tjanster">Totalentreprenad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Företag</h4>
+        <ul>
+          <li><a href="#om-oss">Om oss</a></li>
+          <li><a href="#process">Så går det till</a></li>
+          <li><a href="#omdomen">Omdömen</a></li>
+          <li><a href="#fragor">Vanliga frågor</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+46812131415">08-121 314 15</a></li>
+          <li><a href="mailto:info@maleri-malare-stockholm.se">info@maleri-malare-stockholm.se</a></li>
+          <li>Götgatan 12, 118 46 Stockholm</li>
+          <li>Mån–fre 07.00–17.00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Måleri &amp; Målare Stockholm · Org.nr 559412-3456 · F-skatt</span>
+      <span>Foto: Unsplash &amp; Wikimedia Commons (CC BY-SA)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ================================================================
+     LEAD ENDPOINT — konfigurerbar.
+     Ändra denna konstant för att dirigera leads till en annan backend.
+     Format: POST JSON { "name": …, "phone": …, "message": … }
+     ================================================================ */
+  var LEAD_ENDPOINT = "https://agrees-quoted-elvis-pleasant.trycloudflare.com/lead";
+
+  var header = document.getElementById("siteHeader");
+  var navToggle = document.getElementById("navToggle");
+
+  /* ---------- Sticky header shadow ---------- */
+  function onScroll() {
+    header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile menu toggle ---------- */
+  navToggle.addEventListener("click", function () {
+    var open = header.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    document.body.classList.toggle("menu-open", open);
+  });
+  document.querySelectorAll("#mainNav a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+  function closeMenu() {
+    header.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("menu-open");
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 900) closeMenu();
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+  }
+
+  /* ---------- Animated counters ---------- */
+  var counters = document.querySelectorAll(".count");
+  function animateCount(el) {
+    var target = parseFloat(el.getAttribute("data-target"));
+    var decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    var dur = 1400;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(decimals).replace(".", ",");
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ("IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          cio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (el) { cio.observe(el); });
+  } else {
+    counters.forEach(animateCount);
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll(".faq-item").forEach(function (item) {
+    var q = item.querySelector(".faq-q");
+    q.addEventListener("click", function () {
+      var isOpen = item.classList.toggle("open");
+      q.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  });
+
+  /* ---------- Contact form → real network POST ---------- */
+  var form = document.getElementById("leadForm");
+  var submitBtn = document.getElementById("submitBtn");
+  var statusBox = document.getElementById("formStatus");
+  var fields = {
+    name: document.getElementById("name"),
+    phone: document.getElementById("phone"),
+    message: document.getElementById("message")
+  };
+  var originalBtnHtml = submitBtn.innerHTML;
+
+  function validate() {
+    var ok = true;
+    var nameOk = fields.name.value.trim().length >= 2;
+    var phoneOk = /^[0-9+\s()\-]{6,20}$/.test(fields.phone.value.trim());
+    var msgOk = fields.message.value.trim().length >= 10;
+    setInvalid(fields.name, nameOk);
+    setInvalid(fields.phone, phoneOk);
+    setInvalid(fields.message, msgOk);
+    return nameOk && phoneOk && msgOk;
+  }
+  function setInvalid(field, valid) {
+    field.closest(".field").classList.toggle("invalid", !valid);
+  }
+  [fields.name, fields.phone, fields.message].forEach(function (f) {
+    f.addEventListener("input", function () {
+      f.closest(".field").classList.remove("invalid");
+    });
+  });
+
+  function showStatus(type, html) {
+    statusBox.className = "form-status " + type;
+    statusBox.innerHTML = html;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    /* Honeypot: om fältet fyllts i är det en bot — svara tyst med framgång. */
+    var hp = document.getElementById("website");
+    if (hp && hp.value.trim() !== "") {
+      showStatus("ok", "Tack! Din förfrågan har skickats.");
+      form.reset();
+      return;
+    }
+
+    if (!validate()) {
+      showStatus("err", "Vänligen fyll i alla fält korrekt innan du skickar.");
+      return;
+    }
+
+    var payload = {
+      name: fields.name.value.trim(),
+      phone: fields.phone.value.trim(),
+      message: fields.message.value.trim()
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Skickar…";
+
+    fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.text();
+      })
+      .then(function () {
+        showStatus("ok", "Tack, " + payload.name.split(" ")[0] + "! Din förfrågan är skickad — vi återkommer inom 24 timmar på vardagar.");
+        form.reset();
+      })
+      .catch(function () {
+        showStatus("err", "Något gick fel när förfrågan skulle skickas. Försök igen om en stund, eller ring oss på 08-121 314 15.");
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      });
+  });
+
+  /* ---------- Footer year ---------- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+
+<a class="demo-back" href="../../index.html">&#8592; Demogalleriet &middot; alla demosajter</a>
+</body>
+</html>

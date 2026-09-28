@@ -1,0 +1,1355 @@
+/* ============================================================
+   Snickeri & Bygg Stockholm — shared stylesheet
+   Palette: cream #F7F2E9 · charcoal #26221C · oak #B4763A · amber #D9A05B
+   Fonts: Fraunces (display serif) + Inter (sans body)
+   ============================================================ */
+
+:root {
+  --bg: #F7F2E9;
+  --bg-2: #F0E8DA;
+  --bg-3: #E8DCC8;
+  --ink: #26221C;
+  --ink-soft: #4E463A;
+  --ink-faint: #7A7063;
+  --accent: #B4763A;
+  --accent-deep: #8F5A28;
+  --accent-soft: #EFE0CC;
+  --amber: #D9A05B;
+  --line: rgba(38, 34, 28, 0.14);
+  --line-strong: rgba(38, 34, 28, 0.32);
+  /* Round 8: ghost outline border must hold >=3:1 on cream (#F7F2E9):
+     0.55-alpha ink measures ~3.4:1 — use for .btn-outline at rest. */
+  --line-ghost: rgba(38, 34, 28, 0.55);
+  --cream-on-dark: #F4EDE0;
+  --serif: "Fraunces", "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --maxw: 1240px;
+  /* Round 8: radius scale — sm = inputs/links, md = cards, lg = bands */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius: var(--radius-md);
+  --shadow: 0 24px 60px -28px rgba(38, 34, 28, 0.35);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; font-family: inherit; }
+
+/* Round 8: anchor targets must never land under the sticky header
+   (76px nav + breathing room = 96px). */
+[id] { scroll-margin-top: 96px; }
+
+/* Skip link — visually hidden until focused (a11y) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--cream-on-dark);
+  padding: 12px 20px;
+  border-radius: 0 0 10px 0;
+  font-weight: 600;
+  /* Round 8: touch/keyboard target >=44px even when visible on mobile */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.skip-link:focus {
+  left: 0;
+  color: var(--cream-on-dark);
+}
+
+/* Visible keyboard focus — every interactive element gets a clear,
+   accessible focus ring. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.container {
+  width: min(100% - 48px, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ---------- Reveal-on-scroll (progressive enhancement) ----------
+   Content is NEVER hidden by default. The hidden pre-state only applies
+   when JS is confirmed (html.js) AND the failsafe timer hasn't fired —
+   so no-JS crawlers, AI bots and full-page screenshots always see content. */
+html.js .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+html.js .reveal.is-visible { opacity: 1; transform: none; }
+.reveal, .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal:not(.is-visible), .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   Header / nav
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  /* Round 8: raised above drawer/backdrop so sticky chrome never loses
+     stacking context; skip-link stays at z-index 200+ above everything. */
+  z-index: 200;
+  background: rgba(247, 242, 233, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s ease;
+}
+.site-header.is-scrolled { box-shadow: 0 10px 30px -18px rgba(38, 34, 28, 0.25); }
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  /* Round 11 (head dir 1): widen the gap between the S&B mark and the
+     wordmark so the subline never crowds the mark. 48px desktop, 32px <=480px. */
+  gap: 48px;
+  padding: 4px 0;
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  color: var(--cream-on-dark);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+/* Round 11 (head dir 1): subline letter-spacing <=0.05em + roomy line-height
+   so "STOCKHOLM" renders as complete glyphs at every size (no clipped O). */
+.brand small { display: block; font-family: var(--sans); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.04em; line-height: 1.3; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; overflow: visible; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links > li { position: relative; }
+/* Round 11 dir 3: all four PRIMARY drawer items (Hem, Tjänster, Om oss,
+   Kontakt) are visually identical — same padding, radius, background; only
+   the current page gets the accent pill (.active). Sub-links (.drop) stay
+   visually subordinate (indented, smaller). */
+.nav-links > li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-links > li > a:hover { background: var(--bg-2); color: var(--ink); }
+.nav-links > li > a.active { color: var(--accent-deep); background: #EAD9BE; box-shadow: inset 0 0 0 1px rgba(180, 118, 58, 0.55); }
+
+/* Dropdown (Tjänster) — hover on desktop, expanded in mobile drawer */
+.has-drop .drop {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 230px;
+  padding: 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
+  z-index: 60;
+}
+.has-drop:hover .drop,
+.has-drop:focus-within .drop { opacity: 1; visibility: visible; transform: none; }
+.has-drop .drop a { display: flex; align-items: center; min-height: 44px; padding: 10px 12px; border-radius: var(--radius-sm); font-size: 0.92rem; }
+.has-drop .drop a:hover { background: var(--bg-2); }
+/* Round 6: caret is an inline SVG chevron (brand stroke), not a text glyph */
+.drop-caret { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; transition: transform 0.2s var(--ease); }
+.drop-caret svg { width: 14px; height: 14px; display: block; }
+.has-drop:hover .drop-caret { transform: rotate(180deg); }
+
+/* Round 11 dir 1: the duplicate "Kontakt" nav-cta button was REMOVED — the
+   nav has exactly ONE Kontakt link; the cream active pill marks the page. */
+
+/* Mobile drawer */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  /* Round 17 (head dir 7): 1px border rgba(38,34,28,0.3) + subtle shadow so
+     the hamburger stays visible on cream in bright light. */
+  border: 1px solid rgba(38, 34, 28, 0.3);
+  box-shadow: 0 2px 8px -3px rgba(38, 34, 28, 0.28);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 110;
+}
+/* Round 8: when the drawer is open only the ✕ close button shows —
+   exactly ONE close affordance on screen (burger hidden, aria-expanded
+   stays in sync via main.js body.nav-open). */
+body.nav-open .burger { display: none; }
+.burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 5px auto;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.25s var(--ease), opacity 0.2s;
+}
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(38, 34, 28, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 90;
+  /* Round 6: when hidden the fixed backdrop must never intercept clicks
+     (it is display:block at <=1024px; without this it blocks the whole
+     viewport once backdrop-filter no longer constrains it to the header). */
+  pointer-events: none;
+}
+.nav-backdrop.visible { opacity: 1; pointer-events: auto; }
+.nav-close {
+  display: none;
+  align-self: flex-end;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+.no-scroll { overflow: hidden; }
+
+.drawer-brand-wrap { display: none; }
+
+@media (max-width: 1024px) {
+  /* CRITICAL (round 6): backdrop-filter on .site-header creates a
+     containing block for fixed descendants, making the drawer resolve
+     against the 76px header instead of the viewport. Neutralize it.
+     Round 15/16: with blur disabled, go FULLY opaque (not 0.92/0.98) so
+     scrolled hero text can never ghost through the sticky header. */
+  .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; background: #F7F2E9; }
+  .burger { display: block; }
+  .nav-backdrop { display: block; }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(86vw, 360px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 20px;
+    background: var(--bg);
+    border-left: 1px solid var(--line);
+    box-shadow: -20px 0 60px -30px rgba(38, 34, 28, 0.4);
+    transform: translateX(105%);
+    transition: transform 0.35s var(--ease);
+    z-index: 100;
+    overflow-y: auto;
+  }
+  .nav-links.open { transform: none; }
+  .nav-links > li { width: 100%; }
+  /* Round 11 dir 3: all four primary items identical in the drawer too */
+  .nav-links > li > a { width: 100%; padding: 14px 12px; font-size: 1rem; }
+  .has-drop .drop {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 4px 12px;
+    background: transparent;
+    list-style: none;
+    min-width: 0;
+  }
+  .drawer-brand-wrap { display: block; }
+  .drawer-brand {
+    display: flex;
+    align-items: center;
+    /* Round 11 (head dir 1): match the header gap logic in the drawer */
+    gap: 14px;
+    padding: 14px 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .drawer-brand .brand-mark { width: 38px; height: 38px; font-size: 0.95rem; }
+  .drawer-brand small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .has-drop:not(.open) .drop { display: none; }
+  .has-drop.open .drop { display: block; }
+  /* Round 16: Tjänster trigger reads as a button-like row; caret rotates
+     when the drawer sub-menu is open. */
+  .nav-links .has-drop > a { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .nav-links .has-drop > a .drop-caret { transition: transform 0.2s ease; flex: 0 0 auto; display: inline-flex; }
+  .nav-links .has-drop.open > a .drop-caret { transform: rotate(180deg); }
+  /* Round 12: sub-menu hierarchy — indented links, chevron, active state */
+  .has-drop .drop a {
+    padding-left: 28px;
+    position: relative;
+  }
+  .has-drop .drop a::before {
+    content: '▸';
+    position: absolute;
+    left: 12px;
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+  }
+  .has-drop.open .drop a::before {
+    transform: rotate(90deg);
+    color: var(--accent);
+  }
+  .has-drop .drop a.active {
+    color: var(--accent-deep);
+    font-weight: 700;
+    background: var(--bg-2);
+    border-radius: var(--radius-sm);
+  }
+  .nav-close { display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.15s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--ink); color: var(--cream-on-dark); }
+.btn-primary:hover { background: var(--accent-deep); color: #fff; }
+.btn-oak { background: var(--accent); color: #fff; }
+.btn-oak:hover { background: var(--accent-deep); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--line-ghost); }
+.btn-outline:hover { border-color: var(--ink); background: var(--bg-2); }
+.btn-light { background: #fff; color: var(--ink); }
+.btn-light:hover { background: var(--bg-2); }
+
+/* ============================================================
+   Sections / typographic helpers
+   ============================================================ */
+.section { padding: 96px 0; }
+.section-tight { padding: 64px 0; }
+.section-alt { position: relative; background: var(--bg-2); }
+.section-alt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(180,118,58,0.55), rgba(180,118,58,0.06) 40%, transparent 78%);
+  pointer-events: none;
+}
+.section-dark { background: var(--ink); color: var(--cream-on-dark); }
+.section-dark h2, .section-dark h3 { color: var(--cream-on-dark); }
+.section-dark .eyebrow { color: var(--amber); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 14px;
+}
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+
+.section-head { max-width: 760px; margin-bottom: 48px; }
+.section-head h2 { font-size: clamp(2rem, 4.2vw, 3rem); margin-bottom: 16px; text-wrap: balance; padding-bottom: 14px; background-image: linear-gradient(var(--accent), var(--accent)); background-repeat: no-repeat; background-size: 68px 3px; background-position: 0 100%; }
+.section-head.center h2 { background-position: 50% 100%; }
+.section-head p { color: var(--ink-soft); font-size: 1.08rem; }
+.section-head.center { margin-inline: auto; text-align: center; }
+.section-head.center .eyebrow { justify-content: center; }
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  position: relative;
+  padding: 72px 0 96px;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -180px;
+  top: -180px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(217, 160, 91, 0.18), transparent 65%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 5.6vw, 4.3rem);
+  line-height: 1.02;
+  margin: 8px 0 24px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-deep); }
+/* Round 8: the italic phrase never orphans on mobile — the em keeps its
+   words together and wraps as a unit instead of leaving "hålla" alone. */
+.hero h1 em { white-space: nowrap; }
+.hero-copy { max-width: 360px; }
+/* Round 10: hero-left wraps the tight H1 block (.hero-copy) and the full-width
+   hero-meta divider. The meta row spans the whole left grid column so all three
+   items sit on ONE row at 1440x900 (round-9 dir 5) without loosening the H1
+   column width (head dir 8). */
+.hero-left { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.hero-lead { font-size: 1.14rem; color: var(--ink-soft); max-width: 56ch; margin-bottom: 32px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 36px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 0.92rem; color: var(--ink-faint); border-top: 1px solid var(--line-strong); padding-top: 16px; /* Round 10: span the full left grid column so all three items fit on ONE row at 1440x900 (round-9 dir 5) while the H1 block stays tight (head dir 8). */ max-width: none; }
+.hero-meta strong { color: var(--ink); font-weight: 600; }
+
+.hero-media { position: relative; }
+.hero-media::before {
+  content: "";
+  position: absolute;
+  /* Round 19 (head dir 7): softened ghost outline — lower opacity + smaller
+     offset so it reads as a quiet framing echo, not a rendering glitch. */
+  inset: 14px -14px -14px 14px;
+  border: 1px solid rgba(38, 34, 28, 0.16);
+  border-radius: var(--radius);
+  z-index: 0;
+}
+.hero-img-wrap {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 5;
+}
+.hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.hero-badge {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  bottom: 14px;
+  background: rgba(247, 242, 233, 0.96);
+  color: var(--ink);
+  border: 1px solid rgba(180, 118, 58, 0.55);
+  border-radius: 14px;
+  padding: 12px 18px;
+  box-shadow: 0 12px 28px -18px rgba(38, 34, 28, 0.45);
+  max-width: 220px;
+  backdrop-filter: blur(2px);
+}
+.hero-badge strong { font-family: var(--serif); font-size: 1.4rem; display: block; color: var(--accent-deep); line-height: 1; }
+.hero-badge span { font-size: 0.82rem; color: var(--ink-soft); }
+
+/* Round 19 (head dir 5): scroll-cue under the hero — chevron + "Se mer" in the
+   right column so the fold does not end abruptly. */
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.scroll-cue svg { width: 18px; height: 18px; color: var(--accent); animation: cue-bob 2.2s var(--ease) infinite; }
+.scroll-cue:hover { color: var(--accent-deep); }
+@keyframes cue-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* Trust band */
+/* Round 11 (head dir 6): high-contrast dark strip with a strong amber accent —
+   the border thickness makes the credentials read as a deliberate band. */
+.trust-band {
+  background: var(--ink);
+  color: var(--cream-on-dark);
+  border-top: 4px solid var(--amber);
+  border-bottom: 3px solid rgba(217, 160, 91, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(217, 160, 91, 0.22);
+  padding: 20px 0;
+}
+/* Round 16: trust band stays ONE line on desktop — minmax(0,1fr) + nowrap
+   so all six credentials fit without wrapping. */
+.trust-band ul { list-style: none; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px 16px; align-items: center; }
+/* Round 19 (head dir 1): zero bleed against the neighbour cell at 1440/1280 —
+   overflow:hidden + ellipsis guarantee no text escapes its minmax(0,1fr) cell
+   even if a future label grows. */
+.trust-band li { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 1rem; color: var(--cream-on-dark); white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.trust-band .tick { color: var(--amber); font-weight: 700; display: inline-flex; align-items: center; flex: 0 0 auto; }
+
+/* ============================================================
+   Service cards
+   ============================================================ */
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.service-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s ease;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+.service-card .card-img { aspect-ratio: 4 / 3; overflow: hidden; position: relative; }
+.service-card .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.service-card:hover .card-img img { transform: scale(1.05); }
+.service-card .card-body { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+.service-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.service-card p { color: var(--ink-soft); font-size: 0.96rem; margin-bottom: 18px; flex: 1; }
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 12px 4px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent-deep);
+}
+.card-link .arrow { transition: transform 0.25s var(--ease); }
+.service-card:hover .card-link .arrow { transform: translateX(5px); }
+
+/* ============================================================
+   About / credentials
+   ============================================================ */
+.about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; }
+.about-media { position: relative; }
+.about-grid.about-flip .about-media { order: 2; }
+.about-media img { border-radius: var(--radius); box-shadow: var(--shadow); width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about-media .stamp {
+  position: absolute;
+  right: -16px;
+  top: -16px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow);
+  transform: rotate(3deg);
+}
+.about-copy h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 18px; }
+.about-copy p { color: var(--ink-soft); margin-bottom: 16px; }
+.cred-list { list-style: none; margin: 24px 0 30px; display: grid; gap: 12px; }
+.cred-list li { display: flex; align-items: flex-start; gap: 12px; font-weight: 500; }
+.cred-list .tick { color: var(--accent-deep); font-weight: 700; flex: 0 0 auto; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; border-top: 1px solid var(--line); padding-top: 28px; margin-top: 40px; }
+.stat strong { display: block; font-family: var(--serif); font-size: 2rem; color: var(--accent-deep); line-height: 1.1; }
+.stat span { font-size: 0.85rem; color: var(--ink-faint); display: block; line-height: 1.4; padding-bottom: 4px; }
+
+/* ============================================================
+   Portfolio / project grid
+   ============================================================ */
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.project-card { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; box-shadow: 0 10px 30px -22px rgba(38, 34, 28, 0.4); }
+.project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.project-card:hover img { transform: scale(1.05); }
+.project-card .overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 44px 22px 20px;
+  background: linear-gradient(to top, rgba(38, 34, 28, 0.82), transparent);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.project-card .tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); }
+.project-card h3 { color: #fff; font-size: 1.2rem; }
+.project-card .loc { font-size: 0.85rem; color: rgba(255, 255, 255, 0.75); }
+
+/* ============================================================
+   Testimonials
+   ============================================================ */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+.testi-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; display: flex; flex-direction: column; gap: 18px; }
+.testi-stars { color: var(--accent); letter-spacing: 2px; font-size: 0.95rem; }
+.testi-card blockquote { font-size: 1.02rem; color: var(--ink-soft); line-height: 1.6; font-style: italic; }
+.testi-who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.testi-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex: 0 0 auto;
+}
+.testi-who strong { display: block; font-size: 0.95rem; }
+.testi-who span { font-size: 0.82rem; color: var(--ink-faint); }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list { max-width: 820px; margin-inline: auto; display: grid; gap: 14px; }
+.faq-item { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; }
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  font-weight: 600;
+  font-size: 1.02rem;
+  transition: background 0.2s ease;
+}
+.faq-item summary:hover { background: var(--bg-2); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary .plus { color: var(--accent-deep); font-size: 1.3rem; line-height: 1; transition: transform 0.25s var(--ease); flex: 0 0 auto; }
+.faq-item[open] summary .plus { transform: rotate(45deg); }
+.faq-item .faq-body { padding: 0 24px 22px; color: var(--ink-soft); }
+.faq-item[open] summary { color: var(--accent-deep); border-left: 2px solid var(--accent); font-weight: 700; }
+/* One-line answer preview under every summary (always visible) */
+.faq-item .faq-preview { display: block; margin: 2px 0 0; font-size: 0.92rem; font-weight: 400; color: var(--ink-faint); line-height: 1.45; }
+.faq-item[open] .faq-preview { color: var(--ink-soft); }
+
+/* ============================================================
+   CTA band
+   ============================================================ */
+.cta-band { background: var(--ink); color: var(--cream-on-dark); border-radius: var(--radius-lg); padding: 56px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.cta-band h2 { color: var(--cream-on-dark); font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin-bottom: 10px; }
+.cta-band p { color: rgba(244, 237, 224, 0.75); max-width: 52ch; }
+.cta-band .btn { flex: 0 0 auto; }
+
+/* ============================================================
+   Page hero (sub pages)
+   ============================================================ */
+.page-hero { padding: 72px 0 64px; background: var(--bg-2); }
+.page-hero .eyebrow { margin-bottom: 12px; }
+.page-hero h1 { font-size: clamp(2.3rem, 4.6vw, 3.6rem); margin-bottom: 16px; }
+.page-hero p { color: var(--ink-soft); font-size: 1.1rem; max-width: 62ch; }
+/* Round 17 (head dir 4): om-oss hero right half — split hero reuses the
+   index .hero-grid columns (text left, media right), stacks on mobile. */
+.page-hero-split { padding: 64px 0 64px; }
+.page-hero-split .hero-grid { gap: 56px; }
+.page-hero-split .hero-media { max-width: 520px; }
+.page-hero-split .hero-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+.page-hero-split .hero-quote {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 40px 34px 34px;
+  box-shadow: var(--shadow);
+}
+.page-hero-split .hero-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -14px;
+  left: 26px;
+  font-family: var(--serif);
+  font-size: 4.6rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.5;
+  pointer-events: none;
+}
+.page-hero-split .hero-quote blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.page-hero-split .hero-quote cite { font-style: normal; font-size: 0.9rem; color: var(--ink-faint); letter-spacing: 0.03em; }
+.page-hero-split .hero-quote cite strong { color: var(--accent-deep); }
+@media (max-width: 1024px) {
+  .page-hero-split .hero-grid { gap: 32px; }
+  .page-hero-split .hero-media { max-width: 100%; }
+}
+@media (max-width: 720px) {
+  .page-hero-split { padding: 48px 0 44px; }
+}
+.breadcrumbs { font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 18px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+/* Round 8 (tester B1): visible touch target must be >=44px wide — "Hem" alone
+   measures ~38px, so pin a 44px min-width and keep the 11px vertical padding
+   that already yields 44px+ height. */
+.breadcrumbs a { color: var(--accent-deep); display: inline-block; min-width: 44px; text-align: center; padding: 11px 6px; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs .current { color: var(--ink-faint); font-weight: 600; }
+
+/* Full-bleed service hero (tjänst pages) — strong opening visual */
+.svc-hero-full {
+  position: relative;
+  padding: 120px 0 76px;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream-on-dark);
+}
+.svc-hero-full > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.92;
+  filter: sepia(0.12) saturate(1.05) brightness(1.08);
+}
+.svc-hero-full::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Round 17 (head dir 1): L->R scrim pinned to the TEXT column only —
+     dark on the left so h1/p hold >=4.5:1, fully transparent by ~82% so
+     the right third of the photo never drops to near-black.
+     Round 18: steeper L->R scrim keeps body copy >=4.5:1 on all 4 service
+     heroes (trappa was barely AA before). */
+  background: linear-gradient(to right, rgba(38, 34, 28, 0.88) 0%, rgba(38, 34, 28, 0.68) 35%, rgba(38, 34, 28, 0.4) 60%, rgba(38, 34, 28, 0.14) 80%, rgba(38, 34, 28, 0) 90%);
+}
+.svc-hero-full .container { position: relative; z-index: 2; }
+.svc-hero-full .breadcrumbs { color: rgba(244, 237, 224, 0.72); }
+.svc-hero-full .breadcrumbs a { color: var(--amber); }
+.svc-hero-full .breadcrumbs a:hover { text-decoration: underline; }
+.svc-hero-full .breadcrumbs .current { color: rgba(244, 237, 224, 0.72); font-weight: 600; }
+.svc-hero-full .eyebrow { color: var(--amber); }
+.svc-hero-full .eyebrow::before { background: var(--amber); }
+.svc-hero-full h1 { color: var(--cream-on-dark); font-size: clamp(2.3rem, 4.6vw, 3.6rem); margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.05; }
+.svc-hero-full p { color: rgba(255, 255, 255, 0.95); font-weight: 500; font-size: 1.1rem; max-width: 62ch; }
+.svc-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.svc-hero-actions .btn { min-height: 50px; }
+.svc-hero-actions .btn-outline { color: var(--cream-on-dark); border-color: rgba(244, 237, 224, 0.55); }
+.svc-hero-actions .btn-outline:hover { background: rgba(244, 237, 224, 0.12); border-color: var(--amber); color: #fff; }
+/* Round 18: the dark ink "Begär offert" melted into the dark scrim —
+   amber fill + thin light stroke keeps it visible at BOTH ends of the L->R gradient. */
+.svc-hero-actions .btn-primary {
+  background: var(--amber);
+  color: #26221C;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.svc-hero-actions .btn-primary:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================================
+   Service page layout
+   ============================================================ */
+.svc-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.svc-hero-media { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 4 / 3; }
+.svc-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.svc-step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+.svc-step .num { font-family: var(--serif); font-size: 1.6rem; color: var(--accent); margin-bottom: 10px; }
+.svc-step h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.svc-step p { color: var(--ink-soft); font-size: 0.95rem; }
+.check-list { list-style: none; display: grid; gap: 12px; margin: 20px 0 28px; }
+.check-list li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-soft); }
+.check-list .tick { color: var(--accent-deep); font-weight: 700; flex: 0 0 auto; }
+/* Project photo gallery on service pages */
+.svc-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 12px; }
+.svc-gallery figure { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; position: relative; }
+.svc-gallery img { width: 100%; height: 230px; object-fit: cover; display: block; transition: transform 0.4s var(--ease); filter: sepia(0.12) saturate(1.05) contrast(1.02) brightness(1.02); }
+.svc-gallery figure:hover img { transform: scale(1.03); }
+.svc-gallery figcaption { padding: 12px 16px; font-size: 0.9rem; color: var(--ink-soft); }
+.svc-gallery figcaption strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 8px; }
+.svc-gallery figcaption strong::after { content: ""; display: block; width: 32px; height: 1px; background: var(--amber); margin-top: 6px; }
+/* Round 12: before/after overlay tag + caption metadata line */
+.ba-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background: var(--ink);
+  color: var(--cream-on-dark);
+  border: 1px solid rgba(217, 160, 91, 0.6);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ba-tag.after { background: var(--accent-deep); color: #fff; }
+.svc-gallery figcaption .meta {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+@media (max-width: 860px) { .svc-gallery { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .svc-gallery { grid-template-columns: 1fr; } }
+.svc-price-note {
+  background: rgba(180, 118, 58, 0.10);
+  border: 1px solid rgba(180, 118, 58, 0.45);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  /* Round 11 (head dir 2): the callout must stay sans, >=1rem and dark enough
+     to read cleanly on the pale-amber wash — never serif, never faint. */
+  font-family: var(--sans);
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: #26221C;
+  font-weight: 600;
+  letter-spacing: normal;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+.svc-price-note strong { font-family: var(--sans); color: #4A2A12; font-weight: 700; flex: 0 0 auto; }
+/* Round 9: let the body text wrap inside the box on mobile (flex items
+   default to nowrap, which pushed the line ~28px past the box edge at
+   375px). min-width:0 lets the span shrink and wrap cleanly. */
+.svc-price-note span { flex: 1 1 200px; min-width: 0; }
+.svc-price-note::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin-top: 3px;
+  background: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23B4763A%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect width=%2218%22 height=%2218%22 x=%223%22 y=%224%22 rx=%222%22/%3E%3Cpath d=%22M16 2v4M8 2v4M3 10h18%22/%3E%3C/svg%3E') no-repeat center / contain;
+}
+/* Round 11 dir 8: starting-price lead-qualifier — "Från X kr" chip shown on
+   each tjänst page (figures logged in SITE-CONVENTIONS so Ser can adjust). */
+/* Round 16: quiet secondary pill — sits inline inside .svc-hero-actions
+   beside the buttons instead of shouting as a solid espresso chip. */
+.svc-price-from {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* Round 17 (head dir 5): identical border-color/opacity/stroke-weight as
+     the sibling .btn-outline "Ring oss" so all four tjänst pages render the
+     price CTA row with one hierarchy. */
+  min-height: 50px;
+  padding: 12px 26px;
+  border: 1px solid rgba(244, 237, 224, 0.55);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cream-on-dark);
+  letter-spacing: 0.01em;
+  margin-top: 0;
+  align-self: center;
+}
+.svc-price-from strong { color: #fff; font-weight: 600; }
+.svc-price-from svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--amber); }
+
+/* ============================================================
+   Contact page
+   ============================================================ */
+.contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: stretch; }
+.info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; }
+.info-card h3 { font-size: 1.15rem; margin-bottom: 14px; }
+.info-card ul { list-style: none; display: grid; gap: 12px; }
+.info-card li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-soft); font-size: 0.98rem; }
+.info-card .ico { color: var(--accent-deep); flex: 0 0 auto; font-weight: 700; }
+.info-card a { display: inline-block; padding: 10px 0; overflow-wrap: anywhere; }
+.areas-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.areas-tags span { background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Form */
+.contact-form { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 36px; box-shadow: 0 10px 40px -30px rgba(38, 34, 28, 0.3); display: flex; flex-direction: column; }
+.contact-form .form-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 22px; }
+.contact-form button[type="submit"] { width: 100%; margin-top: 6px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 7px; }
+.form-group label .req { color: var(--accent-deep); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  color: var(--ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 40px;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23B4763A%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22m6 9 6 6 6-6%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(180, 118, 58, 0.18);
+  background: #fff;
+}
+.form-group textarea { min-height: 190px; resize: vertical; }
+/* Round 12: per-field validation — JS toggles .is-invalid on the control and
+   .has-error on the .form-group. Red ring wins over the accent focus ring
+   (higher specificity than the .form-group input:focus rule above). */
+.form-group input.is-invalid,
+.form-group select.is-invalid,
+.form-group textarea.is-invalid {
+  border-color: #B3261E;
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.15);
+  background: #fff;
+}
+.form-group input.is-invalid:focus,
+.form-group select.is-invalid:focus,
+.form-group textarea.is-invalid:focus {
+  outline: none;
+  border-color: #B3261E;
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.15);
+  background: #fff;
+}
+.form-group .field-error { display: none; }
+/* Round 19 (head dir 6): GDPR consent checkbox — required before submit.
+   Custom-sized control matching the brand; label wraps cleanly on mobile. */
+.form-group.gdpr-group { display: flex; align-items: flex-start; gap: 12px; margin: 4px 0 20px; }
+.form-group.gdpr-group input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+  accent-color: var(--accent-deep);
+  cursor: pointer;
+}
+.form-group.gdpr-group label { margin: 0; font-weight: 500; font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55; cursor: pointer; }
+.form-group.gdpr-group label a { color: var(--accent-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.form-group.gdpr-group label a:hover { color: var(--accent); }
+.form-group.gdpr-group.has-error input[type="checkbox"] { outline: 2px solid #B3261E; outline-offset: 2px; border-radius: 4px; }
+.form-group.gdpr-group .field-error { margin-top: 0; }
+.form-group.has-error .field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #B3261E;
+  line-height: 1.4;
+}
+.form-group.has-error .field-error::before {
+  content: '⚠';
+  flex: 0 0 auto;
+}
+/* Round 6: when the form card stretches to the left column height, let the
+   message textarea absorb the extra space so no dead white void appears
+   inside the card (modern browsers: :has is supported since Chrome 105). */
+.contact-form .form-group:has(textarea) { flex: 1 1 auto; display: flex; flex-direction: column; }
+.contact-form .form-group:has(textarea) textarea { flex: 1; }
+.hp-field { position: absolute !important; left: -9999px !important; opacity: 0; height: 0; width: 0; overflow: hidden; pointer-events: none; }
+.form-status { display: none; border-radius: var(--radius-sm); padding: 14px 18px; margin-top: 18px; font-size: 0.95rem; }
+.contact-form.is-success .form-title,
+.contact-form.is-success .form-group,
+.contact-form.is-success .privacy-note { display: none; }
+/* Round 16: center the success card contents vertically in the form card */
+.contact-form.is-success { justify-content: center; }
+/* Round 11 dir 4: elevated success card — bolder "Tack!" headline above the
+   check line, 2px amber border + soft shadow (never ghost text). */
+/* Round 16: success card gets a tall, centered presence inside the form —
+   flex:1 makes it fill the full form column so no dead white space remains
+   on desktop (form card stretches to the left column height). */
+.form-status.ok {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+  /* Round 17 (head dir 2): hug content — no min-height stretch, so the
+     card never floats over dead space on desktop.
+     Round 18: card stretches full-width so no empty right zone remains. */
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  gap: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  border: 2px solid var(--amber);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  font-weight: 600;
+  margin: 18px 0 0;
+  line-height: 1.45;
+  box-shadow: 0 16px 38px -20px rgba(38, 34, 28, 0.45);
+  animation: form-pop 0.45s var(--ease);
+  /* never clip under sticky header (header ~76px + breathing room) */
+  scroll-margin-top: 110px;
+}
+.form-status.ok .ok-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; color: var(--accent-deep); }
+.form-status.ok .ok-line { display: flex; align-items: center; gap: 10px; font-size: 0.98rem; }
+/* Round 17 (head dir 2): "Vad händer nu?" 3-step strip — Svar inom 24 h →
+   Offert → Start — makes the empty space read as intentional next steps. */
+.ok-next { margin-top: 6px; padding-top: 14px; border-top: 1px solid rgba(180, 118, 58, 0.35); }
+.ok-next strong { display: block; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 10px; }
+.ok-steps { display: flex; flex-wrap: wrap; gap: 8px; }
+.ok-step { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+.ok-step .n { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; flex: 0 0 auto; }
+.ok-step + .ok-step::before { content: "→"; color: var(--amber); font-weight: 700; margin-left: -2px; }
+@keyframes form-pop {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.form-status.ok .ok-line::before { content: ""; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--amber); flex: 0 0 auto; background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M20 6 9 17l-5-5%22/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: center; background-size: 15px 15px; }
+.form-status.err { display: block; background: #F7E4DE; color: #8C3B2A; border: 1px solid #E4B9AC; }
+.form-status.working { display: block; background: var(--bg-2); color: var(--ink-soft); }
+/* Round 11 dir 4: disabled submit stays clearly styled (never looks broken) */
+.contact-form button[type="submit"]:disabled { background: var(--accent-deep); color: #fff; opacity: 1; cursor: default; }
+.privacy-note { font-size: 0.82rem; color: var(--ink-faint); margin-top: 12px; }
+
+/* ============================================================
+   Team (om-oss)
+   ============================================================ */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.team-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 28px; text-align: center; }
+.team-avatar {
+  width: 144px;
+  height: 144px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  border: 3px solid var(--amber);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.team-card h3 { font-size: 1.2rem; }
+.team-card .role { color: var(--accent-deep); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; margin: 4px 0 12px; }
+.team-card p { color: var(--ink-soft); font-size: 0.92rem; }
+.team-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; filter: sepia(0.12) saturate(1.08); }
+
+/* ============================================================
+   Sticky mobile CTA
+   ============================================================ */
+.mobile-cta-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  display: none;
+  gap: 10px;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+  /* Round 8: fully opaque so content never shows through the bar */
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  transition: transform 0.3s var(--ease);
+}
+.mobile-cta-sticky .btn { flex: 1; min-height: 50px; }
+body.cta-scrolled .mobile-cta-sticky { transform: translateY(110%); }
+
+@media (max-width: 720px) {
+  .mobile-cta-sticky { display: flex; }
+  /* Round 8: ~120px so the last section never clips behind the fixed bar */
+  body { padding-bottom: 120px; }
+  /* Round 11 dir 2: sticky-bar occlusion — form, success card and the
+     service-page trust strip get bottom clearance equal to the bar height
+     (~72px + safe-area) so nothing sits behind the fixed bar mid-scroll. */
+  .contact-form, #form-status, .trust-band {
+    scroll-margin-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+  #form-status { margin-bottom: 84px; }
+  /* Round 16: mobile success card stays compact (no tall min-height) */
+  .form-status.ok { min-height: auto; justify-content: flex-start; }
+  /* Round 11 dir 7: trust strip commits to ONE grid — 6-across desktop, 2x3 mobile */
+  .trust-band ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+  .trust-band li { min-width: 0; }
+  .trust-band .tick { flex: 0 0 auto; }
+  .trust-band { padding: 18px 0; }
+}
+
+/* Round 15: at very narrow widths (<=380px) the sticky CTA's two buttons
+   cannot shrink below their min-content (icon + nowrap label + 26px padding),
+   so the bar overflowed the viewport at 320px. Tighter padding + smaller
+   font lets both buttons fit while keeping >=48px hit area (min-height stays). */
+@media (max-width: 380px) {
+  .mobile-cta-sticky { padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)); gap: 8px; }
+  .mobile-cta-sticky .btn { padding: 10px 14px; font-size: 0.88rem; min-height: 48px; }
+}
+/* Round 16: on phones the trust band drops to a single readable column */
+@media (max-width: 480px) {
+  .trust-band ul { grid-template-columns: 1fr; gap: 8px; }
+  .trust-band li { white-space: normal; justify-content: flex-start; }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer { background: var(--ink); color: rgba(244, 237, 224, 0.72); padding: 72px 0 40px; font-size: 0.94rem; }
+.site-footer .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 48px; }
+.site-footer h4 { font-weight: 600; color: rgba(244, 237, 224, 0.85); font-size: 1rem; margin-bottom: 16px; }
+.site-footer ul { list-style: none; display: grid; gap: 12px; }
+.site-footer a { transition: color 0.2s ease; }
+.site-footer a:hover { color: var(--amber); }
+.footer-brand .brand { color: var(--cream-on-dark); margin-bottom: 14px; }
+.footer-brand p { max-width: 34ch; }
+.footer-bottom { border-top: 1px solid rgba(244, 237, 224, 0.14); margin-top: 48px; padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 0.88rem; color: rgba(244, 237, 224, 0.5); }
+.footer-acc > summary { display: none; }
+@media (max-width: 1024px) {
+  .site-footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .site-footer .footer-grid { grid-template-columns: 1fr; gap: 8px; }
+  .footer-acc { border-bottom: 1px solid rgba(244, 237, 224, 0.14); padding: 6px 0; }
+  .footer-acc > summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    padding: 12px 0;
+    font-weight: 600;
+    color: var(--cream-on-dark);
+  }
+  .footer-acc > summary::-webkit-details-marker { display: none; }
+  .footer-acc > summary::after { content: "+"; color: var(--amber); font-size: 1.1rem; }
+  .footer-acc[open] > summary::after { content: "–"; }
+  .footer-acc ul { padding-bottom: 14px; }
+  .site-footer ul a { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 0; }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .section { padding: 72px 0; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-grid { grid-template-columns: 1fr; max-width: 640px; }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-media { max-width: 560px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  /* Round 17 (head dir 8): on mobile the FORM comes first so starter fields
+     (E-post, Postnummer, Tjänst) reach above the fold — info cards follow. */
+  .contact-grid > form { order: -1; }
+  .svc-hero { grid-template-columns: 1fr; gap: 32px; }
+  .cta-band { padding: 40px 32px; }
+}
+@media (max-width: 720px) {
+  .section { padding: 56px 0; }
+  .container { width: min(100% - 36px, var(--maxw)); }
+  .services-grid, .projects-grid, .svc-grid, .team-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-actions .btn { width: 100%; }
+  .cta-band { flex-direction: column; align-items: flex-start; }
+  /* Round 17 (head dir 8): tighter page-hero on mobile so the kontakt form
+     card starts higher — the form itself is the conversion goal. */
+  .page-hero { padding: 36px 0 32px; }
+  .page-hero p { font-size: 1.02rem; }
+  .hero { padding: 48px 0 72px; }
+  .svc-hero-full { padding: 96px 0 56px; }
+  .svc-hero-full::after {
+    background: linear-gradient(to right, rgba(38, 34, 28, 0.78) 0%, rgba(38, 34, 28, 0.62) 45%, rgba(38, 34, 28, 0.48) 75%, rgba(38, 34, 28, 0.36) 100%);
+  }
+  /* Round 18: 24px inner gutter on the right so the photo is not hard-cropped at the viewport edge. */
+  .svc-hero-full > img { inset: 0 24px 0 0; width: calc(100% - 24px); }
+  /* Round 18: photo-first on mobile so the craft moment actually shows (asset no longer wasted). */
+  .hero-media { order: -1; max-width: 100%; }
+  .hero-img-wrap { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 480px) {
+  .brand small { display: block; font-size: 0.6rem; letter-spacing: 0.04em; line-height: 1.3; }
+  /* Round 11 (head dir 1): keep the mark↔wordmark gap generous on small phones */
+  .brand { font-size: 1.1rem; gap: 32px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   Process strip ('Från verkstaden')
+   ============================================================ */
+.process-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.process-step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.process-step img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.process-step .process-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.process-step .num { font-family: var(--serif); font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; }
+.process-step h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.process-step p { color: var(--ink-soft); font-size: 0.95rem; }
+@media (max-width: 720px) {
+  .process-strip { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Signature brand device (round 11 dir 8): founder quote card
+   — escapes the premium-template feel, pairs S&B monogram with
+   Anders' founding-voice quote. Used on index.html.
+   ============================================================ */
+.founder-quote {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 44px 48px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.founder-quote::before {
+  content: "“";
+  position: absolute;
+  top: -6px;
+  left: 28px;
+  font-family: var(--serif);
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.founder-quote .monogram {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--amber);
+  border: 2px solid var(--amber);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+.founder-quote blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.8vw, 1.7rem);
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0 0 18px;
+}
+.founder-quote cite { font-style: normal; font-size: 0.92rem; color: var(--ink-faint); letter-spacing: 0.03em; }
+.founder-quote cite strong { color: var(--accent-deep); font-weight: 700; }
+@media (max-width: 560px) {
+  .founder-quote { padding: 34px 26px; }
+}
