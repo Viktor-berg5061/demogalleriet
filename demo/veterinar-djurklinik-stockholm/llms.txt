@@ -1,0 +1,50 @@
+# Veterinär & Djurklinik Stockholm
+
+> Djurklinik för hund och katt på Södermalm i Stockholm. Vaccination, kastrering,
+> tandvård, röntgen och ultraljud, eget laboratorium och operationssal.
+> Mottagningen har öppet mån–fre 08:00–18:00 och lör 09:00–14:00.
+> Jourlinjen är bemannad dygnet runt, året om.
+
+Detta är en demosajt. Företagsnamn, medarbetare, priser och omdömen är påhittade.
+Kontaktuppgifterna är riktiga och konsekventa i hela sajten: telefon
+08-410 522 30 och e-post info@veterinar-djurklinik-stockholm.se. De står i
+sidfoten på varje sida. Adress: Klinikvägen 12, 118 46 Stockholm.
+
+## Kontakt
+- Telefon: 08-410 522 30 (jourlinjen svarar dygnet runt)
+- E-post: info@veterinar-djurklinik-stockholm.se
+- Adress: Klinikvägen 12, 118 46 Stockholm
+- Öppettider mottagning: mån–fre 08:00–18:00, lör 09:00–14:00, sön stängt
+- Akut och jour: telefon dygnet runt, hela året
+
+## Tjänster
+- [Alla tjänster](/tjanster/index.html): Översikt med priser och vad som ingår i varje besök.
+- [Vaccination](/tjanster/vaccination.html): Vaccinationsprogram för hund och katt, intyg och påminnelser. Hund 650 kr, katt 595 kr.
+- [Kastrering](/tjanster/kastrering.html): Kastrering av hund och katt med smärtlindring och återbesök. Hane 3 900 kr, hona 6 900 kr.
+- [Tandvård](/tjanster/tandvard.html): Tandstenborttagning, tandröntgen och extraktion. Baspris 4 800 kr.
+- [Röntgen och ultraljud](/tjanster/rontgen.html): Digital röntgen och ultraljud på plats. Baspris 3 200 kr.
+- [Hund](/tjanster/hund.html): Årskontroll, förebyggande program efter ålder och vanliga hundbesvär.
+- [Katt](/tjanster/katt.html): Eget kattrum, kattens åldersprogram och vanliga kattproblem.
+
+## Kliniken
+- [Start](/index.html): Öppettider, akutinformation, tjänster, priser och bokning.
+- [Om oss](/om-oss.html): Klinikens historia, arbetssätt, utrustning och bildkällor.
+- [Teamet](/teamet.html): Fem legitimerade veterinärer och tre djursjukskötare, med inriktning per person.
+- [Priser](/priser.html): Fullständiga pristabeller och kostnadsuppskattning.
+- [Akut och jour](/akut.html): Akuttider, symtom som kräver omedelbar kontakt och hur triage går till.
+- [Kontakt](/kontakt.html): Adress, telefon, öppettider och bokningsformulär.
+
+## Vanliga frågor
+- Vad kostar ett besök? En hälsokontroll kostar 890 kr. Vaccination hund 650 kr, katt 595 kr.
+  Allt över 3 000 kr får du en skriftlig kostnadsuppskattning för innan vi börjar.
+- Hur snabbt får jag en tid? Akuta ärenden tas emot samma dag. Bokade besök oftast inom 2–4 arbetsdagar.
+- Är jourlinjen bemannad på natten? Ja, dygnet runt, hela året.
+- Vilka djur tar ni emot? Hund och katt. Kanin, marsvin och fågel tar vi emot för enklare kontroller.
+- Får jag journalen? Ja, den skickas till din e-post samma dag som besöket.
+- Kan jag delbetala? Ja, behandlingar över 3 000 kr kan delas upp på 6 månader utan ränta.
+
+## Tekniskt
+- Statisk HTML, ingen JavaScript-rendering krävs för innehållet.
+- Strukturerad data: VeterinaryCare/LocalBusiness på alla sidor, Service på tjänstesidorna.
+- Formuläret skickar till en konfigurerad mottagare; endpointen ligger som konstanten
+  LEAD_ENDPOINT högst upp i /assets/js/main.js och byts av kunden vid lansering.
