@@ -1,46 +1,88 @@
 /* ==========================================================================
    Frisör & Barberare Stockholm — designsystem
    --------------------------------------------------------------------------
-   Riktning: "Salongens skyltfönster" — nordisk funktionalism möter 1920-talets
-   barberskyltning. Dominant petrolgrön (salongens kakel), sval pappersvit
-   (spegelljuset), mässing (beslagen) och en skarp barberröd accent (stolpen).
-   Typsnitt: Bodoni Moda (display, förgylld skylttext) + Familjen Grotesk
-   (svensk grotesk för brödtext).
-   Signatur: klippkortet — tjänstekort med stubb-linje och mässingstämpel.
+   Palett (palettrunda 2026-09-28): två skalor + en varm neutral ramp.
+     bas      petrol 100-900      (salongens kakel)   hue 185-190
+     accent   terrakotta 100-900  (stolpen)           hue 12-24, dämpad
+     ytor     vit #ffffff + varm gräddton #faf6f0 — ingen nästan-grå yta med
+              grön/blå slöja någonstans.
+   Det komponenterna använder är ROLLERNA (--yta, --text, --accent ...);
+   skalstegen är byggstenarna. Ingen color-mix och ingen lighten() i drift —
+   varje nyans är definierad en gång i :root.
+   Accenten bär exakt EN roll: den fyllda CTA-knappen. Framhävning i rubriker
+   görs med basfärgen (kursiv); accenten får bara finnas som tunn detalj
+   (hårlinje, siffra, stjärna, stämpelring).
+   Typsnitt: Bodoni Moda (display) + Familjen Grotesk (brödtext).
+   Signatur: klippkortet — tjänstekort med stubb-linje och stämpel.
+   Palettens källa (EN sanning, ingen drift): 
+   build/Frisör & Barberare Stockholm/_shared/palett.py
    ========================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&display=swap");
 
 :root {
-  /* ---- färg: referens ---- */
-  --petrol:        #1d4348;
-  --petrol-djup:   #102c31;
-  --petrol-ljus:   #2f6068;
-  --petrol-dis:    #dbe7e6;
-  --papper:        #eef2f1;
-  --papper-varm:   #f7f8f6;
-  --vit:           #ffffff;
-  --black:         #171f22;
-  --black-mjuk:    #55605f;
-  --massing:       #d3a75e;
-  --massing-djup:  #8a6524;
-  --barber:        #bf3b2b;
-  --barber-djup:   #97291c;
-  --linje:         rgba(23, 31, 34, .14);
-  --linje-ljus:    rgba(238, 242, 241, .22);
+  /* -------- SKALA: bas, petrol (salongens kakel). Hue ~185-189. --------
+     Skalan är definierad i HSL; hex-raden intill är samma värde, så att
+     palettkontroll.py (som bara läser hex) mäter den verkliga paletten.
+  --petrol-100: hsl(185 62% 88%); /* #cdf0f3  L*0.93 C0.036 */
+  --petrol-200: hsl(185 46% 82%); /* #bce3e6  L*0.89 C0.041 */
+  --petrol-300: hsl(186 38% 72%); /* #9ccdd3  L*0.82 C0.051 */
+  --petrol-400: hsl(186 38% 60%); /* #72b8c0  L*0.74 C0.071 */
+  --petrol-500: hsl(187 38% 47%); /* #4a9ba5  L*0.64 C0.080 */
+  --petrol-600: hsl(187 42% 36%); /* #357982  L*0.54 C0.070 */
+  --petrol-700: hsl(188 43% 26%); /* #26575f  L*0.43 C0.054 */
+  --petrol-800: hsl(188 46% 19%); /* #1a4147  L*0.35 C0.045 */
+  --petrol-900: hsl(190 58% 12%); /* #0d2a30  L*0.27 C0.036 */
 
-  /* ---- färg: semantik ---- */
-  --yta:           var(--papper);
-  --yta-kort:      var(--vit);
-  --text:          var(--black);
-  --text-mjuk:     var(--black-mjuk);
-  --rubrik:        var(--petrol-djup);
-  --accent:        var(--barber);
-  --accent-text:   var(--barber-djup);
-  --metall:        var(--massing);
-  --ram:           var(--linje);
+  /* -------- SKALA: accent, terrakotta (stolpen). Hue ~12-24. Dämpad:
+     accent-600 ligger på C 0.11-0.13 / L* 0.50 — terrakotta, inte varningsröd. */
+  --accent-100: hsl(24 70% 93%);  /* #faebe1  L*0.95 C0.021 */
+  --accent-200: hsl(22 66% 85%);  /* #f2d2c0  L*0.89 C0.044 */
+  --accent-300: hsl(20 64% 72%);  /* #e5a88a  L*0.78 C0.083 */
+  --accent-400: hsl(18 60% 58%);  /* #d47a54  L*0.67 C0.124 */
+  --accent-500: hsl(16 56% 47%);  /* #bb5935  L*0.58 C0.137 */
+  --accent-600: hsl(14 60% 39%);  /* #9f4428  L*0.50 C0.129 */
+  --accent-700: hsl(14 62% 32%);  /* #84371f  L*0.44 C0.113 */
+  --accent-800: hsl(13 60% 25%);  /* #662a19  L*0.37 C0.091 */
+  --accent-900: hsl(12 58% 18%);  /* #491e13  L*0.29 C0.068 */
 
-  /* ---- typografi ---- */
+  /* -------- SKALA: varma neutraler. Aldrig nästan-grå med grön/blå slöja:
+     alla ligger i H 67-85° (varm) eller är akromatiska. En temperatur, inga skav. */
+  --vit: hsl(0 0% 100%);        /* #ffffff  L*1.00 C0.000 */
+  --gradd: hsl(40 50% 96%);      /* #faf6f0  L*0.98 C0.010 */
+  --gradd-djup: hsl(38 42% 92%); /* #f3ede2  L*0.95 C0.016 */
+  --sand-300: hsl(36 14% 80%);   /* #d3cdc5  L*0.85 C0.013 */
+  --sand-400: hsl(34 12% 52%);   /* #938776  L*0.63 C0.029 */
+  --sand-500: hsl(32 10% 41%);   /* #73695e  L*0.53 C0.021 */
+  --sand-700: hsl(30 9% 30%);   /* #534c46  L*0.42 C0.014 */
+  --ink: hsl(30 12% 12%);        /* #221f1b  L*0.24 C0.009 */
+
+  /* -------- SEMANTISKA ROLLER (använd dessa i komponenterna, inte skalstegen) --- */
+  --yta:                  var(--vit);  /* #ffffff */
+  --yta-kort:             var(--vit);  /* #ffffff */
+  --yta-mjuk:             var(--gradd);  /* #faf6f0 */
+  --yta-sand:             var(--gradd-djup);  /* #f3ede2 */
+  --text:                 var(--ink);  /* #221f1b */
+  --text-mjuk:            var(--sand-500);  /* #73695e */
+  --text-svag:            var(--sand-400);  /* #938776 */
+  --rubrik:               var(--petrol-900);  /* #0d2a30 */
+  --rubrik-mjuk:          var(--petrol-700);  /* #26575f */
+  --bas:                  var(--petrol-700);  /* #26575f */
+  --bas-djup:             var(--petrol-900);  /* #0d2a30 */
+  --bas-ljus:             var(--petrol-500);  /* #4a9ba5 */
+  --bas-dis:              var(--petrol-100);  /* #cdf0f3 */
+  --lank:                 var(--petrol-700);  /* #26575f */
+  --accent:               var(--accent-600);  /* #9f4428 */
+  --accent-djup:          var(--accent-700);  /* #84371f */
+  --accent-dis:           var(--accent-100);  /* #faebe1 */
+  --accent-ljus:          var(--accent-200);  /* #f2d2c0 */
+  --linje:                var(--sand-300);  /* #d3cdc5 */
+  --ram:                  var(--sand-300);  /* #d3cdc5 */
+  --ram-falt:             var(--sand-400);  /* #938776 */
+  --text-pa-mork:         var(--gradd);  /* #faf6f0 */
+  --text-pa-mork-mjuk:    var(--gradd-djup);  /* #f3ede2 */
+
+  /* -------- TYPSNITT -------- */
   --display: "Bodoni Moda", "Times New Roman", Georgia, serif;
   --brodo:   "Familjen Grotesk", "Trebuchet MS", "Segoe UI", sans-serif;
   --fs-hero:  clamp(2.15rem, 7vw, 4.5rem);
@@ -53,7 +95,7 @@
   --fs-etikett: .78rem;
   --track-etikett: .14em;
 
-  /* ---- mått och rytm ---- */
+  /* -------- MÅTT OCH RYTM (4/8-skalan) -------- */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
   --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
   --sektion-y: clamp(44px, 7vw, 96px);
@@ -62,8 +104,8 @@
   --prosa: 66ch;
   --knapp-h: 48px;
   --radius: 3px;
-  --skugga: 0 1px 2px rgba(16, 44, 49, .06), 0 12px 28px -18px rgba(16, 44, 49, .35);
-  --skugga-lyft: 0 2px 4px rgba(16, 44, 49, .08), 0 26px 44px -24px rgba(16, 44, 49, .42);
+  --skugga: 0 1px 2px rgba(13, 42, 48, .06), 0 12px 28px -18px rgba(13, 42, 48, .35);
+  --skugga-lyft: 0 2px 4px rgba(13, 42, 48, .08), 0 26px 44px -24px rgba(13, 42, 48, .42);
 }
 
 /* --------------------------------------------------------------- grund ---- */
@@ -102,8 +144,8 @@ h4 { font-size: 1.02rem; line-height: 1.3; }
 p { margin: 0 0 var(--sp-4); max-width: var(--prosa); }
 p:last-child { margin-bottom: 0; }
 
-a { color: var(--accent-text); text-decoration: underline; text-underline-offset: .18em; }
-a:hover { color: var(--petrol); }
+a { color: var(--lank); text-decoration: underline; text-underline-offset: .18em; }
+a:hover { color: var(--bas); }
 
 img { max-width: 100%; height: auto; display: block; }
 
@@ -113,12 +155,12 @@ li { margin-bottom: var(--sp-2); }
 strong { font-weight: 600; }
 
 :focus-visible {
-  outline: 3px solid var(--massing-djup);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-::selection { background: var(--massing); color: var(--petrol-djup); }
+::selection { background: var(--accent-200); color: var(--bas-djup); }
 
 /* tryckytor i löptext — minst 40 px höga även för inline-länkar */
 p a, li a, .prosa a, .kort-text a, .faqsvar a, td a {
@@ -130,14 +172,14 @@ p a, li a, .prosa a, .kort-text a, .faqsvar a, td a {
 .pole-ribbon {
   height: 6px;
   background-image: repeating-linear-gradient(115deg,
-      var(--barber) 0 12px, var(--vit) 12px 24px, var(--petrol) 24px 36px);
+      var(--accent) 0 12px, var(--yta) 12px 24px, var(--bas) 24px 36px);
 }
 .pole-linje {
   height: 2px;
   border: 0;
   margin: 0;
   background-image: repeating-linear-gradient(115deg,
-      var(--barber) 0 14px, var(--massing) 14px 28px, var(--petrol-ljus) 28px 42px);
+      var(--accent) 0 14px, var(--accent-500) 14px 28px, var(--bas-ljus) 28px 42px);
 }
 
 /* ------------------------------------------------------------- layout ---- */
@@ -151,16 +193,16 @@ p a, li a, .prosa a, .kort-text a, .faqsvar a, td a {
 }
 
 .sektion { padding-block: var(--sektion-y); }
-.sektion--papper { background: var(--papper); }
-.sektion--ljus { background: var(--papper-varm); }
+.sektion--papper { background: var(--yta-mjuk); }
+.sektion--ljus { background: var(--yta-sand); }
 .sektion--petrol {
-  background: var(--petrol);
-  color: var(--papper);
+  background: var(--bas);
+  color: var(--yta-mjuk);
 }
-.sektion--petrol h2, .sektion--petrol h3 { color: var(--vit); }
-.sektion--petrol a { color: var(--massing); }
-.sektion--petrol .ogonbryn { color: var(--massing); border-color: var(--linje-ljus); }
-.sektion--petrol p { color: rgba(238, 242, 241, .88); }
+.sektion--petrol h2, .sektion--petrol h3 { color: var(--yta); }
+.sektion--petrol a { color: var(--text-pa-mork); }
+.sektion--petrol .ogonbryn { color: var(--text-pa-mork-mjuk); border-color: var(--accent); }
+.sektion--petrol p { color: var(--text-pa-mork-mjuk); }
 
 /* --- ljus yta inuti mörk sektion: textfärgen måste återställas ------------
    .sektion--petrol sätter h2/h3 till vitt och p till rgba(238,242,241,.88)
@@ -173,7 +215,7 @@ p a, li a, .prosa a, .kort-text a, .faqsvar a, td a {
 .sektion--petrol :is(.prisgrupp, .klippkort, .teamkort, .omdomeskort, .faqpost,
     .oppettider, .bokningsform, .meddelanderuta,
     .rutan:not(.rutan--petrol)) :is(h1, h2, h3, h4) {
-  color: var(--petrol-djup);
+  color: var(--bas-djup);
 }
 .sektion--petrol :is(.prisgrupp, .klippkort, .teamkort, .omdomeskort, .faqpost,
     .oppettider, .bokningsform, .meddelanderuta,
@@ -183,19 +225,19 @@ p a, li a, .prosa a, .kort-text a, .faqsvar a, td a {
 .sektion--petrol :is(.prisgrupp, .klippkort, .teamkort, .omdomeskort, .faqpost,
     .oppettider, .bokningsform, .meddelanderuta,
     .rutan:not(.rutan--petrol)) a:not(.knapp) {
-  color: var(--accent-text);
+  color: var(--lank);
 }
 
 /* Knappar i mörk sektion: .sektion--petrol a (0,1,1) slog .knapp--ljus och
    .knapp--barber (0,1,0). "Ring +46 70 000 00 00" blev mässing på mässing
    = 1,00:1 (0 textpixlar av 10 922) och den röda knappen mässing på rött
    = 2,44:1. Specificiteten höjs i stället för att regeln tas bort. */
-.sektion--petrol a.knapp--ljus { color: var(--petrol-djup); }
-.sektion--petrol a.knapp--ljus:hover { color: var(--petrol-djup); }
-.sektion--petrol a.knapp--barber { color: var(--vit); }
-.sektion--petrol a.knapp--barber:hover { color: var(--vit); }
-.sektion--petrol a.knapp--linje { color: var(--papper); border-color: rgba(238, 242, 241, .55); }
-.sektion--petrol a.knapp--linje:hover { background: var(--papper); color: var(--petrol-djup); }
+.sektion--petrol a.knapp--ljus { color: var(--bas-djup); }
+.sektion--petrol a.knapp--ljus:hover { color: var(--bas-djup); }
+.sektion--petrol a.knapp--barber { color: var(--yta); }
+.sektion--petrol a.knapp--barber:hover { color: var(--yta); }
+.sektion--petrol a.knapp--linje { color: var(--yta-mjuk); border-color: rgba(250, 246, 240, .5); }
+.sektion--petrol a.knapp--linje:hover { background: var(--yta-mjuk); color: var(--bas-djup); }
 
 .sektion-huvud { max-width: 62ch; margin-bottom: var(--sp-7); }
 .sektion-huvud--mitt { margin-inline: auto; text-align: center; }
@@ -208,14 +250,14 @@ p a, li a, .prosa a, .kort-text a, .faqsvar a, td a {
   letter-spacing: var(--track-etikett);
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--massing-djup);
-  border-top: 2px solid var(--massing);
+  color: var(--text-mjuk);
+  border-top: 2px solid var(--accent);
   padding-top: var(--sp-2);
   margin-bottom: var(--sp-4);
 }
 
 .sektion-ingress { font-size: var(--fs-lead); color: var(--text-mjuk); }
-.sektion--petrol .sektion-ingress { color: rgba(238, 242, 241, .86); }
+.sektion--petrol .sektion-ingress { color: var(--text-pa-mork-mjuk); }
 
 .prosa { max-width: var(--prosa); }
 
@@ -234,7 +276,7 @@ main a:not([class]) { padding-block: .75em; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(238, 242, 241, .94);
+  background: rgba(250, 246, 240, .94);
   /* backdrop-filter stannar: glaset i sidhuvudet är oförändrat.
      Priset är att .topbar blir containing block för position:fixed-ättlingar,
      så #mobilmeny får INTE ligga inuti headern (den ligger som syskon i body,
@@ -257,8 +299,8 @@ main a:not([class]) { padding-block: .75em; }
   width: 44px; height: 44px;
   flex: 0 0 44px;
   border-radius: 50%;
-  background: var(--petrol);
-  color: var(--massing);
+  background: var(--bas-djup);
+  color: var(--text-pa-mork-mjuk);
   font-family: var(--display);
   font-size: 1.32rem;
   line-height: 44px;
@@ -266,7 +308,7 @@ main a:not([class]) { padding-block: .75em; }
   letter-spacing: .02em;
 }
 .logo-text { display: flex; flex-direction: column; line-height: 1.12; }
-.logo-namn { font-family: var(--display); font-size: 1.09rem; color: var(--petrol-djup); }
+.logo-namn { font-family: var(--display); font-size: 1.09rem; color: var(--bas-djup); }
 .logo-ort {
   font-size: var(--fs-etikett);
   letter-spacing: var(--track-etikett);
@@ -292,12 +334,12 @@ main a:not([class]) { padding-block: .75em; }
   min-height: 44px;
   padding: 0 var(--sp-3);
   font-size: .95rem;
-  color: var(--petrol-djup);
+  color: var(--bas-djup);
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
-.navlink:hover { border-bottom-color: var(--massing); color: var(--petrol); }
-.navlink--aktiv { border-bottom-color: var(--barber); font-weight: 600; }
+.navlink:hover { border-bottom-color: var(--accent); color: var(--bas); }
+.navlink--aktiv { border-bottom-color: var(--accent); font-weight: 600; }
 
 .topbar-cta { display: none; }
 
@@ -312,8 +354,8 @@ main a:not([class]) { padding-block: .75em; }
   font-family: var(--brodo);
   font-size: .92rem;
   font-weight: 600;
-  color: var(--papper);
-  background: var(--petrol);
+  color: var(--yta-mjuk);
+  background: var(--bas);
   border: 0;
   border-radius: var(--radius);
   cursor: pointer;
@@ -335,7 +377,7 @@ main a:not([class]) { padding-block: .75em; }
   position: absolute;
   inset: 0 0 0 auto;
   width: min(88vw, 360px);
-  background: var(--petrol-djup);
+  background: var(--bas-djup);
   padding: var(--sp-5);
   overflow-y: auto;
   display: flex;
@@ -343,12 +385,12 @@ main a:not([class]) { padding-block: .75em; }
   gap: var(--sp-2);
   animation: skjut-in .26s ease both;
 }
-.mobilmeny-overdrag { position: absolute; inset: 0; background: rgba(16, 44, 49, .55); border: 0; width: 100%; }
+.mobilmeny-overdrag { position: absolute; inset: 0; background: rgba(13, 42, 48, .58); border: 0; width: 100%; }
 .mobilmeny-titel {
   font-size: var(--fs-etikett);
   letter-spacing: var(--track-etikett);
   text-transform: uppercase;
-  color: var(--massing);
+  color: var(--text-pa-mork-mjuk);
   margin-bottom: var(--sp-2);
 }
 .mobilmeny-lank {
@@ -356,20 +398,20 @@ main a:not([class]) { padding-block: .75em; }
   align-items: center;
   min-height: 48px;
   padding: 0 var(--sp-2);
-  color: var(--papper);
+  color: var(--yta-mjuk);
   text-decoration: none;
-  border-bottom: 1px solid var(--linje-ljus);
+  border-bottom: 1px solid rgba(250, 246, 240, .26);
   font-size: 1.05rem;
 }
-.mobilmeny-lank:hover { color: var(--massing); }
+.mobilmeny-lank:hover { color: var(--yta); }
 .mobilmeny-stang {
   align-self: flex-start;
   min-height: 44px;
   min-width: 44px;
   margin-bottom: var(--sp-4);
   background: transparent;
-  color: var(--papper);
-  border: 1px solid var(--linje-ljus);
+  color: var(--yta-mjuk);
+  border: 1px solid rgba(250, 246, 240, .26);
   border-radius: var(--radius);
   cursor: pointer;
   font-size: 1rem;
@@ -382,7 +424,7 @@ main a:not([class]) { padding-block: .75em; }
   position: relative;
   padding-block: clamp(48px, 8vw, 96px) clamp(44px, 7vw, 88px);
   background:
-    linear-gradient(180deg, var(--papper-varm), var(--papper));
+    linear-gradient(180deg, var(--yta-sand), var(--yta-mjuk));
 }
 .hero-inner { display: grid; gap: clamp(28px, 4vw, 56px); }
 /* Tjänstesidorna har kvar sitt innehåll under hero-blocket (prosa, info-lista,
@@ -390,7 +432,7 @@ main a:not([class]) { padding-block: .75em; }
 .hero-inner + * { margin-top: var(--sp-7); }
 .hero-copy { max-width: 40ch; }
 .hero-title { font-size: var(--fs-hero); font-weight: 500; margin-bottom: var(--sp-5); }
-.hero-title em { font-style: italic; color: var(--barber); }
+.hero-title em { font-style: italic; color: var(--rubrik); }
 .hero-lead { font-size: var(--fs-lead); color: var(--text-mjuk); max-width: 46ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-6); }
 
@@ -406,14 +448,14 @@ main a:not([class]) { padding-block: .75em; }
   position: absolute;
   right: clamp(8px, 2vw, 20px);
   bottom: clamp(8px, 2vw, 20px);
-  background: var(--vit);
-  border-left: 5px solid var(--barber);
+  background: var(--yta);
+  border-left: 5px solid var(--accent);
   padding: var(--sp-3) var(--sp-4);
   border-radius: 2px;
   box-shadow: var(--skugga);
   max-width: 78%;
 }
-.hero-badge strong { display: block; font-family: var(--display); font-size: 1.28rem; color: var(--petrol-djup); }
+.hero-badge strong { display: block; font-family: var(--display); font-size: 1.28rem; color: var(--bas-djup); }
 .hero-badge span { font-size: var(--fs-liten); color: var(--text-mjuk); }
 
 .trustrad {
@@ -425,7 +467,7 @@ main a:not([class]) { padding-block: .75em; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .trustitem { display: flex; flex-direction: column; gap: 2px; }
-.trustsiffra { font-family: var(--display); font-size: 1.5rem; color: var(--petrol); }
+.trustsiffra { font-family: var(--display); font-size: 1.5rem; color: var(--bas); }
 .trusttext { font-size: var(--fs-liten); color: var(--text-mjuk); }
 
 /* -------------------------------------------------------------- knappar -- */
@@ -445,12 +487,12 @@ main a:not([class]) { padding-block: .75em; }
   cursor: pointer;
   transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease;
 }
-.knapp--barber { background: var(--barber); color: var(--vit); box-shadow: var(--skugga); }
-.knapp--barber:hover { background: var(--barber-djup); color: var(--vit); transform: translateY(-1px); }
-.knapp--linje { background: transparent; color: var(--petrol-djup); border-color: var(--petrol); }
-.knapp--linje:hover { background: var(--petrol); color: var(--vit); }
-.knapp--ljus { background: var(--massing); color: var(--petrol-djup); }
-.knapp--ljus:hover { background: var(--vit); color: var(--petrol-djup); }
+.knapp--barber { background: var(--accent); color: var(--yta); box-shadow: var(--skugga); }
+.knapp--barber:hover { background: var(--accent-djup); color: var(--yta); transform: translateY(-1px); }
+.knapp--linje { background: transparent; color: var(--bas-djup); border-color: var(--bas); }
+.knapp--linje:hover { background: var(--bas); color: var(--yta); }
+.knapp--ljus { background: var(--yta-sand); color: var(--bas-djup); border-color: var(--ram-falt); }
+.knapp--ljus:hover { background: var(--yta); color: var(--bas-djup); }
 .knapp--stor { min-height: 54px; padding: 0 var(--sp-7); font-size: 1.05rem; }
 .knapp--helt { width: 100%; }
 
@@ -476,12 +518,12 @@ main a:not([class]) { padding-block: .75em; }
   left: 15px;
   top: var(--sp-4);
   bottom: var(--sp-4);
-  border-left: 2px dashed rgba(23, 31, 34, .2);
+  border-left: 2px dashed rgba(34, 31, 27, .22);
 }
 .klippkort:hover { transform: translateY(-3px); box-shadow: var(--skugga-lyft); }
 .klippkort--featured {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--petrol-dis) 70%, var(--vit)), var(--vit));
-  border-color: color-mix(in oklab, var(--petrol) 35%, var(--vit));
+  background: linear-gradient(180deg, var(--yta-sand), var(--yta-kort));
+  border-color: var(--bas-ljus);
 }
 .klippkort--featured::after {
   content: "";
@@ -490,7 +532,7 @@ main a:not([class]) { padding-block: .75em; }
   height: 6px;
   border-radius: var(--radius) var(--radius) 0 0;
   background-image: repeating-linear-gradient(115deg,
-      var(--barber) 0 12px, var(--vit) 12px 24px, var(--petrol) 24px 36px);
+      var(--accent) 0 12px, var(--yta) 12px 24px, var(--bas) 24px 36px);
 }
 
 .kort-etikett {
@@ -498,7 +540,7 @@ main a:not([class]) { padding-block: .75em; }
   letter-spacing: var(--track-etikett);
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--massing-djup);
+  color: var(--text-mjuk);
   margin-bottom: var(--sp-2);
 }
 /* Tumnaglarna (domarflaggan "read compressed"): .klippkort hade 48+32 px
@@ -528,7 +570,7 @@ main a:not([class]) { padding-block: .75em; }
   border-top: 1px solid var(--ram);
   padding-top: var(--sp-3);
 }
-.kort-pris { font-family: var(--display); font-size: 1.3rem; color: var(--petrol); white-space: nowrap; }
+.kort-pris { font-family: var(--display); font-size: 1.3rem; color: var(--bas); white-space: nowrap; }
 .kort-not { font-size: var(--fs-liten); color: var(--text-mjuk); }
 
 .kort-lank {
@@ -536,11 +578,11 @@ main a:not([class]) { padding-block: .75em; }
   align-items: center;
   min-height: 44px;
   font-weight: 600;
-  color: var(--barber-djup);
+  color: var(--lank);
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
-.kort-lank:hover { border-bottom-color: var(--barber); color: var(--barber-djup); }
+.kort-lank:hover { border-bottom-color: var(--accent); color: var(--lank); }
 
 .stämpel {
   position: absolute;
@@ -548,9 +590,9 @@ main a:not([class]) { padding-block: .75em; }
   right: var(--sp-4);
   width: 62px;
   height: 62px;
-  border: 2px solid var(--massing-djup);
+  border: 2px solid var(--accent);
   border-radius: 50%;
-  background: var(--vit);   /* fast skiva: stämpeln ligger nu på kortets foto */
+  background: var(--yta);   /* fast skiva: stämpeln ligger nu på kortets foto */
   z-index: 2;
   display: grid;
   place-items: center;
@@ -558,7 +600,7 @@ main a:not([class]) { padding-block: .75em; }
   font-size: .64rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--massing-djup);
+  color: var(--bas-djup);
   text-align: center;
   line-height: 1.15;
   background: rgba(255, 255, 255, .75);
@@ -576,13 +618,13 @@ main a:not([class]) { padding-block: .75em; }
 .prisrad { border-bottom: 1px dashed var(--ram); }
 .prisrad:last-child { border-bottom: 0; }
 .prisrad th, .prisrad td { padding: var(--sp-4) var(--sp-3) var(--sp-4) 0; text-align: left; vertical-align: top; }
-.prisnamn { font-weight: 600; color: var(--petrol-djup); }
+.prisnamn { font-weight: 600; color: var(--bas-djup); }
 .prisdetalj { display: block; font-weight: 400; font-size: var(--fs-liten); color: var(--text-mjuk); }
-.prisbelopp { font-family: var(--display); font-size: 1.16rem; color: var(--petrol); white-space: nowrap; text-align: right; }
+.prisbelopp { font-family: var(--display); font-size: 1.16rem; color: var(--bas); white-space: nowrap; text-align: right; }
 .prisnot { font-size: var(--fs-liten); color: var(--text-mjuk); margin-top: var(--sp-4); }
 .prisgrupp {
   margin-bottom: var(--sp-6);
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
   border-radius: var(--radius);
   padding: var(--sp-5);
@@ -598,7 +640,7 @@ main a:not([class]) { padding-block: .75em; }
 
 /* --------------------------------------------------------------- teamet -- */
 .teamkort {
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
   border-radius: var(--radius);
   overflow: hidden;
@@ -611,7 +653,7 @@ main a:not([class]) { padding-block: .75em; }
   font-size: var(--fs-etikett);
   letter-spacing: var(--track-etikett);
   text-transform: uppercase;
-  color: var(--massing-djup);
+  color: var(--text-mjuk);
   font-weight: 600;
   margin-bottom: var(--sp-3);
 }
@@ -619,33 +661,33 @@ main a:not([class]) { padding-block: .75em; }
 
 /* ------------------------------------------------------------- omdömen --- */
 .omdomeskort {
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
-  border-left: 5px solid var(--massing);
+  border-left: 5px solid var(--accent);
   border-radius: var(--radius);
   padding: var(--sp-5);
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
 }
-.omdomenstjärnor { color: var(--massing-djup); letter-spacing: .18em; font-size: .95rem; }
-.omdomestext { font-family: var(--display); font-size: 1.1rem; line-height: 1.45; color: var(--petrol-djup); margin: 0; }
+.omdomenstjärnor { color: var(--accent-djup); letter-spacing: .18em; font-size: .95rem; }
+.omdomestext { font-family: var(--display); font-size: 1.1rem; line-height: 1.45; color: var(--bas-djup); margin: 0; }
 .omdomesnamn { font-weight: 600; margin: 0; }
 .omdomesplats { font-size: var(--fs-liten); color: var(--text-mjuk); margin: 0; }
 
 /* ---------------------------------------------------------- öppettider --- */
-.oppettider { width: 100%; border-collapse: collapse; background: var(--vit); border: 1px solid var(--ram); }
+.oppettider { width: 100%; border-collapse: collapse; background: var(--yta); border: 1px solid var(--ram); }
 .oppettidrad { border-bottom: 1px solid var(--ram); }
 .oppettidrad:last-child { border-bottom: 0; }
 .oppettidrad th, .oppettidrad td { padding: var(--sp-3) var(--sp-4); text-align: left; }
-.dag { font-weight: 600; color: var(--petrol-djup); }
+.dag { font-weight: 600; color: var(--bas-djup); }
 .tid { font-variant-numeric: tabular-nums; }
 .oppettidrad--stangd .tid { color: var(--text-mjuk); }
-.oppettidrad--idag { background: color-mix(in oklab, var(--massing) 16%, var(--vit)); }
+.oppettidrad--idag { background: var(--yta-sand); }
 
 /* ------------------------------------------------------------------ FAQ -- */
 .faq { display: grid; gap: var(--sp-3); }
-.faqpost { background: var(--vit); border: 1px solid var(--ram); border-radius: var(--radius); }
+.faqpost { background: var(--yta); border: 1px solid var(--ram); border-radius: var(--radius); }
 .faqfraga {
   display: flex;
   align-items: center;
@@ -658,12 +700,12 @@ main a:not([class]) { padding-block: .75em; }
   font-family: var(--brodo);
   font-size: 1.02rem;
   font-weight: 600;
-  color: var(--petrol-djup);
+  color: var(--bas-djup);
   background: transparent;
   border: 0;
   cursor: pointer;
 }
-.faqfraga::after { content: "+"; font-family: var(--display); font-size: 1.3rem; color: var(--barber); }
+.faqfraga::after { content: "+"; font-family: var(--display); font-size: 1.3rem; color: var(--accent); }
 .faqfraga[aria-expanded="true"]::after { content: "–"; }
 .faqsvar { padding: 0 var(--sp-5) var(--sp-5); color: var(--text-mjuk); }
 .faqsvar[hidden] { display: none; }
@@ -672,29 +714,29 @@ main a:not([class]) { padding-block: .75em; }
 /* -------------------------------------------------------------- bokning -- */
 .bokning { display: grid; gap: clamp(24px, 4vw, 48px); }
 .bokningsform {
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
-  border-top: 6px solid var(--massing);
+  border-top: 6px solid var(--accent);
   border-radius: var(--radius);
   padding: clamp(20px, 3vw, 34px);
   box-shadow: var(--skugga);
 }
 .falt { display: flex; flex-direction: column; gap: var(--sp-2); margin-bottom: var(--sp-5); }
 .falt--halvt { margin-bottom: 0; }
-.label { font-size: var(--fs-liten); font-weight: 600; color: var(--petrol-djup); }
+.label { font-size: var(--fs-liten); font-weight: 600; color: var(--bas-djup); }
 .input, .val, .textarea {
   font-family: var(--brodo);
   font-size: 1rem;
   color: var(--text);
-  background: var(--papper-varm);
-  border: 1px solid var(--ram);
+  background: var(--yta-sand);
+  border: 1px solid var(--ram-falt);
   border-radius: 2px;
   padding: var(--sp-3) var(--sp-4);
   min-height: 48px;
   width: 100%;
 }
 .textarea { min-height: 120px; resize: vertical; }
-.input:focus, .val:focus, .textarea:focus { border-color: var(--massing-djup); background: var(--vit); }
+.input:focus, .val:focus, .textarea:focus { border-color: var(--bas); background: var(--yta); }
 .faltpar { display: grid; gap: var(--sp-5); margin-bottom: var(--sp-5); }
 .villkor { display: flex; gap: var(--sp-3); align-items: flex-start; margin-bottom: var(--sp-5); }
 .villkor input { min-width: 24px; min-height: 24px; margin-top: 6px; }
@@ -706,14 +748,14 @@ main a:not([class]) { padding-block: .75em; }
   margin-top: var(--sp-4);
   padding: var(--sp-4) var(--sp-5);
   border-radius: var(--radius);
-  border-left: 5px solid var(--petrol);
-  background: color-mix(in oklab, var(--petrol-dis) 60%, var(--vit));
-  color: var(--petrol-djup);
+  border-left: 5px solid var(--bas);
+  background: var(--yta-sand);
+  color: var(--rubrik);
 }
 .meddelanderuta--fel {
-  border-left-color: var(--barber);
-  background: color-mix(in oklab, var(--barber) 12%, var(--vit));
-  color: var(--barber-djup);
+  border-left-color: var(--accent);
+  background: var(--accent-dis);
+  color: var(--accent-900);
 }
 .formnot { font-size: var(--fs-liten); color: var(--text-mjuk); margin-top: var(--sp-4); }
 
@@ -726,8 +768,8 @@ main a:not([class]) { padding-block: .75em; }
   font-size: var(--fs-etikett);
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--massing-djup);
-  border: 1px solid var(--massing);
+  color: var(--text-mjuk);
+  border: 1px solid var(--accent);
   border-radius: 999px;
   padding: 3px 10px;
   margin-top: 9px;
@@ -736,8 +778,8 @@ main a:not([class]) { padding-block: .75em; }
    mot petrol-djup 2,78:1. Mässing (#d3a75e) ger 4,84:1 respektive 6,51:1. */
 .sektion--petrol .infotagg,
 .sidfot .infotagg {
-  color: var(--massing);
-  border-color: rgba(211, 167, 94, .65);
+  color: var(--text-pa-mork-mjuk);
+  border-color: rgba(242, 210, 192, .55);
 }
 .steglista { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--sp-5); counter-reset: steg; }
 .steg {
@@ -753,8 +795,8 @@ main a:not([class]) { padding-block: .75em; }
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid var(--massing);
-  color: var(--massing-djup);
+  border: 1px solid var(--accent);
+  color: var(--accent-djup);
   font-family: var(--display);
   font-size: 1rem;
   display: grid;
@@ -762,32 +804,32 @@ main a:not([class]) { padding-block: .75em; }
 }
 .steg h3 { margin-bottom: var(--sp-2); }
 .steg p { margin-bottom: 0; color: var(--text-mjuk); }
-.sektion--petrol .steg p { color: rgba(238, 242, 241, .85); }
-.sektion--petrol .steg::before { border-color: var(--massing); color: var(--massing); }
+.sektion--petrol .steg p { color: var(--text-pa-mork-mjuk); }
+.sektion--petrol .steg::before { border-color: var(--accent-ljus); color: var(--accent-ljus); }
 
 .rutan {
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
   border-radius: var(--radius);
   padding: var(--sp-5);
 }
-.rutan--petrol { background: var(--petrol); color: var(--papper); border-color: transparent; }
-.rutan--petrol h3 { color: var(--vit); }
+.rutan--petrol { background: var(--bas); color: var(--yta-mjuk); border-color: transparent; }
+.rutan--petrol h3 { color: var(--yta); }
 .rutan--diskret { background: transparent; border-style: dashed; }
 
 .citat {
   margin: 0;
   padding-left: var(--sp-5);
-  border-left: 4px solid var(--massing);
+  border-left: 4px solid var(--accent);
   font-family: var(--display);
   font-size: 1.24rem;
   line-height: 1.42;
-  color: var(--petrol-djup);
+  color: var(--bas-djup);
   max-width: 54ch;
 }
 .citat-kalla { display: block; margin-top: var(--sp-3); font-family: var(--brodo); font-size: var(--fs-liten); color: var(--text-mjuk); }
 /* .citat-kalla i mörk sektion: #55605f på #1d4348 gav 1,65:1. */
-.sektion--petrol .citat-kalla { color: rgba(238, 242, 241, .82); }
+.sektion--petrol .citat-kalla { color: var(--text-pa-mork-mjuk); }
 
 .badge {
   display: inline-flex;
@@ -795,15 +837,17 @@ main a:not([class]) { padding-block: .75em; }
   gap: var(--sp-2);
   min-height: 40px;
   padding: 0 var(--sp-4);
-  background: color-mix(in oklab, var(--massing) 24%, var(--vit));
-  border: 1px solid var(--massing);
+  background: var(--yta-sand);
+  border: 1px solid var(--accent);
   border-radius: 999px;
   font-size: var(--fs-etikett);
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--massing-djup);
+  color: var(--text-mjuk);
   font-weight: 600;
 }
+
+.sektion--petrol .badge { color: var(--bas-djup); border-color: var(--accent); }
 
 .bildremsa { display: grid; gap: var(--sp-4); }
 .ruta-bild { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
@@ -811,29 +855,29 @@ main a:not([class]) { padding-block: .75em; }
 .tva-spalt { display: grid; gap: clamp(24px, 4vw, 56px); }
 
 .cta-band {
-  background: var(--petrol-djup);
-  color: var(--papper);
+  background: var(--bas-djup);
+  color: var(--yta-mjuk);
   border-radius: var(--radius);
   padding: clamp(24px, 4vw, 48px);
   display: grid;
   gap: var(--sp-5);
 }
-.cta-band h2 { color: var(--vit); margin-bottom: var(--sp-3); }
-.cta-band p { color: rgba(238, 242, 241, .86); }
+.cta-band h2 { color: var(--yta); margin-bottom: var(--sp-3); }
+.cta-band p { color: var(--text-pa-mork-mjuk); }
 .cta-band-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
-.cta-band-not { font-size: var(--fs-liten); color: rgba(238, 242, 241, .74); }
-.cta-band-not a { min-height: 44px; display: inline-flex; align-items: center; color: var(--massing); }
+.cta-band-not { font-size: var(--fs-liten); color: var(--text-pa-mork-mjuk); }
+.cta-band-not a { min-height: 44px; display: inline-flex; align-items: center; color: var(--text-pa-mork); }
 
 /* brodsmulor */
 .smulor { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0 0 var(--sp-5); padding: 0; font-size: var(--fs-liten); }
 .smulor li { margin: 0; display: flex; align-items: center; gap: var(--sp-2); }
 .smulor a { min-height: 44px; display: inline-flex; align-items: center; color: var(--text-mjuk); }
-.smulor li + li::before { content: "/"; color: var(--massing-djup); }
+.smulor li + li::before { content: "/"; color: var(--text-svag); }
 
 /* -------------------------------------------------------------- sidfot --- */
 .sidfot {
-  background: var(--petrol-djup);
-  color: rgba(238, 242, 241, .82);
+  background: var(--bas-djup);
+  color: var(--text-pa-mork-mjuk);
   padding-block: clamp(40px, 6vw, 72px) var(--sp-6);
   margin-top: clamp(40px, 6vw, 88px);
 }
@@ -843,27 +887,27 @@ main a:not([class]) { padding-block: .75em; }
   font-size: var(--fs-etikett);
   letter-spacing: var(--track-etikett);
   text-transform: uppercase;
-  color: var(--massing);
+  color: var(--text-pa-mork);
   margin-bottom: var(--sp-2);
 }
-.fotlank { display: inline-flex; align-items: center; min-height: 44px; color: var(--papper); text-decoration: none; font-size: .96rem; }
-.fotlank:hover { color: var(--massing); }
+.fotlank { display: inline-flex; align-items: center; min-height: 44px; color: var(--yta-mjuk); text-decoration: none; font-size: .96rem; }
+.fotlank:hover { color: var(--yta); }
 .nap { display: grid; gap: var(--sp-3); margin: 0; }
 .naprad { display: flex; gap: var(--sp-3); align-items: flex-start; margin: 0; }
-.naprad a { min-height: 44px; display: inline-flex; align-items: center; color: var(--massing); }
-.fot-not { font-size: var(--fs-liten); color: rgba(238, 242, 241, .62); max-width: 40ch; }
+.naprad a { min-height: 44px; display: inline-flex; align-items: center; color: var(--text-pa-mork); }
+.fot-not { font-size: var(--fs-liten); color: var(--text-pa-mork-mjuk); max-width: 40ch; }
 .bottenrad {
   margin-top: var(--sp-7);
   padding-top: var(--sp-5);
-  border-top: 1px solid var(--linje-ljus);
+  border-top: 1px solid rgba(250, 246, 240, .26);
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-4);
   justify-content: space-between;
   font-size: var(--fs-liten);
-  color: rgba(238, 242, 241, .66);
+  color: var(--text-pa-mork-mjuk);
 }
-.bottenrad a { min-height: 44px; display: inline-flex; align-items: center; color: rgba(238, 242, 241, .8); }
+.bottenrad a { min-height: 44px; display: inline-flex; align-items: center; color: var(--text-pa-mork); }
 
 /* ------------------------------------------------------------ tjänstemeny -- */
 .tjanstemeny { padding-top: var(--sp-5); }
@@ -883,14 +927,14 @@ main a:not([class]) { padding-block: .75em; }
   padding: 0 var(--sp-4);
   border: 1px solid var(--ram);
   border-radius: 999px;
-  background: var(--vit);
+  background: var(--yta);
   font-size: .92rem;
   font-weight: 600;
-  color: var(--petrol-djup);
+  color: var(--bas-djup);
   text-decoration: none;
 }
-.tjmeny-lank:hover { border-color: var(--massing); color: var(--massing-djup); }
-.tjmeny-lank--aktiv { background: var(--petrol); border-color: var(--petrol); color: var(--vit); }
+.tjmeny-lank:hover { border-color: var(--accent); color: var(--bas-djup); }
+.tjmeny-lank--aktiv { background: var(--bas); border-color: var(--bas); color: var(--yta); }
 
 /* ------------------------------------------------------- öppettider i fot -- */
 .fot-oppettider { list-style: none; margin: var(--sp-4) 0 0; padding: 0; }
@@ -899,20 +943,20 @@ main a:not([class]) { padding-block: .75em; }
   justify-content: space-between;
   gap: var(--sp-4);
   padding: var(--sp-2) 0;
-  border-bottom: 1px dashed var(--linje-ljus);
+  border-bottom: 1px dashed rgba(250, 246, 240, .26);
   font-size: .92rem;
   margin: 0;
 }
 .fot-oppettid:last-child { border-bottom: 0; }
-.fot-oppettid span:last-child { font-variant-numeric: tabular-nums; color: rgba(238, 242, 241, .72); }
+.fot-oppettid span:last-child { font-variant-numeric: tabular-nums; color: var(--text-pa-mork-mjuk); }
 
 /* --------------------------------------------------------------- tillägg -- */
 .hoppa-till {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--petrol);
-  color: var(--vit);
+  background: var(--bas);
+  color: var(--yta);
   padding: var(--sp-3) var(--sp-4);
   z-index: 200;
 }
@@ -977,13 +1021,13 @@ main a:not([class]) { padding-block: .75em; }
 /* ------------------------------------------- hero: bildband med överlapp -- */
 .hero--band {
   padding-block: 0;
-  background: var(--papper-varm);
+  background: var(--yta-sand);
   display: block;
 }
 .hero--band .hero-media {
   position: relative;
   overflow: hidden;
-  background: var(--petrol-djup);
+  background: var(--bas-djup);
 }
 .hero--band .hero-bild {
   width: 100%;
@@ -1002,9 +1046,9 @@ main a:not([class]) { padding-block: .75em; }
   margin-top: clamp(-58px, -4.4vw, -26px);
   margin-inline-start: auto;
   max-width: 44rem;
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
-  border-top: 5px solid var(--barber);
+  border-top: 5px solid var(--accent);
   border-radius: var(--radius);
   box-shadow: var(--skugga-lyft);
   padding: clamp(22px, 3vw, 42px);
@@ -1017,9 +1061,9 @@ main a:not([class]) { padding-block: .75em; }
 /* --- skyltbandet: siffrorna som en mässingsskylt under kortet ------------ */
 .skyltband {
   margin-top: calc(var(--sektion-y) * -1);
-  background: var(--petrol-djup);
-  color: var(--papper);
-  border-top: 3px solid var(--massing);
+  background: var(--bas-djup);
+  color: var(--yta-mjuk);
+  border-top: 3px solid var(--accent);
 }
 .skyltband .trustrad {
   margin-top: 0;
@@ -1028,8 +1072,8 @@ main a:not([class]) { padding-block: .75em; }
   gap: var(--sp-5);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.skyltband .trustsiffra { color: var(--massing); font-size: clamp(1.3rem, 1.8vw, 1.7rem); }
-.skyltband .trusttext { color: rgba(238, 242, 241, .84); }
+.skyltband .trustsiffra { color: var(--accent-ljus); font-size: clamp(1.3rem, 1.8vw, 1.7rem); }
+.skyltband .trusttext { color: var(--text-pa-mork-mjuk); }
 
 /* ------------------------------------------------------------ kalkylator -- */
 .kalkyl {
@@ -1045,7 +1089,7 @@ main a:not([class]) { padding-block: .75em; }
   letter-spacing: var(--track-etikett);
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--petrol);
+  color: var(--bas);
   margin-bottom: var(--sp-2);
 }
 .kalkyl-valj {
@@ -1055,8 +1099,8 @@ main a:not([class]) { padding-block: .75em; }
   font-family: var(--brodo);
   font-size: 1rem;
   color: var(--text);
-  background: var(--vit);
-  border: 1px solid var(--petrol);
+  background: var(--yta-kort);
+  border: 1px solid var(--ram-falt);
   border-radius: var(--radius);
 }
 .kalkyl-tillagg { display: grid; gap: var(--sp-2); }
@@ -1066,31 +1110,31 @@ main a:not([class]) { padding-block: .75em; }
   gap: var(--sp-3);
   min-height: 44px;
   padding: var(--sp-2) var(--sp-3);
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
   border-radius: var(--radius);
   cursor: pointer;
 }
-.kalkyl-tillagg input { width: 20px; height: 20px; flex: 0 0 auto; accent-color: var(--barber); }
+.kalkyl-tillagg input { width: 20px; height: 20px; flex: 0 0 auto; accent-color: var(--accent); }
 .kalkyl-tillagg span { margin-left: auto; color: var(--text-mjuk); font-variant-numeric: tabular-nums; }
 
 .kalkyl-svar {
-  background: var(--petrol);
-  color: var(--papper);
+  background: var(--bas);
+  color: var(--yta-mjuk);
   border-radius: var(--radius);
   padding: clamp(22px, 3vw, 34px);
   box-shadow: var(--skugga);
 }
-.kalkyl-svar .kalkyl-etikett { color: var(--massing); }
+.kalkyl-svar .kalkyl-etikett { color: var(--text-pa-mork-mjuk); }
 .kalkyl-pris {
   font-family: var(--display);
   font-size: clamp(2rem, 4.6vw, 3rem);
   line-height: 1;
-  color: var(--vit);
+  color: var(--yta);
   margin-bottom: var(--sp-2);
 }
-.kalkyl-tid { color: rgba(238, 242, 241, .88); margin-bottom: var(--sp-3); }
-.kalkyl-not { color: rgba(238, 242, 241, .78); font-size: var(--fs-liten); }
+.kalkyl-tid { color: var(--text-pa-mork-mjuk); margin-bottom: var(--sp-3); }
+.kalkyl-not { color: var(--text-pa-mork-mjuk); font-size: var(--fs-liten); }
 .kalkyl-svar .knapp { margin-top: var(--sp-4); }
 
 /* ------------------------------------------------------ nya sidor (r5) --- */
@@ -1101,20 +1145,20 @@ main a:not([class]) { padding-block: .75em; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .belopp {
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
   border-radius: var(--radius);
   padding: var(--sp-4);
   text-align: center;
 }
-.belopp strong { display: block; font-family: var(--display); font-size: 1.5rem; color: var(--petrol); }
+.belopp strong { display: block; font-family: var(--display); font-size: 1.5rem; color: var(--bas); }
 .belopp span { font-size: var(--fs-liten); color: var(--text-mjuk); }
 
 /* Karriär: tjänstekort med kravlista. */
 .jobbkort {
-  background: var(--vit);
+  background: var(--yta);
   border: 1px solid var(--ram);
-  border-left: 4px solid var(--massing);
+  border-left: 4px solid var(--accent);
   border-radius: var(--radius);
   padding: var(--sp-5);
 }
@@ -1178,4 +1222,34 @@ figure.bildblock img { width: 100%; border-radius: var(--radius); }
   .kalkyl { grid-template-columns: 1.15fr .85fr; }
   .skyltband .trustrad { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .hero-kort { margin-inline-start: auto; }
+}
+
+/* ------------------------------------------------------- fokus i mörker --- */
+/* Ring i accent mot vit yta (6,3:1). Mot petrol blir accenten otydlig, så
+   mörka ytor får en ljus ring i stället — samma 3:1-krav, rätt temperatur. */
+.sektion--petrol :focus-visible,
+.sidfot :focus-visible,
+.cta-band :focus-visible,
+.skyltband :focus-visible,
+.kalkyl-svar :focus-visible,
+.mobilmeny-panel :focus-visible,
+.rutan--petrol :focus-visible {
+  outline-color: var(--yta);
+}
+
+/* --------------------------------------------------------------------------
+   Högst EN fylld accent-knapp per vy (dir. 4). Sidhuvudets "Boka tid" ligger
+   i samma vy som hero-CTA:n på desktop, så den blir sekundär (kontur) och
+   hero-knappen bär accenten. Ingen accent som textfärg någonstans.
+   -------------------------------------------------------------------------- */
+.topbar-cta {
+  background: transparent;
+  color: var(--bas-djup);
+  border-color: var(--ram-falt);
+  box-shadow: none;
+}
+.topbar-cta:hover {
+  background: var(--yta-sand);
+  color: var(--bas-djup);
+  transform: none;
 }

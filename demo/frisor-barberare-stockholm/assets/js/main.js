@@ -135,6 +135,13 @@ function epostLank() { return '<a href="mailto:' + EPOST + '">' + EPOST + "</a>"
           return svar.json().catch(function () { return {}; });
         })
         .then(function () {
+          /* #formSvar ligger INUTI formuläret. När form.hidden sätts göms även
+             kvittot, och kunden fick ingen bekräftelse alls (mätt 2026-09-28:
+             p#formSvar hade offsetParent null efter skickat formulär). Flytta
+             ut rutan till formulärets förälder innan den visas. */
+          if (ruta && ruta.parentNode === form && form.parentNode) {
+            form.parentNode.insertBefore(ruta, form.nextSibling);
+          }
           form.hidden = true;
           visaSvar(
             "Tack — din förfrågan är skickad.",

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kostnadskalkylator för byggprojekt i Stockholm | Bygg & Entreprenad</title>
+  <meta name="description" content="Räkna ut ett prisintervall för ditt byggprojekt: välj typ, yta och standard. Tillbyggnad, badrum, kök, vindsinredning, fasad eller altan.">
+  <link rel="canonical" href="https://www.byggentreprenadstockholm.se/kalkylator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bygg &amp; Entreprenad Stockholm">
+  <meta property="og:title" content="Kostnadskalkylator för byggprojekt i Stockholm | Bygg & Entreprenad">
+  <meta property="og:description" content="Räkna ut ett prisintervall för ditt byggprojekt: välj typ, yta och standard. Tillbyggnad, badrum, kök, vindsinredning, fasad eller altan.">
+  <meta property="og:url" content="https://www.byggentreprenadstockholm.se/kalkylator.html">
+  <meta property="og:image" content="https://www.byggentreprenadstockholm.se/assets/img/og-1200x630.jpg">
+  <meta property="og:locale" content="sv_SE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#161e26">
+  <link rel="preload" as="image" href="assets/img/kal-1.webp" fetchpriority="high">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Familjen+Grotesk:wght@400..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.className += " js";</script>
+  <script defer src="assets/js/main.js"></script>
+
+</head>
+<body>
+<a class="skip-link" href="#innehall">Till innehållet</a>
+
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="index.html" aria-label="Bygg &amp; Entreprenad Stockholm — till startsidan">
+      <span class="brand__mark" aria-hidden="true">B&amp;E</span>
+      <span class="brand__name">Bygg &amp; Entreprenad<span>Stockholm · sedan 2004</span></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Huvudmeny">
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="index.html">Start</a></li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="tjanster/index.html">Tjänster</a>
+          <ul class="site-nav__sub">
+            <li><a href="tjanster/tillbyggnad.html">Tillbyggnad &amp; utbyggnad</a></li>
+            <li><a href="tjanster/badrum.html">Badrumsrenovering</a></li>
+            <li><a href="tjanster/kok.html">Köksrenovering</a></li>
+            <li><a href="tjanster/vindsinredning.html">Vindsinredning</a></li>
+            <li><a href="tjanster/fasad.html">Fasad &amp; puts</a></li>
+            <li><a href="tjanster/altan.html">Altan &amp; uteplats</a></li>
+          </ul>
+        </li>
+        <li><a class="site-nav__link" href="projekt.html">Projekt</a></li>
+        <li><a class="site-nav__link" href="process.html">Så arbetar vi</a></li>
+        <li><a class="site-nav__link site-nav__link--active" href="kalkylator.html" aria-current="page">Kalkylator</a></li>
+        <li><a class="site-nav__link" href="om-oss.html">Om oss</a></li>
+        <li><a class="site-nav__link" href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="head-actions">
+      <a class="head-phone" href="tel:+4670000000"><span class="head-phone__dot" aria-hidden="true"></span>070-000 00 00</a>
+      <a class="btn btn--signal head-cta" href="kontakt.html#offert"><span class="head-cta__long">Boka kostnadsfri besiktning</span><span class="head-cta__short">Boka besiktning</span></a>
+      <button class="burger" id="menyKnapp" type="button" aria-label="Öppna menyn" aria-expanded="false" aria-controls="meny">
+        <span class="burger__bar" aria-hidden="true"></span>
+        <span class="burger__bar" aria-hidden="true"></span>
+        <span class="burger__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="skrim" id="skrim" aria-hidden="true"></div>
+
+<div class="drawer" id="meny" aria-label="Meny">
+  <div class="drawer__head">
+    <span class="drawer__title">Meny</span>
+    <button class="drawer__close" id="menyStang" type="button" aria-label="Stäng menyn">Stäng</button>
+  </div>
+  <ul class="drawer__list">
+    <li><a class="drawer__link" href="index.html">Start</a></li>
+    <li><a class="drawer__link" href="tjanster/index.html">Tjänster</a></li>
+    <li><a class="drawer__link drawer__link--sub" href="tjanster/tillbyggnad.html">Tillbyggnad &amp; utbyggnad</a></li>
+    <li><a class="drawer__link drawer__link--sub" href="tjanster/badrum.html">Badrumsrenovering</a></li>
+    <li><a class="drawer__link drawer__link--sub" href="tjanster/kok.html">Köksrenovering</a></li>
+    <li><a class="drawer__link drawer__link--sub" href="tjanster/vindsinredning.html">Vindsinredning</a></li>
+    <li><a class="drawer__link drawer__link--sub" href="tjanster/fasad.html">Fasad &amp; puts</a></li>
+    <li><a class="drawer__link drawer__link--sub" href="tjanster/altan.html">Altan &amp; uteplats</a></li>
+    <li><a class="drawer__link" href="projekt.html">Projekt</a></li>
+    <li><a class="drawer__link" href="process.html">Så arbetar vi</a></li>
+    <li><a class="drawer__link" href="kalkylator.html">Kalkylator</a></li>
+    <li><a class="drawer__link" href="om-oss.html">Om oss</a></li>
+    <li><a class="drawer__link" href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="drawer__cta">
+    <a class="btn btn--signal" href="kontakt.html#offert">Boka kostnadsfri besiktning</a>
+  </div>
+  <div class="drawer__foot">
+    <a href="tel:+4670000000">Ring 070-000 00 00</a><br>
+    <a href="mailto:info@exempel.se">info@exempel.se</a>
+  </div>
+</div>
+
+<main id="innehall">
+
+<section class="section section--flush page-hero">
+  <div class="page-hero__media">
+    <img src="assets/img/kal-1.webp" alt="Planritning på ett bord med borrmaskin, skruv och ritningar bredvid" width="1400" height="700" fetchpriority="high" decoding="async">
+  </div>
+  <div class="wrap page-hero__text">
+    <nav class="crumbs" aria-label="Brödsmulor">
+      <ol>
+        <li><a href="index.html">Start</a></li>
+        <li>Kalkylator</li>
+      </ol>
+    </nav>
+    <p class="eyebrow">Kostnadskalkylator · Stockholm</p>
+    <h1>Räkna ut ett prisintervall på under en minut</h1>
+    <p class="lead">Välj projekttyp, dra i reglaget för ytan och sätt standardnivån. Du får ett
+    intervall i kronor utan moms, räknat på samma priser som vi offererar efter besiktning.</p>
+  </div>
+</section>
+
+<section class="section section--panel">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Räkna på ditt projekt</h2>
+      <p>Sex projekttyper med samma prisläge som på tjänstesidorna. Siffrorna bygger på 312
+      genomförda projekt i Stockholmsområdet sedan 2004.</p>
+    </div>
+
+    <div class="kalkyl" id="kalkyl">
+      <div class="kalkyl__panel">
+        <fieldset>
+          <legend>Projekt</legend>
+          <div class="field">
+            <label class="field__label" for="k-typ">Projekttyp</label>
+            <select class="field__select" id="k-typ">
+              <option value="tillbyggnad">Tillbyggnad</option>
+              <option value="badrum">Badrum</option>
+              <option value="kok">Kök</option>
+              <option value="vind">Vindsinredning</option>
+              <option value="fasad">Fasad</option>
+              <option value="altan">Altan</option>
+            </select>
+            <p class="field__hint">Välj den typ som ligger närmast. Blandade projekt tar vi i
+            besiktningen.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Storlek och standard</legend>
+          <div class="field">
+            <label class="field__label" for="k-area">Yta</label>
+            <input class="range-input" type="range" id="k-area" min="12" max="120" value="28" step="1">
+            <p class="mono" id="k-area-ut">28 m² byggnadsarea</p>
+            <p class="field__hint">Reglaget går från 12 till 120 m². Varje typ har sin egen
+            minsta yta enligt pristabellen nedan.</p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="k-standard">Standardnivå</label>
+            <select class="field__select" id="k-standard">
+              <option value="enkel">Enkel standard</option>
+              <option value="standard" selected>Standard</option>
+              <option value="hog">Högre standard</option>
+            </select>
+            <p class="field__hint">Enkel standard väger in enklare ytskikt, högre standard
+            tyngre material och mer detaljarbete.</p>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="kalkyl__out">
+        <p class="eyebrow">Prisintervall utan moms</p>
+        <span class="kalkyl__range" id="utRange">–</span>
+        <p class="mono" id="utTyp">Tillbyggnad</p>
+        <ul class="kalkyl__rows" id="utRader"></ul>
+        <p id="utText"></p>
+        <a class="btn btn--signal" id="tillOffert" href="kontakt.html#offert">Skicka in och få fast pris</a>
+      </div>
+    </div>
+
+    <p class="calc-note">Intervallet är ett riktmärke, inte en offert. Summan sätts efter
+    besiktning, när vi sett stommen, elen, rördragningarna och hur vi kommer in på platsen.
+    Ändringar beställs skriftligt innan de utförs.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Så räknar vi</h2>
+      <p>Kalkylatorn gör samma tre steg som vår kalkylator gör innanför kontoret. Har du
+      underlaget klart tar uträkningen en minut.</p>
+    </div>
+
+    <div class="split">
+      <div class="reading">
+        <p>Priset per kvadratmeter gäller entreprenad utan moms och ligger fast per projekttyp:
+        tillbyggnad 19 000–28 000 kr/m², badrum 17 000–30 000 kr/m², kök 14 000–26 000 kr/m²,
+        vindsinredning 12 000–21 000 kr/m², fasad 1 600–3 400 kr/m² och altan 3 800–7 200 kr/m².</p>
+        <p>Vi tar priset per kvadratmeter gånger ytan och justerar med standardfaktorn 0,9 för
+        enkel standard, 1,0 för standard och 1,22 för högre standard. En tillbyggnad på 28 m² i
+        Solna landade på 690 000 kr och tog 11 veckor. Ett badrum på 6,5 m² i Bromma kostade
+        178 000 kr och var klart efter 6 veckor. Ett kök på 14 m² på Östermalm stannade på
+        295 000 kr på 5 veckor.</p>
+        <p>I summan ligger rivning, material, arbete, bortforsling, tätskikt där det behövs och
+        dokumentation av varje steg. Vitvaror, bygglovsavgifter och besiktning tillkommer och
+        står separat i offerten. Tidsplanen följer med som ett eget blad: besiktning och mätning
+        först, sedan stomme, installationer och ytskikt i den ordning vi skriver in i avtalet.</p>
+      </div>
+
+      <figure class="split__media">
+        <img src="assets/img/kal-2.webp" alt="Tumstock och penna på en träskiva" width="900" height="675" loading="lazy" decoding="async">
+        <figcaption>Ytan mäts på plats. Vi skriver in måtten i offerten så att båda parter
+        räknar på samma tal.</figcaption>
+      </figure>
+    </div>
+
+    <div class="calc-table">
+      <table>
+        <caption>Prisläge 2026, kr/m² entreprenad utan moms, Stockholm</caption>
+        <thead>
+          <tr>
+            <th scope="col">Projekttyp</th>
+            <th scope="col">kr/m²</th>
+            <th scope="col">Typisk yta</th>
+            <th scope="col">Tidsplan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Tillbyggnad</th>
+            <td class="num">19 000–28 000</td>
+            <td class="num">15–45 m²</td>
+            <td class="num">8–16 veckor</td>
+          </tr>
+          <tr>
+            <th scope="row">Badrum</th>
+            <td class="num">17 000–30 000</td>
+            <td class="num">4–10 m²</td>
+            <td class="num">4–8 veckor</td>
+          </tr>
+          <tr>
+            <th scope="row">Kök</th>
+            <td class="num">14 000–26 000</td>
+            <td class="num">8–20 m²</td>
+            <td class="num">3–6 veckor</td>
+          </tr>
+          <tr>
+            <th scope="row">Vindsinredning</th>
+            <td class="num">12 000–21 000</td>
+            <td class="num">15–60 m²</td>
+            <td class="num">5–10 veckor</td>
+          </tr>
+          <tr>
+            <th scope="row">Fasad</th>
+            <td class="num">1 600–3 400</td>
+            <td class="num">80–300 m²</td>
+            <td class="num">3–9 veckor</td>
+          </tr>
+          <tr>
+            <th scope="row">Altan</th>
+            <td class="num">3 800–7 200</td>
+            <td class="num">8–60 m²</td>
+            <td class="num">1–3 veckor</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="calc-note">Samma intervall finns på varje tjänstesida. Är ditt projekt mindre än
+    den typiska ytan i tabellen tar vi det som ett fastprisjobb i stället.</p>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Det här påverkar priset mest</h2>
+      <p>Fyra saker flyttar summan mer än material och färgval. De syns först på plats.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why__item">
+        <span class="why__num">01</span>
+        <h3>Tillgänglighet och transport</h3>
+        <p>Trång backe, smal gränd, hiss som inte tar containern, parkeringstillstånd och
+        avstånd till tippen. Ett projekt i Gamla stan kostar mer i logistik än samma yta i
+        Sollentuna.</p>
+      </div>
+      <div class="why__item">
+        <span class="why__num">02</span>
+        <h3>Stommens skick</h3>
+        <p>Sneda väggar, gammal el, fukt i bjälklaget eller ett bärande regelsystem där ingen
+        ritning finns. Vi öppnar och tittar innan vi sätter priset, inte efteråt.</p>
+      </div>
+      <div class="why__item">
+        <span class="why__num">03</span>
+        <h3>Materialval</h3>
+        <p>Trall i trä ligger på 3 800–5 400 kr/m² och komposit på 5 400–7 200 kr/m². Kakel,
+        fönster, dörrar och köksluckor drar på samma sätt. Faktorn för högre standard är 1,22.</p>
+      </div>
+      <div class="why__item">
+        <span class="why__num">04</span>
+        <h3>Tid på året</h3>
+        <p>Markarbete och gjutning går långsamt i tjäle, puts och avjämningsmassa behöver
+        torktid. Ett jobb som startar i april är billigare att planera än ett som startar i
+        december.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="section-head">
+      <h2>Frågor om kalkylen</h2>
+      <p>Det här frågar kunder oftast innan de skickar in sitt projekt.</p>
+    </div>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary>Varför får jag ett intervall i stället för ett pris?</summary>
+        <div class="faq__a">
+          <p>Ytan och projekttypen säger vad jobbet brukar kosta, men inte vad din källare ser
+          ut. Efter besiktning lämnar vi ett fast pris skriftligt, och det är summan som gäller
+          hela vägen till slutbesiktning.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary>Vad räknas som högre standard?</summary>
+        <div class="faq__a">
+          <p>Större format på kakel och klinker, massivträ i stället för lamell, komposit i
+          stället för trall, golvvärme, infällda nischer och dolda installationer. Kalkylatorn
+          lägger på 22 procent mot standardnivån.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary>Hur snabbt kan ni lämna fast pris?</summary>
+        <div class="faq__a">
+          <p>Vi bokar besiktning inom 5 arbetsdagar. Skriftligt förslag kommer inom 24 timmar på
+          vardagar efter att vi varit på plats. Brådskar det ringer du 070-000 00 00, jour har vi
+          vardagar 17:00–21:00 för pågående projekt.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section section--flush">
+  <div class="cta-band">
+    <div class="wrap">
+      <div class="cta-band__grid">
+        <div>
+          <h2>Vill du ha summan i stället för intervallet?</h2>
+          <p>Skicka in projektet från kalkylatorn. Vi läser igenom, bokar besiktning och lämnar
+          ett fast pris med tidplan i veckor.</p>
+        </div>
+        <div class="cta-band__actions">
+          <div class="btn-row">
+            <a class="btn btn--ink" href="kontakt.html#offert">Boka kostnadsfri besiktning</a>
+          </div>
+        </div>
+      </div>
+      <p class="cta-band__note">21 år i branschen · 312 projekt i Stockholmsområdet · 5 års garanti enligt AB 04</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot__brand">
+          <span class="brand__mark" aria-hidden="true">B&amp;E</span>
+          <span class="brand__name">Bygg &amp; Entreprenad<span>Stockholm · sedan 2004</span></span>
+        </div>
+        <p class="foot__about">Vi bygger tillbyggnader, badrum, kök, vindar, fasader och altaner
+        i Stockholmsområdet. Fast pris, skriftlig tidplan och en namngiven arbetsledare
+        från första besiktning till slutbesiktning.</p>
+        <p class="foot__stamp"><span class="stamp"><b>Org.nr 556000-0000</b><br>F-skatt · ID06 · Byggnads kollektivavtal</span></p>
+      </div>
+      <div>
+        <p class="foot__title">Tjänster</p>
+        <ul class="foot__list">
+          <li><a href="tjanster/tillbyggnad.html">Tillbyggnad</a></li>
+          <li><a href="tjanster/badrum.html">Badrum</a></li>
+          <li><a href="tjanster/kok.html">Kök</a></li>
+          <li><a href="tjanster/vindsinredning.html">Vindsinredning</a></li>
+          <li><a href="tjanster/fasad.html">Fasad &amp; puts</a></li>
+          <li><a href="tjanster/altan.html">Altan</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__title">Företaget</p>
+        <ul class="foot__list">
+          <li><a href="om-oss.html">Om oss</a></li>
+          <li><a href="projekt.html">Projekt</a></li>
+          <li><a href="process.html">Så arbetar vi</a></li>
+          <li><a href="kalkylator.html">Kostnadskalkylator</a></li>
+          <li><a href="kontakt.html">Kontakt &amp; offert</a></li>
+          <li><a href="integritet.html">Integritet &amp; personuppgifter</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="foot__title">Kontakt</p>
+        <ul class="foot__nap">
+          <li><b class="mono">Telefon</b><br><a href="tel:+4670000000">+46 70 000 00 00</a></li>
+          <li><b class="mono">E-post</b><br><a href="mailto:info@exempel.se">info@exempel.se</a></li>
+          <li><b class="mono">Besök</b><br><span>Projektvägen 12, 120 45 Stockholm</span></li>
+          <li><b class="mono">Öppet</b><br><span>Mån–fre 07:00–17:00</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bottom">
+      <p style="margin:0">© <span data-ar>2026</span> Bygg &amp; Entreprenad Stockholm. Demosajt — företagsnamn, adress, telefon och e-post är platshållare som kunden byter ut.</p>
+      <ul class="foot__legal-list">
+        <li><a href="integritet.html">Integritet</a></li>
+        <li><a href="sitemap.xml">Sitemap</a></li>
+        <li><a class="to-top" href="#innehall">Till toppen ↑</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<a class="demo-back" href="../../index.html">&#8592; Demogalleriet &middot; alla demosajter</a>
+</body>
+</html>

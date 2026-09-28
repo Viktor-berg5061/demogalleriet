@@ -1,0 +1,38 @@
+# Bygg & Entreprenad Stockholm
+
+> Byggföretag i Stockholm sedan 2004. Tillbyggnader, badrum, kök,
+> vindsinredning, fasad och altan med fast pris efter besiktning, skriftlig
+> tidplan och 5 års garanti. F-skatt, ID06 och kollektivavtal Byggnads.
+
+Kontakt: +46 70 000 00 00 · info@exempel.se · Projektvägen 12, 120 45 Stockholm.
+Öppet mån–fre 07:00–17:00. Jour vardagar 17:00–21:00.
+Sajten är en demosajt: företagsnamn, adress, telefon och e-post är platshållare.
+
+## Tjänster
+
+- [Tillbyggnad & utbyggnad](https://www.byggentreprenadstockholm.se/tjanster/tillbyggnad.html): 19 000–28 000 kr/m². Bygglovshandlingar, stomme, tak, fasad och inredning. 8–16 veckor.
+- [Badrumsrenovering](https://www.byggentreprenadstockholm.se/tjanster/badrum.html): 17 000–30 000 kr/m². Tätskikt enligt GBR, VVS, el och kakel. 4–8 veckor.
+- [Köksrenovering](https://www.byggentreprenadstockholm.se/tjanster/kok.html): 14 000–26 000 kr/m². Rivning, el, VVS, stommar, bänkskiva och vitvaror. 3–6 veckor.
+- [Vindsinredning](https://www.byggentreprenadstockholm.se/tjanster/vindsinredning.html): 12 000–21 000 kr/m². Isolering, takfönster, trappa och snedtak. 5–10 veckor.
+- [Fasad & puts](https://www.byggentreprenadstockholm.se/tjanster/fasad.html): 1 600–3 400 kr/m². Puts, träpanel, ställning, fönsterbyte och målning. 3–9 veckor.
+- [Altan & uteplats](https://www.byggentreprenadstockholm.se/tjanster/altan.html): 3 800–7 200 kr/m². Grundläggning, regelverk, trall, räcke och trappa. 1–3 veckor.
+
+## Sidor
+
+- [Startsida](https://www.byggentreprenadstockholm.se/): sex tjänster, räkneexempel per projekttyp, omdömen och offertformulär.
+- [Tjänster](https://www.byggentreprenadstockholm.se/tjanster/): översikt av alla sex tjänster med prisläge och tidsplan.
+- [Projekt](https://www.byggentreprenadstockholm.se/projekt.html): 12 genomförda projekt med ort, år, yta och typ.
+- [Så arbetar vi](https://www.byggentreprenadstockholm.se/process.html): besiktning, fast pris, byggtid, slutbesiktning och garanti.
+- [Kostnadskalkylator](https://www.byggentreprenadstockholm.se/kalkylator.html): räkna ut ett prisintervall för din projekttyp.
+- [Om oss](https://www.byggentreprenadstockholm.se/om-oss.html): företaget, arbetslaget, behörigheter och försäkringar.
+- [Kontakt](https://www.byggentreprenadstockholm.se/kontakt.html): telefon, e-post, öppettider, adress och offertformulär.
+- [Integritet](https://www.byggentreprenadstockholm.se/integritet.html): hur vi hanterar personuppgifter och cookies.
+
+## Vanliga frågor
+
+- Vad kostar en tillbyggnad i Stockholm? 19 000–28 000 kr/m² utan moms. En tillbyggnad på 25 m² landar oftast mellan 480 000 och 700 000 kr.
+- Vad kostar ett nytt badrum? 17 000–30 000 kr/m². Ett badrum på 6 m² kostar 100 000–180 000 kr inklusive tätskikt, VVS och el.
+- Är priset fast? Ja. Efter besiktning lämnar vi ett skriftligt fast pris. Ändringar beställs skriftligt innan de utförs.
+- Hur lång tid tar det? Badrum 4–8 veckor, kök 3–6 veckor, tillbyggnad 8–16 veckor, vindsinredning 5–10 veckor.
+- Vilka områden? Hela Stockholmsområdet, med tonvikt på Solna, Sundbyberg, Bromma, Nacka, Täby, Danderyd, Lidingö, Södermalm, Östermalm, Vasastan och Kungsholmen.
+- Vilken garanti gäller? 5 års garanti på utfört arbete enligt AB 04, plus ansvarsförsäkring via Trygg-Hansa.
