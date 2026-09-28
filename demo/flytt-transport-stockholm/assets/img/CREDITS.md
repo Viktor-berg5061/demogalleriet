@@ -48,3 +48,33 @@ Pexels CDN and cropped locally to the exact layout dimensions — nothing is hot
 Processing: originals were downloaded at 2400 px width, then centre-cropped with Pillow
 `ImageOps.fit(..., method=Image.LANCZOS, centering=(0.5, 0.45))` to the exact layout size and
 saved as JPEG (quality 80, optimize=True). Largest file is 205 kB, under the 300 kB budget.
+
+---
+
+## Runda 4 — utökad bildserie (2026-09-28)
+
+Fjorton nya demobilder, alla från Pexels och använda under **Pexels License**
+(fri användning, ingen attribution krävd; kreditering här som artighet).
+Nedladdade från Pexels CDN och beskurna lokalt till sajtens mått — inget hotlänkas.
+
+| Fil | Mått | Pexels-ID | Motiv |
+|---|---|---|---|
+| `flyttkartonger-etiketter.jpg` | 1600×1067 | 7464237 | Brown Cardboard Boxes with White Sticker |
+| `packning-tejp.jpg` | 1200×900 | 4246107 | Adult man packing cardboard box with scotch tape dispenser |
+| `etikett-kok.jpg` | 1200×900 | 7464492 | Cardboard Box Labeled for Kitchen Moving |
+| `flyttbarare-soffa.jpg` | 1200×900 | 7464681 | Man in Carrying a Green Sofa |
+| `flyttbil-lastning.jpg` | 1600×1067 | 5025669 | Man Carrying Boxes Beside a Van |
+| `trapphus-kartonger.jpg` | 1200×900 | 7464495 | Man and Woman Carrying the Moving Boxes |
+| `magasin-hyllor.jpg` | 1600×1067 | 7018662 | Labeled Shelves in a Warehouse |
+| `lager-gang.jpg` | 1200×1600 | 4277794 | Photo of Warehouse |
+| `flyttstad-dammsugare.jpg` | 1200×900 | 6195949 | person using a vacuum cleaner |
+| `flyttstad-disk.jpg` | 1200×900 | 5904036 | person putting dishwashing soap on sponge |
+| `kartong-buren.jpg` | 1200×900 | 7464397 | Close-Up Shot of a Man Holding a Cardboard Box |
+| `etikettmarkning.jpg` | 1600×1067 | 4246115 | Concentrated young lady preparing carton boxes for relocation |
+| `kartonger-trad.jpg` | 1200×900 | 4554249 | Brown Cardboard Boxes on White Wooden Cabinet |
+| `lager-kartonger.jpg` | 1600×1200 | 30444797 | Stacked Storage Boxes in Warehouse Interior |
+
+Samtliga: https://www.pexels.com/photo/<id>/ — licens https://www.pexels.com/license/
+
+Bilderna föreställer inte företaget eller någon verklig flytt; de är demomaterial
+för en fiktiv flyttfirma och byts mot kundens egna bilder vid leverans.

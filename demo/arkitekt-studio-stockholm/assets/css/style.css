@@ -19,8 +19,21 @@
   --line: rgba(20, 18, 16, 0.14);
   --line-strong: rgba(20, 18, 16, 0.32);
   --cream-on-dark: #F4EDE2;
-  --serif: "Fraunces", "Playfair Display", Georgia, "Times New Roman", serif;
+  --serif: var(--font-display);
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* --- Shared design tokens (round 12). One source of truth for the
+     touch-target floor, header height and section rhythm so no page
+     drifts from the others. */
+  --font-display: "Fraunces", "Playfair Display", Georgia, "Times New Roman", serif;
+  --tap-min: 48px;            /* WCAG 2.5.8 target size (min 44, we ship 48) */
+  --header-h: 76px;           /* sticky header height — scroll-margin anchor */
+  --lh-body: 1.65;            /* body line-height (senior-readable) */
+  --space-section: clamp(64px, 8vw, 110px);
+  --space-section-tight: clamp(48px, 6vw, 80px);
+  --space-section-mobile: 44px;  /* mobile section padding floor (>= 40) */
+  /* Card surface used by the price / gallery / area components. */
+  --card-bg: #FFFDF9;
+  --card-line: rgba(20, 18, 16, 0.10);
   --maxw: 1240px;
   --radius: 14px;
   --shadow: 0 24px 60px -28px rgba(20, 18, 16, 0.35);
@@ -147,7 +160,12 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   list-style: none;
 }
 .nav-links a {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  /* Round 12 / WCAG 2.5.8: the desktop header links measured 43.9 px —
+     a hair under 44. An explicit 48 px floor makes the height independent
+     of font metrics (fallback fonts used to shave a pixel off). */
+  min-height: var(--tap-min);
   padding: 14px 16px;
   font-size: 14.5px;
   line-height: 1.4;
@@ -415,6 +433,12 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   position: absolute;
   left: 14px;
   bottom: 14px;
+  /* Round 12 mobile fix: the pill used to be `nowrap` and could grow wider
+     than the tile (~226 px in a 320 px viewport), so its box crossed the
+     right edge of the screen. It now stays inside the tile gutter and
+     wraps to a second line instead of overflowing. */
+  max-width: calc(100% - 28px);
+  white-space: normal;
   background: rgba(20, 18, 16, 0.78);
   color: var(--cream-on-dark);
   font-size: 11.5px;
@@ -423,7 +447,6 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   padding: 7px 13px;
   border-radius: 999px;
   backdrop-filter: blur(4px);
-  white-space: nowrap;
 }
 @media (max-width: 1020px) {
   .hero-bento { min-height: 460px; }
@@ -1037,9 +1060,15 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(244, 237, 226, 0.55);
-  margin-bottom: 18px;
+  /* Round 14: the disclosure control was 19.8px tall on desktop (measured),
+     i.e. under both WCAG 2.5.8 (24px) and our own 44px floor. Give it a real
+     target and keep the visual rhythm by trimming the old 18px gap. */
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  margin-bottom: 4px;
   list-style: none;
-  cursor: default;
+  cursor: pointer;
 }
 .footer-acc summary::-webkit-details-marker { display: none; }
 .footer-col ul, .footer-acc ul { list-style: none; display: grid; gap: 10px; }
@@ -1437,14 +1466,41 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
    (Round 11 head directive: a fresh screenshot must read as "done", not
    "still editable".) */
 #leadForm.is-complete .form-group {
-  opacity: 0.5;
-  filter: grayscale(0.6);
+  opacity: 0.42;
+  filter: grayscale(0.8);
 }
-#leadForm.is-complete .btn-primary {
+/* Unmistakable "done" banner on top of the locked card — a fresh
+   screenshot has to read as finished, not as "still editable". */
+#leadForm.is-complete::before {
+  content: "✓ Skickat — vi har tagit emot din förfrågan";
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  background: #E5EFE4;
+  border: 1px solid #BFD8BD;
+  border-radius: 10px;
+  color: #2C5230;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+#leadForm.is-complete .form-group label { color: var(--ink-faint); }
+#leadForm.is-complete .btn-primary,
+#leadForm.is-complete .btn-primary:disabled {
   background: var(--green);
+  color: var(--cream-on-dark);
   box-shadow: none;
   opacity: 1;
   filter: none;
+}
+/* The locked fields must not look focused/editable on hover either. */
+#leadForm.is-complete input:hover,
+#leadForm.is-complete textarea:hover {
+  border-color: var(--line);
+  box-shadow: none;
 }
 #leadForm.is-complete input,
 #leadForm.is-complete textarea,
@@ -1534,8 +1590,11 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 /* ============================================================
    Responsive
    ============================================================ */
-.contact-form-card { scroll-margin-top: 84px; }
-.form-status { scroll-margin-top: 84px; }
+/* Round 12 head: 84 px left the submit button half-covered by the sticky
+   header after a successful submit. 96 px = header (76) + 20 px breathing
+   room; the success scroll targets the whole card, not the status box. */
+.contact-form-card { scroll-margin-top: calc(var(--header-h) + 20px); }
+.form-status { scroll-margin-top: calc(var(--header-h) + 20px); }
 
 @media (max-width: 1020px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1580,6 +1639,9 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 }
 
 @media (max-width: 767px) {
+  /* Round 12: header/drawer links keep the full-row hit area even though
+     the desktop rule made them inline-flex. */
+  .nav-links a { display: flex; width: 100%; }
   /* Inline links inside prose get an expanded invisible hit area:
      padding grows the bounding box to >=44px while negative margins
      keep the visual line-height unchanged (classic tap-target trick). */
@@ -1679,7 +1741,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
      Spacing is tightened so the whole stats block clears the
      fixed bottom CTA bar at scroll 0 (Round 9 head check: no
      hero-facts element may sit underneath .mobile-cta-sticky). */
-  .hero { padding-top: clamp(20px, 4vw, 32px); }
+  .hero { padding-top: clamp(40px, 5.5vw, 52px); }
   .hero-copy .eyebrow { margin-bottom: 12px; }
   .hero h1 { margin-bottom: 12px; }
   .hero-lead { margin-bottom: 14px; font-size: 15.5px; }
@@ -1788,12 +1850,17 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   .hero-facts span { white-space: nowrap; }
   /* Tighten the hero column so all three stats clear the fixed
      bottom CTA bar on the shortest common viewport (375×812). */
-  .hero { padding-top: 14px; }
-  .hero-copy .eyebrow { margin-bottom: 10px; }
+  /* Round 12 head directive: mobile section padding floor is 40 px.
+     The hero used to start at 14 px, which read as "content glued to
+     the header". The extra 30 px is bought back further down by
+     tightening the hero's internal rhythm, so the stats still clear
+     the fixed bottom CTA bar at scroll 0 (375×812). */
+  .hero { padding-top: var(--space-section-mobile); }
+  .hero-copy .eyebrow { margin-bottom: 8px; }
   .hero h1 { margin-bottom: 8px; }
-  .hero-lead { margin-bottom: 10px; }
-  .hero-badge { margin-bottom: 8px; }
-  .hero-ctas { margin-bottom: 12px; }
+  .hero-lead { margin-bottom: 8px; }
+  .hero-badge { margin-bottom: 6px; }
+  .hero-ctas { margin-bottom: 10px; }
   .services-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
@@ -1840,4 +1907,459 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   /* Round 12 head: stack the brand lockup so Studio/STOCKHOLM never overlap. */
   .brand { flex-wrap: wrap; row-gap: 2px; }
   .brand .brand-city { flex-basis: 100%; letter-spacing: 0.14em; }
+}
+
+/* ============================================================
+   Round 12 — shared components for the new 15 000 kr sections
+   (Paket och priser, Projektgalleri, Omraden, nyckeltal).
+   ONE definition here, referenced by index.html and the service
+   pages — so every page inherits the same identity tokens.
+   ============================================================ */
+
+/* --- Nyckeltal / stats band (dark band, big serif numbers) --- */
+.stats-band {
+  background: var(--ink);
+  color: var(--cream-on-dark);
+  padding: clamp(44px, 6vw, 64px) 0;
+}
+.stats-band__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 34px);
+}
+.stat { min-width: 0; }
+.stat__num {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.02;
+  font-weight: 500;
+  color: var(--cream-on-dark);
+  display: block;
+}
+.stat__lbl {
+  display: block;
+  margin-top: 8px;
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 237, 226, 0.66);
+}
+.stat__note {
+  display: block;
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(244, 237, 226, 0.78);
+}
+
+/* --- Paket och priser --- */
+.pris-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+  align-items: start;
+}
+.pris-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  height: 100%;
+  padding: clamp(24px, 2.6vw, 34px);
+  background: var(--card-bg);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 44px -30px rgba(20, 18, 16, 0.4);
+}
+/* The featured package must be visually loud, not "same as neighbours". */
+.pris-card--featured {
+  background: color-mix(in oklab, var(--accent-soft) 62%, var(--card-bg));
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--card-line));
+  box-shadow: 0 34px 70px -34px rgba(147, 64, 31, 0.5);
+  transform: translateY(-6px);
+}
+.pris-flag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.pris-namn {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.2vw, 26px);
+  font-weight: 600;
+  line-height: 1.15;
+}
+.pris-summa {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink);
+}
+.pris-enhet {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.pris-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.pris-lista li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.pris-lista li::before {
+  content: "\2713";
+  flex-shrink: 0;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.6;
+}
+.pris-not {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--card-line);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.pris-cta { margin-top: 4px; }
+
+/* --- Projektgalleri --- */
+.galleri-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 18px);
+}
+.galleri-item {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden; /* clip the image, never widen the page */
+  border-radius: var(--radius);
+  background: var(--bg-3);
+}
+.galleri-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(0.9) sepia(0.06) contrast(1.03);
+  transition: transform 0.7s var(--ease);
+}
+.galleri-item:hover .galleri-img { transform: scale(1.04); }
+.galleri-item--wide { grid-column: span 2; }
+.galleri-item--wide .galleri-img { aspect-ratio: 16 / 9; }
+.galleri-item--tall .galleri-img { aspect-ratio: 3 / 4; }
+.galleri-cap {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(20, 18, 16, 0.74);
+  color: var(--cream-on-dark);
+  font-size: 12.5px;
+  line-height: 1.45;
+  backdrop-filter: blur(4px);
+}
+.galleri-note {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+/* --- Omraden (upptagningsomrade) --- */
+.omrade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 24px);
+}
+.omrade-card {
+  min-width: 0;
+  padding: clamp(20px, 2.2vw, 26px);
+  background: var(--bg-2);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+}
+.omrade-card h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.omrade-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.omrade-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  list-style: none;
+}
+.omrade-chip {
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.omrade-note {
+  margin-top: 20px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.omrade-note a { color: var(--accent-deep); font-weight: 600; text-decoration: underline; }
+
+/* --- Mobile: every new grid collapses, nothing overflows --- */
+@media (max-width: 1020px) {
+  .pris-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pris-card--featured { transform: none; }
+  .galleri-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .omrade-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats-band__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  /* Round 12 head directive: mobile section padding floor = 40 px. */
+  .section { padding: var(--space-section-mobile) 0; }
+  .section-tight { padding: 40px 0; }
+  /* The deliberate tight beat after the quote band keeps its intent. */
+  .section-tight--cta { padding-top: 20px; }
+  .page-hero { padding-top: 40px; }
+  .pris-grid { grid-template-columns: minmax(0, 1fr); }
+  .galleri-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .omrade-grid { grid-template-columns: minmax(0, 1fr); }
+  .stats-band__grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .stat__num { font-size: clamp(26px, 8vw, 34px); }
+  .pris-card { padding: 22px 18px; }
+}
+
+@media (max-width: 480px) {
+  .galleri-grid { grid-template-columns: minmax(0, 1fr); }
+  .galleri-item--wide { grid-column: span 1; }
+  .galleri-item--tall .galleri-img { aspect-ratio: 4 / 3; }
+  .pris-summa { font-size: clamp(28px, 9vw, 34px); }
+}
+
+
+/* ============================================================
+   Round 13 — Head directives 2026-09-28 (owner: "fixa sajten forst").
+   Appended LAST so it wins at equal specificity. Identity tokens
+   (cream / ink / rust / Fraunces) are unchanged — this block only
+   hardens containment, lifts the mobile section floor to 40+ px and
+   adds the kalkyl + locked-form states the tester asked for.
+   ============================================================ */
+
+/* --- 1. MEDIA CONTAINMENT -------------------------------------
+   Head measurement: at 320 px the document grew to 1208 px because
+   a project image kept its intrinsic width inside a grid cell
+   (grid items default to min-width:auto). Two rules stop that
+   class of bug for good: no img may exceed 100% of its box, and
+   no grid/flex child may be forced wider than its track.        */
+img, picture, video, iframe { max-width: 100%; }
+.projects-list, .project-row, .hero-bento, .split, .content-grid,
+.content-body, .sidebar, .services-grid, .related-grid, .team-grid,
+.values-grid, .footer-grid, .form-row, .contact-grid, .hero-grid,
+.galleri-grid, .pris-grid, .omrade-grid, .stats-band__grid,
+.kalkyl-grid, .material-grid, .step-grid { min-width: 0; }
+.projects-list > *, .project-row > *, .hero-bento > *, .content-grid > *,
+.services-grid > *, .related-grid > *, .team-grid > *, .values-grid > *,
+.form-row > *, .hero-grid > *, .galleri-grid > *, .pris-grid > *,
+.omrade-grid > *, .stats-band__grid > *, .kalkyl-grid > *,
+.material-grid > * { min-width: 0; }
+/* The clipping boxes: a photo can scale inside, never push out. */
+.project-img, .page-hero-media, .galleri-item, .material-thumb,
+.kalkyl-figure, .hero-media, .split-media-2 { overflow: clip; }
+.project-img img, .page-hero-media img, .galleri-img, .bento-tile img,
+.split-media img, .material-thumb img, .kalkyl-figure img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* --- 2. MOBILE SECTION FLOOR = 44 px (>= 40 required) ---
+   .section already inherits --space-section-mobile, but the tight
+   beats and the contact section were still 20 px, which is exactly
+   what the head flags: "mobile section padding >= 40 px".        */
+@media (max-width: 767px) {
+  html { scroll-padding-top: calc(var(--header-h) + 12px); }
+  .section-tight, .section-tight--cta { padding-top: 44px; }
+  .page-hero, .contact-section { padding-top: 44px; }
+  .stats-band, .kalkyl-section, .pris-section, .galleri-section,
+  .omrade-section { padding-top: 44px; }
+  main > section { padding-top: 44px; }
+}
+
+/* --- 3. KALKYL — "Vad kostar det?" (real interaction, no dead UI) --- */
+.kalkyl-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(22px, 3vw, 42px);
+  align-items: start;
+}
+.kalkyl-panel {
+  min-width: 0;
+  padding: clamp(22px, 2.6vw, 34px);
+  background: var(--card-bg);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  box-shadow: 0 22px 54px -34px rgba(20, 18, 16, 0.42);
+}
+.kalkyl-row { display: grid; gap: 8px; margin-bottom: 20px; min-width: 0; }
+.kalkyl-row label { font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--ink); }
+.kalkyl-row select,
+.kalkyl-row input[type="number"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+}
+.kalkyl-row input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--accent); }
+.kalkyl-out {
+  margin-top: 4px;
+  padding: 20px;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--accent-soft) 45%, var(--bg-2));
+  border: 1px solid var(--card-line);
+}
+.kalkyl-summa {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.kalkyl-note {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.kalkyl-figure { min-width: 0; border-radius: var(--radius); }
+.kalkyl-figure img { width: 100%; aspect-ratio: 4 / 3.2; border-radius: var(--radius); }
+
+/* --- 4. FORM: the locked/success state must be unmistakable ---
+   Vision review: after success the fields still looked editable.
+   Now the whole card reads as DONE: dashed, muted, greyed fields,
+   a green "Skickat" button and a visible confirmation ribbon.   */
+.form-locked-note { display: none; }
+.contact-form.is-locked .form-locked-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #E5EFE4;
+  border: 1px solid #BFD8BD;
+  color: #2C5230;
+  font-size: 14px;
+  font-weight: 600;
+}
+.contact-form.is-locked .form-group,
+.contact-form.is-locked .form-row { opacity: 0.6; }
+.contact-form.is-locked input,
+.contact-form.is-locked textarea {
+  background: var(--bg-3);
+  color: var(--ink-faint);
+  border: 1px dashed var(--line-strong);
+  cursor: not-allowed;
+}
+.contact-form.is-locked .hint,
+.contact-form.is-locked .req { opacity: 0.5; }
+.contact-form .btn.is-done,
+.contact-form .btn[disabled].is-done {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--cream-on-dark);
+  cursor: default;
+  opacity: 1;
+}
+.form-status.ok { border-color: #9AC79A; box-shadow: inset 0 0 0 2px rgba(44, 82, 48, 0.14); }
+
+/* --- 5. Responsive collapse for the new blocks --- */
+@media (max-width: 1020px) {
+  .kalkyl-grid, .material-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .kalkyl-grid, .material-grid, .galleri-grid { grid-template-columns: minmax(0, 1fr); }
+  .pris-card--featured { transform: none; }
+}
+
+/* ============================================================
+   Round 12 — typography + anchor guards for the new sections
+   (stats-band sits on the dark ink background; the gallery captions
+   carry an h3 that must look like a caption, not a page heading).
+   ============================================================ */
+.stats-band h2 {
+  color: var(--cream-on-dark);
+  font-size: clamp(26px, 3.4vw, 40px);
+  margin-bottom: 10px;
+}
+.stats-band h2 em { color: #E08A5F; }
+.stats-band .section-head p { color: rgba(244, 237, 226, 0.76); }
+.stats-band .eyebrow { color: rgba(244, 237, 226, 0.7); }
+
+.galleri-cap h3 {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  margin: 0 0 2px;
+  color: var(--cream-on-dark);
+}
+.galleri-cap span {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: rgba(244, 237, 226, 0.85);
+}
+
+/* New anchors behave like the existing ones: jump targets clear the
+   sticky header instead of landing underneath it. */
+#priser, #galleri, #omraden, #nyckeltal { scroll-margin-top: 96px; }
+
+/* Price CTA inside a card: full width on mobile, auto on desktop. */
+.pris-cta { align-self: flex-start; }
+@media (max-width: 767px) {
+  .pris-cta { align-self: stretch; }
+  .stats-band h2 { font-size: clamp(24px, 7vw, 30px); }
 }

@@ -1,0 +1,727 @@
+/* ==========================================================================
+   Solceller & Energi Stockholm — komponentbibliotek för nya sektioner
+   --------------------------------------------------------------------------
+   Ägs av byggaren. Underagenter skriver ALDRIG i den här filen: de använder
+   bara klasserna nedan i sina egna sektionsfragment. Alla värden kommer från
+   :root i style.css (färg, typografi, avståndsstegen --sp-1..--sp-8, radier,
+   skuggor). Inga nya hex-färger, inga egna typsnitt, ingen egen rytm.
+
+   Namnkonvention: block + block__element + block--variant.
+   Mobil först: allt staplar i en kolumn under 720 px, inget får skapa
+   horisontell overflow, varje fristående länk/knapp är minst 44x44 px.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- 1. featrows
+   Delade tjänsterader: bild + text sida vid sida, varannan rad vänd.
+   Används av: sections/index-06-featrows.html                              */
+.featrows {
+  display: grid;
+  gap: var(--sp-8);
+  margin-top: var(--sp-8);
+}
+
+.featrow {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--line);
+}
+
+.featrow:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.featrow-media {
+  margin: 0;
+}
+
+.featrow-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.featrow-media figcaption {
+  margin-top: var(--sp-4);
+  color: var(--ink-soft);
+  font-size: var(--fs-micro);
+}
+
+.featrow-body h3 {
+  margin: 0 0 var(--sp-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+
+.featrow-body p {
+  margin: 0 0 var(--sp-5);
+  max-width: 46ch;
+}
+
+.featrow-list {
+  margin: 0 0 var(--sp-5);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.featrow-point {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.featrow-point::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 2px;
+  background: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold-deep);
+}
+
+.featrow-kpi {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-6);
+  border-radius: var(--r-pill);
+  background: var(--gold-wash);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.02em;
+}
+
+.featrow-kpi b {
+  font-size: var(--fs-body);
+}
+
+/* Radens CTA-rad, egen byggsten så samma rytm gäller i alla tre raderna. */
+.featrow-cta {
+  margin: var(--sp-6) 0 0;
+}
+
+/* ---------------------------------------------------------------- 2. compare
+   Före/efter-kalkyl i två kolumner med rad per post.
+   Används av: sections/index-07-compare.html                               */
+.jamfor {
+  margin-top: var(--sp-8);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.jamfor-head {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--sp-5);
+  padding: var(--sp-6) var(--sp-7);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.jamfor-body {
+  display: grid;
+}
+
+.jamfor-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--sp-5);
+  align-items: baseline;
+  padding: var(--sp-5) var(--sp-7);
+  border-top: 1px solid var(--line);
+}
+
+.jamfor-row:nth-child(even) {
+  background: var(--paper-2);
+}
+
+.jamfor-label {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+}
+
+.jamfor-value {
+  min-width: 7.5rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-small);
+}
+
+.jamfor-delta {
+  min-width: 7.5rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--ok);
+}
+
+.jamfor-foot {
+  padding: var(--sp-6) var(--sp-7);
+  border-top: 2px solid var(--ink);
+  background: var(--paper-2);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.jamfor-foot strong {
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- 3. tiers
+   Paketpriser i tre kolumner, mittenpaketet markerat.
+   Används av: sections/index-08-tiers.html                                  */
+.tiers {
+  display: grid;
+  gap: var(--sp-7);
+  margin-top: var(--sp-8);
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding: var(--sp-8) var(--sp-7);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+}
+
+.tier--pick {
+  border-color: var(--gold-deep);
+  background: color-mix(in oklab, var(--gold-wash) 55%, var(--paper));
+  box-shadow: var(--shadow-md);
+}
+
+.tier-badge {
+  align-self: flex-start;
+  padding: var(--sp-2) var(--sp-5);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tier-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+
+.tier-price {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.3rem);
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.tier-unit {
+  display: block;
+  margin-top: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.tier-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sp-4);
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.tier-list li {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+.tier-list li::before {
+  content: "✓";
+  color: var(--gold-deep);
+  font-weight: 700;
+}
+
+.tier-foot {
+  margin-top: auto;
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.tier-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------- 4. projgrid
+   Projektgalleri: nio genomförda anläggningar med ort och effekt.
+   Används av: sections/index-09-projgrid.html                               */
+.projgrid {
+  display: grid;
+  gap: var(--sp-6);
+  margin-top: var(--sp-8);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+.projgrid-item {
+  margin: 0;
+  display: grid;
+  gap: var(--sp-4);
+  align-content: start;
+}
+
+.projgrid-fig {
+  margin: 0;
+}
+
+.projgrid-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--paper-2);
+}
+
+.projgrid-meta {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.projgrid-place {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.projgrid-spec {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.projgrid-tag {
+  justify-self: start;
+  padding: var(--sp-1) var(--sp-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------- 5. gron
+   Grön teknik-avdraget räknat steg för steg på ett exempel.
+   Används av: sections/index-10-gron.html                                   */
+.gron {
+  display: grid;
+  gap: var(--sp-8);
+  margin-top: var(--sp-8);
+}
+
+.gron__steps {
+  display: grid;
+  gap: var(--sp-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: gron;
+}
+
+.gron__step {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: var(--sp-5);
+  align-items: start;
+  counter-increment: gron;
+}
+
+.gron__num {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+}
+
+.gron__step h3 {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+}
+
+.gron__step p {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.gron__calc {
+  padding: var(--sp-7);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-lg);
+  background: var(--panel);
+  color: var(--paper);
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.gron__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-5);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--line-dark);
+  font-size: var(--fs-small);
+}
+
+.gron__row span:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.gron__sum {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-5);
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+
+.gron__note {
+  margin: 0;
+  font-size: var(--fs-micro);
+  color: var(--paper-2);
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------- 6. garanti
+   Garantiband: fyra åtaganden med årtal.
+   Används av: sections/index-11-garanti.html                                */
+.garanti {
+  display: grid;
+  gap: var(--sp-7);
+  margin-top: var(--sp-8);
+}
+
+.garanti-grid {
+  display: grid;
+  gap: var(--sp-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+}
+
+.garanti-item {
+  display: grid;
+  gap: var(--sp-3);
+  padding: var(--sp-7) var(--sp-6);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-md);
+  background: var(--panel-2);
+  color: var(--paper);
+}
+
+.garanti-years {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.2rem);
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.garanti-label {
+  font-size: var(--fs-small);
+  color: var(--paper-2);
+}
+
+.garanti-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+}
+
+/* Garantibandets avslutande rad. */
+.garanti-cta {
+  margin: var(--sp-8) 0 0;
+}
+
+/* Områdeslistans avslutande rad. */
+.omraden-cta {
+  margin: var(--sp-7) 0 0;
+}
+
+/* ---------------------------------------------------------------- 7. omraden
+   Områdeslista: var vi installerar och vad ett tak ger i respektive område.
+   Används av: sections/index-12-omraden.html                                */
+.omraden {
+  display: grid;
+  gap: var(--sp-8);
+  margin-top: var(--sp-8);
+}
+
+.omraden-grid {
+  display: grid;
+  gap: var(--sp-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+}
+
+.omraden-ort {
+  padding: var(--sp-6);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.omraden-namn {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.omraden-spec {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.omraden-karta {
+  padding: var(--sp-7);
+  border-radius: var(--r-lg);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.omraden-note {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------- Brytpunkter (mobil först) */
+@media (min-width: 720px) {
+  .featrow {
+    grid-template-columns: 1.05fr 1fr;
+  }
+
+  .featrow--flip .featrow-media {
+    order: 2;
+  }
+
+  .jamfor-head,
+  .jamfor-row {
+    grid-template-columns: minmax(9rem, 1fr) 8.5rem 8.5rem;
+  }
+
+  .gron {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: start;
+  }
+}
+
+@media (min-width: 960px) {
+  .tiers {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+
+  .tier--pick {
+    transform: translateY(-6px);
+  }
+}
+
+/* Under 720 px är jämförelsetabellen två kolumner i stället för tre:
+   etiketten på egen rad, värdena bredvid varandra. */
+@media (max-width: 719px) {
+  .jamfor-head {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .jamfor-head span:first-child {
+    display: none;
+  }
+
+  .jamfor-row {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  .jamfor-value,
+  .jamfor-delta {
+    min-width: 0;
+    text-align: left;
+  }
+
+  .jamfor-delta::before {
+    content: "Skillnad ";
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+}
+
+/* Trygga tryckytor: fristående länkar i nya sektioner är minst 44 px höga. */
+.featrow-cta a,
+.featrow-body a,
+.tier-foot a,
+.garanti a,
+.gron a,
+.omraden-cta a,
+.omraden a,
+.projgrid-item a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ------------------------------------------------- 12. tjanstegrid (översikt)
+   Tjänsteöversikt på startsidan: fem kort, ett per tjänst, varje kort länkar
+   till sin tjänstesida. Används av: sections/index-06-tjanstekort.html
+   Mobil först: en kolumn, två från 640 px, tre från 960 px (fem kort = 3 + 2). */
+.tjanstegrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-7);
+  margin-top: var(--sp-8);
+  list-style: none;
+  padding: 0;
+}
+
+.tjanstekort {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding: var(--sp-7);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.section--paper-2 .tjanstekort { background: var(--paper); }
+
+.tjanstekort-namn {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+
+.tjanstekort-pris {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--gold-deep);
+}
+
+.tjanstekort-text {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.tjanstekort-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--sp-3);
+  font-size: var(--fs-small);
+}
+
+.tjanstekort-punkt {
+  position: relative;
+  padding-left: 1.35rem;
+  color: var(--ink-2);
+}
+
+.tjanstekort-punkt::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--r-pill);
+  background: var(--gold);
+}
+
+.tjanstekort-lank {
+  margin-top: auto;
+  padding-top: var(--sp-4);
+}
+
+.tjanstegrid-note {
+  margin-top: var(--sp-7);
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  max-width: 70ch;
+}
+
+.tjanstekort a,
+.tjanstekort-lank a,
+.tjanstegrid-note a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+@media (min-width: 640px) {
+  .tjanstegrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 960px) {
+  .tjanstegrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

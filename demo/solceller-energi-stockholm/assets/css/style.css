@@ -106,6 +106,15 @@ textarea { font: inherit; color: inherit; }
   --wrap-narrow: 58rem;
   --gutter: clamp(1.15rem, 0.6rem + 2.4vw, 2.5rem);
   --sp-section: clamp(3.4rem, 2.2rem + 4.2vw, 6.4rem);
+  /* Avståndsstege — nya komponenter använder bara dessa steg, samma rytm överallt */
+  --sp-1: 0.25rem;
+  --sp-2: 0.4rem;
+  --sp-3: 0.5rem;
+  --sp-4: 0.6rem;
+  --sp-5: 0.75rem;
+  --sp-6: 0.9rem;
+  --sp-7: 1.2rem;
+  --sp-8: 1.6rem;
   --r-sm: 6px;
   --r-md: 12px;
   --r-lg: 20px;
@@ -1460,7 +1469,7 @@ main video { max-width: 100%; }
   object-fit: cover;
   border-radius: var(--r-md);
 }
-.svcrow__body { display: grid; gap: 0.75rem; }
+.svcrow__body { display: grid; gap: var(--sp-5); }
 .svcrow__num {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -1468,7 +1477,7 @@ main video { max-width: 100%; }
   text-transform: uppercase;
   color: var(--gold-deep);
 }
-.svcrow__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+.svcrow__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-2); }
 .svcrow__list li { position: relative; padding-left: 1.3rem; font-size: 0.96rem; color: var(--ink-2); }
 .svcrow__list li::before {
   content: "✓";
@@ -1480,9 +1489,9 @@ main video { max-width: 100%; }
 .section--dark .svcrow__list li { color: oklch(88% 0.012 252); }
 
 /* Numrerad process i fyra steg — tidslinje på mobil, rad på desktop. */
-.process { counter-reset: pstep; display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
-@media (min-width: 56rem) { .process { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4rem; } }
-.pstep { position: relative; display: grid; gap: 0.45rem; padding-left: 3.1rem; list-style: none; }
+.process { counter-reset: pstep; display: grid; gap: var(--sp-6); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 56rem) { .process { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-7); } }
+.pstep { position: relative; display: grid; gap: var(--sp-3); padding-left: 3.1rem; list-style: none; }
 @media (min-width: 56rem) { .pstep { padding-left: 0; padding-top: 3.1rem; } }
 .pstep__num {
   position: absolute;
@@ -1517,11 +1526,11 @@ main video { max-width: 100%; }
   border-radius: var(--r-lg);
   padding: clamp(1.4rem, 1rem + 2vw, 2.4rem);
   display: grid;
-  gap: 1.2rem;
+  gap: var(--sp-7);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 @media (min-width: 52rem) { .statband { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.statband__item { display: grid; gap: 0.25rem; }
+.statband__item { display: grid; gap: var(--sp-1); }
 .statband__num {
   font-family: var(--font-mono);
   font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
@@ -1533,8 +1542,8 @@ main video { max-width: 100%; }
 .statband__text { font-size: 0.84rem; color: oklch(84% 0.015 254); }
 
 /* Före/efter-jämförelse: två staplar per rad, alltid samma skala. */
-.compare { display: grid; gap: 1.1rem; }
-.compare__row { display: grid; gap: 0.35rem; }
+.compare { display: grid; gap: var(--sp-7); }
+.compare__row { display: grid; gap: var(--sp-2); }
 .compare__label {
   font-family: var(--font-mono);
   font-size: 0.74rem;
@@ -1543,7 +1552,7 @@ main video { max-width: 100%; }
   color: var(--ink-soft);
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--sp-6);
 }
 .compare__bar {
   position: relative;
@@ -1562,10 +1571,10 @@ main video { max-width: 100%; }
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
-.compare__side { display: grid; gap: 0.3rem; }
+.compare__side { display: grid; gap: var(--sp-2); }
 .compare__legend {
   display: flex;
-  gap: 1.2rem;
+  gap: var(--sp-7);
   flex-wrap: wrap;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -1576,12 +1585,12 @@ main video { max-width: 100%; }
 .section--dark .compare__val { color: #fff; }
 
 /* Omdömesslider — horisontell snap, fungerar utan JS. */
-.tslider { display: grid; gap: 1rem; }
+.tslider { display: grid; gap: var(--sp-6); }
 .tslider__track {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: min(88%, 24rem);
-  gap: 1rem;
+  gap: var(--sp-6);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 0.4rem;
@@ -1595,14 +1604,14 @@ main video { max-width: 100%; }
   border-radius: var(--r-lg);
   padding: clamp(1.1rem, 0.9rem + 1vw, 1.6rem);
   display: grid;
-  gap: 0.7rem;
+  gap: var(--sp-5);
   box-shadow: var(--shadow-sm);
 }
 .tslide__text { font-family: var(--font-display); font-size: 1.06rem; line-height: 1.45; margin: 0; letter-spacing: -0.01em; }
 .tslide__meta { margin: 0; font-size: 0.84rem; color: var(--ink-soft); }
 .tslide__meta strong { display: block; color: var(--ink); font-size: 0.93rem; }
 .tslide__stars { color: var(--gold-deep); letter-spacing: 0.1em; font-size: 0.88rem; }
-.tslider__dots { display: flex; gap: 0.4rem; }
+.tslider__dots { display: flex; gap: var(--sp-2); }
 .tslider__dots span {
   width: 26px;
   height: 6px;
@@ -1614,14 +1623,14 @@ main video { max-width: 100%; }
 /* Team. */
 .teamgrid { display: grid; gap: clamp(1rem, 0.7rem + 1.2vw, 1.6rem); grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (min-width: 60rem) { .teamgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.teammember { display: grid; gap: 0.6rem; }
+.teammember { display: grid; gap: var(--sp-4); }
 .teammember__pic { aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-md); background: var(--paper-2); }
 .teammember__pic img { width: 100%; height: 100%; object-fit: cover; }
 .teammember h3 { font-size: 1.02rem; margin: 0; }
 .teammember__role { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* Prisnivåer — tre nivåer med mittennivån markerad. */
-.tiers { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: start; }
+.tiers { display: grid; gap: var(--sp-6); grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 56rem) { .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .tier {
   background: var(--paper);
@@ -1629,7 +1638,7 @@ main video { max-width: 100%; }
   border-radius: var(--r-lg);
   padding: clamp(1.2rem, 0.95rem + 1.2vw, 1.8rem);
   display: grid;
-  gap: 0.7rem;
+  gap: var(--sp-5);
   align-content: start;
 }
 .tier--featured {
@@ -1652,15 +1661,15 @@ main video { max-width: 100%; }
 .tier h3 { margin: 0; font-size: 1.14rem; }
 .tier__price { font-family: var(--font-mono); font-size: clamp(1.5rem, 1.2rem + 1.3vw, 1.95rem); font-weight: 600; letter-spacing: -0.03em; margin: 0; }
 .tier__price .unit { font-size: 0.8rem; color: var(--ink-soft); letter-spacing: 0; }
-.tier__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; font-size: 0.94rem; color: var(--ink-2); }
+.tier__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-2); font-size: 0.94rem; color: var(--ink-2); }
 .tier__list li { position: relative; padding-left: 1.25rem; }
 .tier__list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-deep); font-weight: 600; }
 .tier__foot { margin-top: 0.3rem; }
 .tier__foot .btn { width: 100%; }
 
 /* FAQ i två kolumner (accordion, samma <details>-mönster). */
-.faqgrid { display: grid; gap: 0.6rem; }
-@media (min-width: 56rem) { .faqgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem 1.2rem; align-items: start; } }
+.faqgrid { display: grid; gap: var(--sp-4); }
+@media (min-width: 56rem) { .faqgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-5) var(--sp-7); align-items: start; } }
 .faqitem {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -1671,7 +1680,7 @@ main video { max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--sp-6);
   min-height: 56px;
   padding: 0.6rem 0.75rem;
   cursor: pointer;
@@ -1688,7 +1697,7 @@ main video { max-width: 100%; }
 .faqitem__body { padding: 0 0.75rem 1rem; color: var(--ink-soft); font-size: 0.96rem; }
 
 /* Projektgalleri med rytm: några kort spänner två kolumner eller två rader. */
-.projgrid { display: grid; gap: 0.9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.projgrid { display: grid; gap: var(--sp-6); grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (min-width: 48rem) { .projgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 64rem) { .projgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .projcard {
@@ -1719,14 +1728,14 @@ main video { max-width: 100%; }
   border-top: 4px solid var(--gold);
   padding: clamp(1.6rem, 1.1rem + 2.4vw, 2.8rem);
   display: grid;
-  gap: 1.2rem 2rem;
+  gap: var(--sp-7) 2rem;
   align-items: center;
 }
 @media (min-width: 52rem) { .ctaband { grid-template-columns: minmax(0, 1.4fr) auto; } }
 .ctaband h2 { color: #fff; margin: 0 0 0.5rem; }
 .ctaband p { color: oklch(88% 0.012 252); margin: 0; }
-.ctaband__body { display: grid; gap: 0.5rem; }
-.ctaband__actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.ctaband__body { display: grid; gap: var(--sp-3); }
+.ctaband__actions { display: flex; flex-wrap: wrap; gap: var(--sp-5); }
 .ctaband__note {
   grid-column: 1 / -1;
   font-family: var(--font-mono);

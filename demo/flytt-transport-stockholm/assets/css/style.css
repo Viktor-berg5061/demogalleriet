@@ -1,8 +1,61 @@
+/* Typsnitt — lokalt hostade (ingen tredjepartsförfrågan, fungerar offline).
+   Anton (OFL) = display: skylt-/lastbilsröst. Archivo (OFL) = brödtext/UI.
+   IBM Plex Mono (OFL) = etiketter, stämplar, siffror. Källor i assets/fonts/LICENSER.md */
+@font-face {
+  font-family: "Anton";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/anton-400-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Anton";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/anton-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/archivo-400_700-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/archivo-400_700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ==========================================================================
    Flytt & Transport Stockholm — designsystem
    Riktning: "Etiketten" — flyttekvens etikettsystem (kartong, märkpenna,
-   numrerade boxetiketter). Vit papper, grafityta, EN signalfärg.
-   Mobile first. Inga externa typsnitt (system/Inter + mono för etiketter).
+   numrerade boxetiketter). Vitt papper, grafityta, EN signalfärg.
+   Mobile first. Typsnitt: Anton (display) + Archivo (text) + IBM Plex Mono
+   (etiketter), alla lokalt hostade i assets/fonts/ — inga tredjepartsanrop.
    ========================================================================== */
 
 :root {
@@ -19,6 +72,11 @@
   --signal-ink:   #AB4400; /* oklch(.520 .150 45) accenttext på vitt 5.9:1 */
   --signal-wash:  #FFEFE1;
   --label:        #F2E7D0; /* manilatape till etiketter */
+  --ok:           #1F6B4F; /* godkänd-stämpel, 6.1:1 på vitt */
+  --ok-ink:       #17553E; /* godkänd som text, 8.1:1 på vitt */
+  --ok-wash:      #E9F3EE;
+  --stop:         #B0301C; /* nej-kryss, 6.4:1 på vitt */
+  --stop-ink:     #96281A;
 
   /* --- Semantiska tokens ------------------------------------------------- */
   --bg: var(--paper);
@@ -32,16 +90,32 @@
   --border: var(--line);
 
   /* --- Typografi --------------------------------------------------------- */
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", "JetBrains Mono", "Roboto Mono", Menlo, Consolas, monospace;
-  --fs-900: clamp(2.35rem, 1.35rem + 4.2vw, 4rem);
-  --fs-800: clamp(1.75rem, 1.25rem + 2.2vw, 2.65rem);
-  --fs-700: clamp(1.3rem, 1.1rem + 1vw, 1.6rem);
-  --fs-600: clamp(1.1rem, 1.02rem + .45vw, 1.25rem);
-  --fs-500: 1.0625rem;
+  --font-display: "Anton", "Archivo Black", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+  --font-sans: "Archivo", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --fs-900: clamp(2.5rem, 1.55rem + 4vw, 4.6rem);   /* h1: 40 px @320 → 73 px @1440 */
+  --fs-800: clamp(1.85rem, 1.3rem + 2.5vw, 3.05rem); /* h2: 29,6 px → 48,8 px */
+  --fs-700: clamp(1.3rem, 1.14rem + .8vw, 1.65rem);  /* h3/undertrubriker */
+  --fs-600: clamp(1.1rem, 1.02rem + .5vw, 1.3rem);   /* ingress */
+  --fs-500: 1.0625rem;   /* brödtext */
   --fs-400: 1rem;
   --fs-300: .9375rem;
-  --fs-200: .8125rem;
+  --fs-200: .8125rem;    /* etiketter, meta */
+
+  /* --- Luft (delade spaningstokens) ------------------------------------- */
+  --sp-1: .35rem;
+  --sp-2: .5rem;
+  --sp-3: .8rem;
+  --sp-4: 1.1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.6rem;
+  --sp-8: 3.4rem;
+  --sp-9: 4.5rem;
+  --sp-gap: clamp(1rem, .7rem + 1.2vw, 1.6rem);      /* mellan kort i ett rutnät */
+  --sp-section: clamp(2.5rem, 1.35rem + 4.6vw, 6rem); /* sektionsluft: 40 px mobil → 88-96 px desktop */
+  --measure: 68ch;        /* brödtext: aldrig bredare än ~70 tecken */
+  --measure-wide: 84ch;
 
   /* --- Form, skugga, rörelse -------------------------------------------- */
   --wrap: 1120px;
@@ -77,7 +151,7 @@ body {
   color: var(--fg);
   font-family: var(--font-sans);
   font-size: var(--fs-500);
-  line-height: 1.62;
+  line-height: 1.68;   /* mätt krav: >= 1,6 */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -85,10 +159,14 @@ img, svg, iframe { max-width: 100%; }
 img { height: auto; display: block; }
 a { color: var(--accent-text); text-underline-offset: .18em; }
 a:hover { color: var(--ink); }
-h1, h2, h3, h4 { line-height: 1.14; letter-spacing: -.018em; margin: 0 0 .55em; font-weight: 680; }
+h1, h2, h3, h4 { margin: 0 0 .55em; }
+/* Display: Anton — skylt-/lastbilsrösten. Endast vikt 400 finns, så ingen fette-fuskning. */
+h1, h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: .002em; line-height: 1.09; }
 h1 { font-size: var(--fs-900); }
-h2 { font-size: var(--fs-800); }
-h3 { font-size: var(--fs-600); }
+h2 { font-size: var(--fs-800); line-height: 1.12; }
+/* Textröst: Archivo 700 med åtdragen spärr, så h3:an aldrig konkurrerar med h2:an */
+h3, h4 { font-family: var(--font-sans); font-weight: 700; letter-spacing: -.017em; line-height: 1.24; }
+h3 { font-size: var(--fs-700); }
 h4 { font-size: var(--fs-500); }
 p { margin: 0 0 1.05em; }
 p:last-child, ul:last-child, ol:last-child { margin-bottom: 0; }
@@ -307,7 +385,7 @@ body.nav-open { overflow: hidden; }
 /* ==========================================================================
    Hero
    ========================================================================== */
-.hero { padding: clamp(1.6rem, 1rem + 3vw, 3.4rem) 0 0; }
+.hero { padding-block: var(--sp-section) 0; padding-inline: 0; }
 .hero__grid { display: grid; gap: 1.9rem; align-items: start;
   /* minmax(0, 1fr): kolumnen får aldrig min-content-bredd (tidigare 415 px
      i en 320 px-vy, dold av overflow-x: clip). 940 px-overriden nedan vinner. */
@@ -336,7 +414,7 @@ body.nav-open { overflow: hidden; }
 }
 /* Under 940 px staplas hero:n: text, bild, faktarad — bilden ska synas ovan vikningen */
 @media (max-width: 939px) {
-  .hero { padding-top: 1.15rem; }
+  .hero { padding-top: var(--sp-section); }
   .hero__grid { gap: 1.35rem; }
   /* Endast i staplade läget: låt nowrap-token radbrytas så min-content inte
      tvingar kolumnen bredare än viewporten (415 px i en 375 px-vy i runda 2).
@@ -386,11 +464,11 @@ body.nav-open { overflow: hidden; }
 /* ==========================================================================
    Sektioner
    ========================================================================== */
-.section { padding: clamp(2.9rem, 2rem + 4vw, 5rem) 0; }
+.section { padding-block: var(--sp-section); }
 .section--wash { background: var(--bg-alt); }
 .section--tight { padding-top: clamp(2rem, 1.4rem + 2.6vw, 3.2rem); }
-.section__head { max-width: 62ch; margin-bottom: clamp(1.4rem, 1rem + 1.6vw, 2.4rem); }
-.section__head p { color: var(--fg-muted); font-size: var(--fs-600); }
+.section__head { max-width: 66ch; margin-bottom: clamp(1.4rem, 1rem + 1.6vw, 2.4rem); }
+.section__head p { color: var(--fg-muted); font-size: var(--fs-600); max-width: var(--measure); line-height: 1.6; }
 .section__head--center { margin-inline: auto; text-align: center; }
 .section__head--center .tag { justify-content: center; }
 
@@ -684,6 +762,201 @@ body { padding-bottom: calc(var(--cta-bar-h) + var(--cta-gap)); }
   .js .reveal, .js .reveal.is-visible { opacity: 1; transform: none; transition: none; }
   .btn, .card, .nav { transition: none; }
   .btn:hover, .card:hover { transform: none; }
+}
+
+/* ==========================================================================
+   TILLÄGG runda 4 — nya komponenter (ägare: byggaren)
+   Läggs EFTER grundsystemet i assets/css/style.css. Inga befintliga regler
+   ändras här; allt är nya komponentklasser för de nya sektionerna.
+   ========================================================================== */
+
+/* --- Brödtextmått: ingen rad ska behöva läsas över mer än ~70 tecken ----- */
+.prose { max-width: var(--measure); }
+.prose p, .prose li { color: var(--fg-muted); }
+.prose--wide { max-width: var(--measure-wide); }
+.lede { font-size: var(--fs-600); color: var(--fg-muted); max-width: var(--measure); line-height: 1.6; }
+
+/* --- Tvåspaltslayout (text + sidopanel) --------------------------------- */
+.split { display: grid; gap: var(--sp-gap); align-items: start; grid-template-columns: minmax(0, 1fr); }
+.split > * { min-width: 0; }
+@media (min-width: 940px) { .split { grid-template-columns: 1.12fr .88fr; gap: 2.6rem; } }
+.split--reverse { }
+@media (min-width: 940px) { .split--reverse .split__aside { order: -1; } }
+
+/* --- Stämpel i godkänd-läge (grön) -------------------------------------- */
+.stamp--ok { border-color: var(--ok); color: var(--ok-ink); }
+
+/* --- RUT-kalkylen ------------------------------------------------------- */
+.calc { list-style: none; margin: 0; padding: 0; border-top: 2px dashed var(--border); }
+.calc__row {
+  display: flex; flex-wrap: wrap; gap: .2rem .9rem; align-items: baseline;
+  padding: .9rem .2rem; border-bottom: 1px dashed var(--border);
+}
+.calc__label { color: var(--fg-muted); font-size: var(--fs-300); }
+.calc__value { margin-left: auto; font-family: var(--font-mono); font-size: var(--fs-400); font-weight: 600; }
+.calc__row--minus .calc__value { color: var(--ok-ink); }
+.calc__row--total { border-bottom: 0; border-top: 2px solid var(--ink); margin-top: .3rem; padding-top: 1rem; }
+.calc__row--total .calc__label { color: var(--ink); font-size: var(--fs-400); font-weight: 650; }
+.calc__row--total .calc__value { font-size: var(--fs-700); font-weight: 700; }
+.calc__note { font-size: var(--fs-200); color: var(--ink-3); margin: .9rem 0 0; max-width: var(--measure); }
+
+/* --- Referensuppdrag ---------------------------------------------------- */
+.cases { display: grid; gap: var(--sp-gap); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .cases { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.case {
+  display: flex; flex-direction: column; background: var(--paper);
+  border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+}
+.case__photo { margin: 0; }
+.case__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+.case__body { padding: 1.2rem 1.2rem 1.4rem; display: flex; flex-direction: column; gap: .5rem; }
+.case__meta {
+  margin: 0; font-family: var(--font-mono); font-size: var(--fs-200);
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2);
+}
+.case__title { font-size: var(--fs-700); margin: .15rem 0 0; }
+.case__text { margin: 0; color: var(--fg-muted); font-size: var(--fs-300); }
+.case__stat {
+  margin: auto 0 0; padding-top: .8rem; border-top: 1px dashed var(--border);
+  font-size: var(--fs-300); color: var(--fg-muted);
+}
+.case__stat b { font-family: var(--font-mono); font-size: var(--fs-400); color: var(--ink); }
+
+/* --- Jämförelse (tre kort, samma rader) --------------------------------- */
+.compare { display: grid; gap: var(--sp-gap); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 860px) { .compare { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; } }
+.compare__col {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 1.25rem 1.2rem 1.35rem; display: flex; flex-direction: column;
+}
+.compare__col--us { border: 2px solid var(--ink); background: var(--wash); box-shadow: var(--shadow-1); }
+.compare__title { font-family: var(--font-display); font-size: var(--fs-700); font-weight: 400; margin: 0; }
+.compare__sub {
+  margin: .25rem 0 .9rem; font-family: var(--font-mono); font-size: var(--fs-200);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2);
+}
+.compare__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.compare__row {
+  display: flex; gap: .6rem; font-size: var(--fs-300); color: var(--fg-muted);
+  border-top: 1px dashed var(--line-2); padding-top: .55rem;
+}
+.compare__row:first-child { border-top: 0; padding-top: 0; }
+.compare__key { flex: none; width: 1.3em; font-family: var(--font-mono); font-weight: 600; color: var(--ink-2); }
+.compare__key--yes { color: var(--ok-ink); }
+.compare__key--no { color: var(--stop-ink); }
+.compare__key--mid { color: var(--accent-text); }
+.compare__foot {
+  margin: auto 0 0; padding-top: .9rem; border-top: 1px dashed var(--border);
+  font-size: var(--fs-200); color: var(--ink-2);
+}
+
+/* --- Checklista --------------------------------------------------------- */
+.checklist { display: grid; gap: var(--sp-gap); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .checklist { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; align-items: start; } }
+.checklist__group {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 1.2rem 1.15rem 1.3rem;
+}
+.checklist__title {
+  margin: 0 0 .9rem; font-family: var(--font-mono); font-size: var(--fs-200);
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2);
+}
+.checklist__items { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
+.checklist__item { display: flex; gap: .65rem; align-items: flex-start; font-size: var(--fs-300); color: var(--fg-muted); }
+.checklist__item b { color: var(--ink); font-weight: 650; }
+.checklist__box {
+  flex: none; width: 20px; height: 20px; margin-top: .12rem;
+  border: 1.8px solid var(--ink-3); border-radius: 4px; background: var(--paper);
+}
+
+/* --- Fotogalleri -------------------------------------------------------- */
+.gallery { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 760px) { .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; } }
+.gallery__item { margin: 0; min-width: 0; }
+.gallery__item img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  border-radius: var(--r); border: 1px solid var(--line);
+}
+.gallery__item--wide { grid-column: span 2; }
+.gallery__item--tall img { aspect-ratio: 4 / 3; }
+@media (min-width: 760px) {
+  .gallery__item--tall { grid-row: span 2; }
+  .gallery__item--tall img { aspect-ratio: 1 / 1; height: auto; }
+}
+.gallery__cap {
+  display: flex; gap: .45rem; align-items: baseline;
+  margin-top: .45rem; font-size: var(--fs-200); color: var(--ink-2);
+}
+.gallery__num { font-family: var(--font-mono); font-weight: 600; color: var(--accent-text); }
+
+/* --- Trygghetspunkter --------------------------------------------------- */
+.assure { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .assure { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .assure { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.assure__item {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 1.2rem 1.2rem 1.3rem;
+}
+.assure__num {
+  display: block; margin: 0 0 .5rem; font-family: var(--font-mono);
+  font-size: var(--fs-200); font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent-text);
+}
+.assure__title { font-size: var(--fs-600); margin: 0 0 .35rem; }
+.assure__text { margin: 0; color: var(--fg-muted); font-size: var(--fs-300); }
+
+/* --- Mätare (miljö, andelar) -------------------------------------------- */
+.meter { display: grid; gap: .4rem; }
+.meter__label { display: flex; justify-content: space-between; gap: 1rem; font-size: var(--fs-300); }
+.meter__value { font-family: var(--font-mono); font-weight: 600; }
+.meter__bar { height: 10px; border-radius: 999px; background: var(--line-2); overflow: hidden; }
+.meter__fill { height: 100%; background: var(--accent); border-radius: 999px; }
+.meter__fill--ok { background: var(--ok); }
+.meter__note { font-size: var(--fs-200); color: var(--ink-3); margin: 0; }
+
+/* --- Emballagepaket ----------------------------------------------------- */
+.packages { display: grid; gap: var(--sp-gap); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 860px) { .packages { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; } }
+.package {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 1.3rem 1.25rem 1.4rem; display: flex; flex-direction: column; gap: .55rem;
+}
+.package--featured { border: 2px solid var(--ink); background: var(--wash); box-shadow: var(--shadow-1); }
+.package__name { font-family: var(--font-display); font-size: var(--fs-700); font-weight: 400; margin: 0; }
+.package__price { font-family: var(--font-mono); font-size: var(--fs-400); font-weight: 600; margin: 0; }
+.package__list { list-style: none; margin: .2rem 0 0; padding: 0; display: grid; gap: .45rem; font-size: var(--fs-300); color: var(--fg-muted); }
+.package__list li { display: flex; gap: .55rem; }
+.package__list li::before { content: "▣"; color: var(--accent-text); flex: none; }
+.package__foot {
+  margin: auto 0 0; padding-top: .8rem; border-top: 1px dashed var(--border);
+  font-size: var(--fs-200); color: var(--ink-2);
+}
+
+/* --- Statistiksiffror (display-typsnitt) -------------------------------- */
+.stats {
+  display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 2px dashed var(--border); padding-top: 1.15rem;
+}
+@media (min-width: 760px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat__value { font-family: var(--font-display); font-size: var(--fs-800); line-height: 1; margin: 0; }
+.stat__label {
+  margin: .4rem 0 0; font-family: var(--font-mono); font-size: var(--fs-200);
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
+}
+.stat__note { margin: .25rem 0 0; font-size: var(--fs-200); color: var(--ink-3); }
+
+/* --- Bildtext under fristående bilder ----------------------------------- */
+.media { margin: 0; }
+.media img { width: 100%; border-radius: var(--r-lg); border: 1px solid var(--line); display: block; }
+.media__cap { margin-top: .55rem; font-size: var(--fs-200); color: var(--ink-3); }
+
+/* --- Piller (kortare etiketter än .chip) -------------------------------- */
+.pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.pill {
+  font-family: var(--font-mono); font-size: var(--fs-200); letter-spacing: .04em;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 999px;
+  padding: .42rem .75rem; color: var(--ink);
 }
 
 @media print {

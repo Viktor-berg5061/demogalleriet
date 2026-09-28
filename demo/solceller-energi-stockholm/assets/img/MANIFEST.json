@@ -1,0 +1,380 @@
+{
+ "404_bild": {
+  "alt": "Solcellspark i ett öppet landskap",
+  "bytes": 176237,
+  "file": "404_bild.jpg",
+  "sha256": "cea463a082850f95",
+  "source": "https://images.pexels.com/photos/13627641/pexels-photo-13627641.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "batteri_el": {
+  "alt": "Elektriker som installerar en solcellsväxelriktare utomhus",
+  "bytes": 107929,
+  "file": "batteri_el.jpg",
+  "sha256": "ca0c553bc93433cf",
+  "source": "https://images.pexels.com/photos/38171130/pexels-photo-38171130.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "batteri_topp": {
+  "alt": "Tekniker installerar ett hembatteri i en villa",
+  "bytes": 122971,
+  "file": "batteri_topp.jpg",
+  "sha256": "840d75c1d7b3d8af",
+  "source": "https://images.pexels.com/photos/39057093/pexels-photo-39057093.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "batteri_vaxelriktare": {
+  "alt": "Växelriktare och batterisystem i ett hem",
+  "bytes": 124063,
+  "file": "batteri_vaxelriktare.jpg",
+  "sha256": "8e37834ca85976e4",
+  "source": "https://images.pexels.com/photos/37929911/pexels-photo-37929911.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "cta_band": {
+  "alt": "Stort solcellspark sett från ovan",
+  "bytes": 263231,
+  "file": "cta_band.jpg",
+  "sha256": "f81c93c85b63814f",
+  "source": "https://images.pexels.com/photos/35501726/pexels-photo-35501726.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "energikoll_app": {
+  "alt": "Smarttelefon som laddas på ett skrivbord, närbild",
+  "bytes": 40271,
+  "file": "energikoll_app.jpg",
+  "sha256": "a41f1685828eb5eb",
+  "source": "https://images.pexels.com/photos/216369/pexels-photo-216369.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "energikoll_panel": {
+  "alt": "Elektriker som mäter spänning i en elcentral med multimeter",
+  "bytes": 167250,
+  "file": "energikoll_panel.jpg",
+  "sha256": "4359d0214e054eda",
+  "source": "https://images.pexels.com/photos/34054464/pexels-photo-34054464.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "energikoll_topp": {
+  "alt": "Elmätare som visar förbrukning i ett hem",
+  "bytes": 77126,
+  "file": "energikoll_topp.jpg",
+  "sha256": "9b8e6a86ffa84282",
+  "source": "https://images.pexels.com/photos/11924298/pexels-photo-11924298.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "faq_bild": {
+  "alt": "Industriellt tak täckt av solpaneler, flygvy",
+  "bytes": 234391,
+  "file": "faq_bild.jpg",
+  "sha256": "68abe6d9f957fddf",
+  "source": "https://images.pexels.com/photos/8783541/pexels-photo-8783541.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_batteri": {
+  "alt": "Tekniker som installerar ett hembatteri för egen lagring av solel",
+  "bytes": 122971,
+  "file": "hem_batteri.jpg",
+  "sha256": "840d75c1d7b3d8af",
+  "source": "https://images.pexels.com/photos/39057093/pexels-photo-39057093.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_installation": {
+  "alt": "Montör som installerar en solpanel på ett villatak",
+  "bytes": 143217,
+  "file": "hem_installation.jpg",
+  "sha256": "210a1ae1b8831ced",
+  "source": "https://images.pexels.com/photos/9875419/pexels-photo-9875419.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_strip_drone": {
+  "alt": "Drönarbild över ett tak fullt av solpaneler",
+  "bytes": 221589,
+  "file": "hem_strip_drone.jpg",
+  "sha256": "6109311b35eb6b42",
+  "source": "https://images.pexels.com/photos/8782730/pexels-photo-8782730.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_strip_ljus": {
+  "alt": "Solpaneler på metallställning med solljus genom modulerna",
+  "bytes": 164274,
+  "file": "hem_strip_ljus.jpg",
+  "sha256": "11ef2f61c269a937",
+  "source": "https://images.pexels.com/photos/9799761/pexels-photo-9799761.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_strip_nara": {
+  "alt": "Närbild på solpaneler på tegeltak mot klar himmel",
+  "bytes": 105310,
+  "file": "hem_strip_nara.jpg",
+  "sha256": "0071bca3c8a16286",
+  "source": "https://images.pexels.com/photos/17762230/pexels-photo-17762230.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_strip_tak": {
+  "alt": "Solpaneler monterade på ett villatak, närbild",
+  "bytes": 135544,
+  "file": "hem_strip_tak.jpg",
+  "sha256": "84e48fdad3ac8c21",
+  "source": "https://images.pexels.com/photos/12606669/pexels-photo-12606669.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hem_tekniker": {
+  "alt": "Två eltekniker installerar och testar ett solcellssystem med skyddsutrustning",
+  "bytes": 137825,
+  "file": "hem_tekniker.jpg",
+  "sha256": "e3c95db4cbb0737f",
+  "source": "https://images.pexels.com/photos/11645013/pexels-photo-11645013.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "hero_villa": {
+  "alt": "Villa i två plan med solpaneler på taket under klarblå himmel",
+  "bytes": 236159,
+  "file": "hero_villa.jpg",
+  "sha256": "e8f6d6d799f75cf6",
+  "source": "https://images.pexels.com/photos/13558357/pexels-photo-13558357.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "kalkyl_sida": {
+  "alt": "Arbetare som installerar en solpanel på ett tak",
+  "bytes": 203616,
+  "file": "kalkyl_sida.jpg",
+  "sha256": "c455ec3bee8c454e",
+  "source": "https://images.pexels.com/photos/9875444/pexels-photo-9875444.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "kalkyl_topp": {
+  "alt": "Närbild på solpaneler med solljus i modulerna",
+  "bytes": 125374,
+  "file": "kalkyl_topp.jpg",
+  "sha256": "44f9a9cf6f04767c",
+  "source": "https://images.pexels.com/photos/8853509/pexels-photo-8853509.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "kontakt_kontor": {
+  "alt": "Två kollegor som går igenom ritningar på ett kontor",
+  "bytes": 94304,
+  "file": "kontakt_kontor.jpg",
+  "sha256": "1438f2b11a32ea01",
+  "source": "https://images.pexels.com/photos/10375908/pexels-photo-10375908.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "kontakt_mote": {
+  "alt": "Ingenjör i skyddshjälm med surfplatta på en byggarbetsplats",
+  "bytes": 93639,
+  "file": "kontakt_mote.jpg",
+  "sha256": "7312cd8c68280ffc",
+  "source": "https://images.pexels.com/photos/8960944/pexels-photo-8960944.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "kontakt_topp": {
+  "alt": "Byggnader på Södermalm i Stockholm, stadsvy",
+  "bytes": 209054,
+  "file": "kontakt_topp.jpg",
+  "sha256": "a05e2a86aea08af4",
+  "source": "https://images.pexels.com/photos/13688812/pexels-photo-13688812.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "laddbox_garage": {
+  "alt": "Man som ansluter en elbil till en laddstation i ett garage",
+  "bytes": 100676,
+  "file": "laddbox_garage.jpg",
+  "sha256": "b6abb9c24d0cd1dc",
+  "source": "https://images.pexels.com/photos/34800930/pexels-photo-34800930.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "laddbox_plugg": {
+  "alt": "Närbild på laddkontakt till elbil",
+  "bytes": 110801,
+  "file": "laddbox_plugg.jpg",
+  "sha256": "36c14ca4d006b7ee",
+  "source": "https://images.pexels.com/photos/12737898/pexels-photo-12737898.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "laddbox_topp": {
+  "alt": "Kvinna som laddar sin elbil med en hemmaladdbox",
+  "bytes": 145998,
+  "file": "laddbox_topp.jpg",
+  "sha256": "d97e43d1b8c7c098",
+  "source": "https://images.pexels.com/photos/27355839/pexels-photo-27355839.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "om_elcentral": {
+  "alt": "Elektriker som arbetar i en elcentral med borrmaskin",
+  "bytes": 122348,
+  "file": "om_elcentral.jpg",
+  "sha256": "f717f91e08a3122f",
+  "source": "https://images.pexels.com/photos/27928762/pexels-photo-27928762.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "om_montage": {
+  "alt": "Montör som installerar solpaneler på ett villatak dagtid",
+  "bytes": 145545,
+  "file": "om_montage.jpg",
+  "sha256": "2c5ffdabc5ec5d91",
+  "source": "https://images.pexels.com/photos/29206488/pexels-photo-29206488.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "om_sodermalm": {
+  "alt": "Historiska byggnader på Södermalm i Stockholm under molnig himmel",
+  "bytes": 209054,
+  "file": "om_sodermalm.jpg",
+  "sha256": "a05e2a86aea08af4",
+  "source": "https://images.pexels.com/photos/13688812/pexels-photo-13688812.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "om_stockholm": {
+  "alt": "Stockholms stadshus och stadssilhuett över Riddarfjärden",
+  "bytes": 97419,
+  "file": "om_stockholm.jpg",
+  "sha256": "4bc348bed727f79e",
+  "source": "https://images.pexels.com/photos/16246702/pexels-photo-16246702.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "om_tekniker": {
+  "alt": "Projektledare på Solceller & Energi Stockholm med dokument vid en solcellsanläggning",
+  "bytes": 85917,
+  "file": "om_tekniker.jpg",
+  "sha256": "fbd9d2eb1b861411",
+  "source": "https://images.pexels.com/photos/4254159/pexels-photo-4254159.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "om_verkstad": {
+  "alt": "Hantverkare med elverktyg vid arbetsbänk i verkstad",
+  "bytes": 127094,
+  "file": "om_verkstad.jpg",
+  "sha256": "c0643d4df736b99c",
+  "source": "https://images.pexels.com/photos/38709542/pexels-photo-38709542.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "pris_batteri": {
+  "alt": "Installation av batteri för lagring av solel i ett hem",
+  "bytes": 138853,
+  "file": "pris_batteri.jpg",
+  "sha256": "72b5e167a2bf3367",
+  "source": "https://images.pexels.com/photos/39057090/pexels-photo-39057090.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "pris_laddbox": {
+  "alt": "Elbil som laddas med hemmaladdare vid husvägg",
+  "bytes": 157705,
+  "file": "pris_laddbox.jpg",
+  "sha256": "ebb26fef2b847eb1",
+  "source": "https://images.pexels.com/photos/27355835/pexels-photo-27355835.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "pris_oversikt": {
+  "alt": "Villakvarter med solpaneler på taken sett ovanifrån",
+  "bytes": 267050,
+  "file": "pris_oversikt.jpg",
+  "sha256": "771fad9ad563e67f",
+  "source": "https://images.pexels.com/photos/9875679/pexels-photo-9875679.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_1": {
+  "alt": "Radhus med solpaneler på taken i ett bostadsområde",
+  "bytes": 88803,
+  "file": "proj_1.jpg",
+  "sha256": "8fe44e001c1d450d",
+  "source": "https://images.pexels.com/photos/12224996/pexels-photo-12224996.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_10": {
+  "alt": "Elektriker som installerar ett batteri för energilagring i ett hem",
+  "bytes": 138853,
+  "file": "proj_10.jpg",
+  "sha256": "72b5e167a2bf3367",
+  "source": "https://images.pexels.com/photos/39057090/pexels-photo-39057090.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_11": {
+  "alt": "Elbil som laddas i ett hem med väggmonterad laddbox",
+  "bytes": 157705,
+  "file": "proj_11.jpg",
+  "sha256": "ebb26fef2b847eb1",
+  "source": "https://images.pexels.com/photos/27355835/pexels-photo-27355835.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_12": {
+  "alt": "Drönarbild över ett stort tak med solpaneler i industriell miljö",
+  "bytes": 234391,
+  "file": "proj_12.jpg",
+  "sha256": "68abe6d9f957fddf",
+  "source": "https://images.pexels.com/photos/8783541/pexels-photo-8783541.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_2": {
+  "alt": "Solpaneler på ett villatak omgivet av grönska",
+  "bytes": 249306,
+  "file": "proj_2.jpg",
+  "sha256": "60f1fca0649c035d",
+  "source": "https://images.pexels.com/photos/12243093/pexels-photo-12243093.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_3": {
+  "alt": "Flygfoto över villakvarter med solpaneler på taken",
+  "bytes": 267050,
+  "file": "proj_3.jpg",
+  "sha256": "771fad9ad563e67f",
+  "source": "https://images.pexels.com/photos/9875679/pexels-photo-9875679.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_4": {
+  "alt": "Solpaneler installerade på ett bostadstak",
+  "bytes": 156078,
+  "file": "proj_4.jpg",
+  "sha256": "3a57fc433c1f47d5",
+  "source": "https://images.pexels.com/photos/27863809/pexels-photo-27863809.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_5": {
+  "alt": "Flygfoto över solpaneler på ett runt tak omgivet av träd",
+  "bytes": 269519,
+  "file": "proj_5.jpg",
+  "sha256": "75af6ad0b62dfe0e",
+  "source": "https://images.pexels.com/photos/29206499/pexels-photo-29206499.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_6": {
+  "alt": "Röd tegelbyggnad med solpaneler på taket",
+  "bytes": 141967,
+  "file": "proj_6.jpg",
+  "sha256": "7cd5a42fdb28affd",
+  "source": "https://images.pexels.com/photos/31793873/pexels-photo-31793873.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_7": {
+  "alt": "Solpaneler på ett villatak mot blå himmel",
+  "bytes": 175248,
+  "file": "proj_7.jpg",
+  "sha256": "b71d0fd5b319416b",
+  "source": "https://images.pexels.com/photos/37083400/pexels-photo-37083400.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_8": {
+  "alt": "Solpaneler på tegeltak med skorstenar i ett bostadsområde",
+  "bytes": 187718,
+  "file": "proj_8.jpg",
+  "sha256": "872a74d93520fc08",
+  "source": "https://images.pexels.com/photos/38021376/pexels-photo-38021376.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "proj_9": {
+  "alt": "Ovanifrån: hus med solpaneler på taken",
+  "bytes": 247279,
+  "file": "proj_9.jpg",
+  "sha256": "6fdd57bd88b16e03",
+  "source": "https://images.pexels.com/photos/9875685/pexels-photo-9875685.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "service_invert": {
+  "alt": "Tekniker som arbetar med installation av solcellsväxelriktare utomhus",
+  "bytes": 106352,
+  "file": "service_invert.jpg",
+  "sha256": "07d625b5b8651384",
+  "source": "https://images.pexels.com/photos/38171111/pexels-photo-38171111.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "service_topp": {
+  "alt": "Tekniker som kontrollerar solpaneler på ett tak",
+  "bytes": 141192,
+  "file": "service_topp.jpg",
+  "sha256": "868eabb61e44f833",
+  "source": "https://images.pexels.com/photos/6961110/pexels-photo-6961110.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "service_tvatt": {
+  "alt": "Arbetare som monterar en solpanel på ett bostadstak",
+  "bytes": 89811,
+  "file": "service_tvatt.jpg",
+  "sha256": "4cdc83daa6392b61",
+  "source": "https://images.pexels.com/photos/29206491/pexels-photo-29206491.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "solceller_detalj": {
+  "alt": "Närbild på solceller i en solpanelsmodul",
+  "bytes": 76288,
+  "file": "solceller_detalj.jpg",
+  "sha256": "303699065f528b85",
+  "source": "https://images.pexels.com/photos/9799702/pexels-photo-9799702.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "solceller_montage": {
+  "alt": "Montör som sätter upp solpaneler på ett villatak",
+  "bytes": 135277,
+  "file": "solceller_montage.jpg",
+  "sha256": "36b6a991a7e533f7",
+  "source": "https://images.pexels.com/photos/9875418/pexels-photo-9875418.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "solceller_tak": {
+  "alt": "Solpaneler på ett tegeltak i närbild",
+  "bytes": 228327,
+  "file": "solceller_tak.jpg",
+  "sha256": "3946a9e6c5670547",
+  "source": "https://images.pexels.com/photos/30440447/pexels-photo-30440447.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "solceller_topp": {
+  "alt": "Närbild på solpaneler på tegeltak mot klar himmel",
+  "bytes": 105310,
+  "file": "solceller_topp.jpg",
+  "sha256": "0071bca3c8a16286",
+  "source": "https://images.pexels.com/photos/17762230/pexels-photo-17762230.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ },
+ "tj_start": {
+  "alt": "Stort tak med solpaneler sett från ovan",
+  "bytes": 221589,
+  "file": "tj_start.jpg",
+  "sha256": "6109311b35eb6b42",
+  "source": "https://images.pexels.com/photos/8782730/pexels-photo-8782730.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800"
+ }
+}

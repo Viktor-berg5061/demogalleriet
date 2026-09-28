@@ -1,10 +1,28 @@
 /* ============================================================
-   Arkitekt & Studio Stockholm — main.js
-   Vanilla JS. No dependencies.
+   LEAD ENDPOINT (configure here — all form submissions POST here)
+   ============================================================
+   Two targets so a local test can never silently drop a lead and a
+   published site never posts into nothing:
 
-   LEAD ENDPOINT (configure here — all form submissions POST here):
+   • LEAD_ENDPOINT_LOCAL — the web-loop lead-capture service running on
+     this VPS (systemd unit: web-loop-lead-capture, 127.0.0.1:8787).
+     Used whenever the page is opened from localhost / 127.0.0.1 /
+     file:// — i.e. exactly how the tester and the builder verify the
+     money path. Leads land in /home/agentops/web-loop/leads/.
+   • LEAD_ENDPOINT_PUBLIC — the public receiver used by a real visitor.
+     THIS is the one line to change when the site moves to the
+     customer's own domain.
+
+   The old hard-coded tunnel host had expired (DNS dead), so every real
+   submission would have failed with a network error = silent lead loss.
    ============================================================ */
-const LEAD_ENDPOINT = "https://covered-bennett-parks-photographic.trycloudflare.com/lead";
+const LEAD_ENDPOINT_LOCAL = "http://127.0.0.1:8787/lead";
+const LEAD_ENDPOINT_PUBLIC = "https://neck-barriers-six-penny.trycloudflare.com/lead";
+const LEAD_ENDPOINT = (function () {
+  var h = (window.location.hostname || "").toLowerCase();
+  var local = h === "" || h === "localhost" || h === "127.0.0.1" || h === "[::1]";
+  return local ? LEAD_ENDPOINT_LOCAL : LEAD_ENDPOINT_PUBLIC;
+})();
 /* Site key sent with every lead so the shared lead backend stores this
    site's leads under its own file (arkitekt-studio-stockholm.jsonl). */
 const LEAD_SITE = "arkitekt-studio-stockholm";
@@ -321,7 +339,17 @@ const LEAD_SITE = "arkitekt-studio-stockholm";
     if (!status) return;
     status.className = "form-status " + kind;
     status.innerHTML = html;
-    status.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    // Round 12 head: scroll the whole form CARD into view instead of only
+    // the status box — with block:"nearest" the browser scrolled just
+    // enough that the submit button ended up half under the sticky
+    // header. .contact-form-card carries scroll-margin-top: header + 20px,
+    // so the card (banner + button + status) always clears the header.
+    var card = form.closest(".contact-form-card") || form;
+    if (kind === "ok" || kind === "err") {
+      card.scrollIntoView({ block: "start", behavior: "smooth" });
+    } else {
+      status.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
   };
 
   // After a successful submit the whole form is locked so a double-tap or a
@@ -331,6 +359,11 @@ const LEAD_SITE = "arkitekt-studio-stockholm";
   // to a green "Skickat ✓" state so the card reads as DONE, not editable.
   var lockForm = function () {
     form.classList.add("is-complete");
+    // Round 13 (head polish): is-complete only disabled the fields, so the
+    // card still LOOKED editable in the vision review. is-locked drives the
+    // dashed/muted field styling, the green "Skickat" button and the
+    // confirmation ribbon (#formLockNote) — the state is now unmistakable.
+    form.classList.add("is-locked");
     Array.prototype.slice.call(form.querySelectorAll("input, textarea, button")).forEach(function (el) {
       el.disabled = true;
     });
@@ -448,6 +481,59 @@ const LEAD_SITE = "arkitekt-studio-stockholm";
     form.addEventListener("focusin", onFocusIn);
     form.addEventListener("focusout", onFocusOut);
   }
+})();
+
+/* ------------------------------------------------------------
+   5b. Kalkyl — real price estimator (no dead UI)
+   Reads the selected option's data-pris (kr/m2) and the level
+   factor, multiplies by the area and renders a rounded estimate.
+   Markup contract: #kalkylTyp (select, options carry data-pris),
+   #kalkylYta (input range/number, m2), #kalkylNiva (select,
+   options carry data-faktor), #kalkylSumma (output), #kalkylDetalj.
+   Without JS the panel still shows the static price table, so the
+   section is never a blank box.
+   ------------------------------------------------------------ */
+(function () {
+  var typ = document.getElementById("kalkylTyp");
+  var yta = document.getElementById("kalkylYta");
+  var niva = document.getElementById("kalkylNiva");
+  var summa = document.getElementById("kalkylSumma");
+  var detalj = document.getElementById("kalkylDetalj");
+  if (!typ || !yta || !summa) return;
+
+  var val = function (el, attr, fallback) {
+    if (!el) return fallback;
+    var opt = el.options ? el.options[el.selectedIndex] : null;
+    var raw = opt ? opt.getAttribute(attr) : null;
+    var n = raw === null ? NaN : parseFloat(raw);
+    return isNaN(n) ? fallback : n;
+  };
+
+  var fmt = function (n) {
+    try { return n.toLocaleString("sv-SE"); } catch (e) { return String(n); }
+  };
+
+  var update = function () {
+    var pris = val(typ, "data-pris", 0);
+    var faktor = val(niva, "data-faktor", 1);
+    var m2 = parseFloat(yta.value) || 0;
+    var total = pris * m2 * faktor;
+    // Round to the nearest 5 000 kr — an estimate should not pretend to be exact.
+    total = Math.round(total / 5000) * 5000;
+    summa.textContent = fmt(total) + " kr";
+    if (detalj) {
+      detalj.textContent = fmt(pris) + " kr/m\u00b2 \u00d7 " + fmt(m2) + " m\u00b2" +
+        (faktor !== 1 ? " \u00d7 " + String(faktor).replace(".", ",") + " (niv\u00e5)" : "") +
+        ". Prelimin\u00e4rt fast pris ges efter ett kostnadsfritt bes\u00f6k.";
+    }
+  };
+
+  [typ, yta, niva].forEach(function (el) {
+    if (!el) return;
+    el.addEventListener("input", update);
+    el.addEventListener("change", update);
+  });
+  update();
 })();
 
 /* ------------------------------------------------------------

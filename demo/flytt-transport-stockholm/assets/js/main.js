@@ -169,13 +169,28 @@ document.documentElement.classList.add("js");
 
   items.forEach((el) => io.observe(el));
 
-  // Säkerhetsnät: allt som ligger i viewport vid load ska vara synligt direkt.
-  window.addEventListener("load", () => {
+  // Säkerhetsnät 1: allt som ligger i viewport vid load ska vara synligt direkt.
+  // Säkerhetsnät 2: element som redan passerat vyn (snabb scroll, återställd
+  // scrollposition, hopp till ankare) får aldrig bli stående på opacity 0 — det
+  // ser ut som tomma band. En svepning vid varje scrolltillfälle räddar dem.
+  function sweep() {
+    const h = window.innerHeight;
     items.forEach((el) => {
+      if (el.classList.contains("is-visible")) return;
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("is-visible");
+      if (r.top < h * 0.98) el.classList.add("is-visible");
     });
-  });
+  }
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => { ticking = false; sweep(); });
+  }, { passive: true });
+  window.addEventListener("resize", sweep);
+  window.addEventListener("load", sweep);
+  sweep();
 })();
 
 /* --------------------------------------------------------------------------
