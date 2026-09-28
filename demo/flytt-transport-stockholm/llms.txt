@@ -1,0 +1,65 @@
+# Flytt & Transport Stockholm
+
+> Flyttfirma i Stockholm sedan 2011. Flytthjälp, packhjälp, flyttstädning,
+> magasinering, kontorsflytt och tunga lyft. Fast pris skriftligt efter en
+> kostnadsfri flyttkoll på 20 minuter. RUT-avdraget dras direkt på fakturan.
+> Telefon 070-000 00 00 (platshållare i demoläget), info@exempel.se.
+
+Sidan är en enda statisk HTML-sida med alla svar på samma URL:
+https://flytttransportstockholm.se/
+
+## Tjänster
+
+- Flytthjälp: bärhjälp, lastning, transport och lossning med två flyttare och
+  flyttbil. 1 195 kr/timme inkl. moms, ca 745 kr/timme efter RUT-avdrag.
+- Flyttstädning: städning enligt checklista som hyresvärd och mäklare godkänner.
+  30–35 kr/m² efter RUT-avdrag, med garanti i sju dagar.
+- Magasinering: låst och uppvärmt magasin. Transport till och från magasinet är
+  RUT-berättigat, själva hyran är det inte.
+- Kontorsflytt: flytt kvällstid eller helg, märkning och separat hantering av
+  IT-utrustning.
+- Packhjälp: packning, emballage och märkning rum för rum, inklusive ömtåligt.
+- Tunga lyft: piano, kassaskåp, vitvaror och trånga trapphus. Tillägg enligt
+  offert efter besök på plats.
+
+## Priser och RUT (2026)
+
+- Exempelflytt inom Stockholms stad efter RUT-avdrag: etta 35–45 m²
+  3 500–5 500 kr, tvåa 55–65 m² 5 500–8 500 kr, trea 75–95 m² 8 000–12 000 kr,
+  villa 120 m²+ 12 000–20 000 kr. Slutpriset fastställs skriftligt efter
+  flyttkollen.
+- RUT-avdrag: 50 % av arbetskostnaden, högst 75 000 kr per person och år. ROT
+  och RUT delar samma tak, där ROT högst får vara 50 000 kr.
+- RUT gäller flytt av bohag mellan bostäder, transport av bohag till och från
+  magasinering samt flyttstädning. RUT gäller inte flyttkartonger, emballage,
+  material eller själva magasineringshyran.
+- Företaget drar av beloppet på fakturan och ansöker hos Skatteverket.
+
+## Så går en flytt till
+
+1. Flyttkoll (20 minuter) — på plats eller via video.
+2. Fast pris och bokning — skriftlig offert inom en arbetsdag.
+3. Flytten genomförs — packning, skydd av trapphus, lastning, transport, lossning.
+4. Efteråt — flyttstädning, besiktning och städgaranti i sju dagar.
+
+## Områden
+
+Södermalm, Östermalm, Vasastan, Kungsholmen, Norrmalm, Gamla stan, Djurgården,
+Gärdet, Bromma, Vällingby, Hässelby, Spånga, Solna, Sundbyberg, Danderyd, Täby,
+Nacka, Enskede, Hägersten, Älvsjö — och resten av Stockholms län. Sträcka utanför
+tullarna räknas in i den skriftliga offerten, aldrig som dold milkostnad.
+
+## Kontakt
+
+- Telefon: 070-000 00 00 (tel:+46700000000)
+- E-post: info@exempel.se
+- Adress: Adressgatan 12, 118 00 Stockholm
+- Öppettider: mån–fre 07–18, lör 08–14
+- Offertformulär på sidan: namn, telefon, e-post, från-adress, till-adress,
+  önskat datum och kort beskrivning.
+
+## Om innehållet
+
+Demoversion: företagsnamn, org.nr, adress, telefonnummer, e-postadress och
+kundomdömen är platshållare som byts ut mot kundens egna uppgifter vid leverans.
+Kontaktuppgifterna ovan är alltså inte kopplade till en riktig verksamhet.

@@ -1,0 +1,41 @@
+# robots.txt — Flytt & Transport Stockholm
+# Alla sökmotorer och AI-agenter är välkomna. Sidan är statisk HTML.
+
+User-agent: *
+Allow: /
+
+# AI-sökmotorer och assistenter (AEO/GEO — medvetet tillåtna)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://flytttransportstockholm.se/sitemap.xml

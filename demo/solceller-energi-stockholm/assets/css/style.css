@@ -1382,3 +1382,356 @@ input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius
   html { scroll-behavior: auto; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* ------------------------------------------- 23. Träffytor (min 44x44 px) */
+/* Standalone-kontroller (knappar, meny, footer) har egna min-height. Länkar
+   som ligger inuti löptext är inline — där ger vertikal padding en 44 px
+   träffyta utan att radflödet rubbas (inline-padding påverkar träffytan, inte
+   line-boxen). Scopat till main så header/drawer/footer aldrig ändras. */
+main p a:not(.btn):not(.link-arrow),
+main li a:not(.btn):not(.link-arrow),
+main dd a:not(.btn):not(.link-arrow),
+main dt a:not(.btn):not(.link-arrow),
+main figcaption a:not(.btn):not(.link-arrow),
+main .lede a:not(.btn):not(.link-arrow),
+main .note a:not(.btn):not(.link-arrow),
+main .callout a:not(.btn):not(.link-arrow),
+main .faq__body a:not(.btn):not(.link-arrow),
+main .quote__meta a:not(.btn):not(.link-arrow),
+main .cta-band__note a:not(.btn),
+main .ctaband__note a:not(.btn),
+main td a:not(.btn):not(.link-arrow),
+main th a:not(.btn):not(.link-arrow) {
+  padding-block: 0.95rem;
+  padding-inline: 0.5rem;
+  margin-inline: -0.5rem;
+}
+/* Mörka sektioner: samma regel, egen färg finns redan på .section--dark a */
+.dark-inline a { padding-block: 0.95rem; }
+
+/* Grid-barn får aldrig drivas bredare än sin kolumn av en bilds intrinsic
+   bredd (width="1200" på <img>). Utan min-width:0 kan ett grid-spår växa
+   förbi viewporten i enstaka renderingsögonblick. */
+.section .grid > *,
+.section .split > *,
+.section .svcrow > *,
+.section .projgrid > *,
+.section .process > *,
+.section .teamgrid > *,
+.section .tiers > *,
+.section .faqgrid > *,
+.section .tslider > * { min-width: 0; }
+main img,
+main picture,
+main video { max-width: 100%; }
+
+/* Drawer: stängd meny ska inte kunna träffas, inte ritas och inte ligga
+   utanför viewporten alls. Den ligger kvar på sin plats (högerkant) och klipps
+   bort med clip-path i stället för att skjutas utanför skärmen — då rapporterar
+   ingen mätning ett element utanför kanten, och menyn glider ändå in från höger. */
+.drawer {
+  transform: none;
+  clip-path: inset(0 0 0 100%);
+  visibility: hidden;
+  pointer-events: none;
+  transition: clip-path 0.28s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.28s;
+}
+.drawer[data-open="true"] {
+  clip-path: inset(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ------------------------------------------ 24. Block: tjänster och bevis */
+/* Split-featurerader: bild och text sida vid sida, varannan rad spegelvänd. */
+.svcrow {
+  display: grid;
+  gap: clamp(1.4rem, 1rem + 2vw, 2.8rem);
+  align-items: center;
+}
+@media (min-width: 60rem) {
+  .svcrow { grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr); }
+  .svcrow--flip > .svcrow__media { order: -1; }
+}
+.svcrow__media { position: relative; }
+.svcrow__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-md);
+}
+.svcrow__body { display: grid; gap: 0.75rem; }
+.svcrow__num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.svcrow__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
+.svcrow__list li { position: relative; padding-left: 1.3rem; font-size: 0.96rem; color: var(--ink-2); }
+.svcrow__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--gold-deep);
+  font-weight: 600;
+}
+.section--dark .svcrow__list li { color: oklch(88% 0.012 252); }
+
+/* Numrerad process i fyra steg — tidslinje på mobil, rad på desktop. */
+.process { counter-reset: pstep; display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 56rem) { .process { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4rem; } }
+.pstep { position: relative; display: grid; gap: 0.45rem; padding-left: 3.1rem; list-style: none; }
+@media (min-width: 56rem) { .pstep { padding-left: 0; padding-top: 3.1rem; } }
+.pstep__num {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--gold-wash);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 600;
+  border: 1px solid oklch(86% 0.06 88);
+}
+.pstep h3 { font-size: 1.08rem; margin: 0; }
+.pstep__text { margin: 0; font-size: 0.94rem; color: var(--ink-soft); }
+.pstep__time {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sky-deep);
+}
+
+/* Sifferband över hela bredden. */
+.statband {
+  background: var(--panel);
+  color: oklch(93% 0.01 252);
+  border-radius: var(--r-lg);
+  padding: clamp(1.4rem, 1rem + 2vw, 2.4rem);
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 52rem) { .statband { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.statband__item { display: grid; gap: 0.25rem; }
+.statband__num {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--gold);
+}
+.statband__text { font-size: 0.84rem; color: oklch(84% 0.015 254); }
+
+/* Före/efter-jämförelse: två staplar per rad, alltid samma skala. */
+.compare { display: grid; gap: 1.1rem; }
+.compare__row { display: grid; gap: 0.35rem; }
+.compare__label {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.compare__bar {
+  position: relative;
+  height: 14px;
+  border-radius: var(--r-pill);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.compare__fill { height: 100%; background: oklch(74% 0.03 255); width: calc(var(--v, 50) * 1%); }
+.compare__fill--gold { background: linear-gradient(to right, var(--gold-deep), var(--gold)); }
+.compare__val {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.compare__side { display: grid; gap: 0.3rem; }
+.compare__legend {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+.section--dark .compare__bar { background: oklch(31% 0.05 258); border-color: var(--line-dark); }
+.section--dark .compare__label { color: oklch(82% 0.02 254); }
+.section--dark .compare__val { color: #fff; }
+
+/* Omdömesslider — horisontell snap, fungerar utan JS. */
+.tslider { display: grid; gap: 1rem; }
+.tslider__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(88%, 24rem);
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.4rem;
+  scrollbar-width: thin;
+}
+@media (min-width: 60rem) { .tslider__track { grid-auto-columns: min(31%, 24rem); } }
+.tslide {
+  scroll-snap-align: start;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: clamp(1.1rem, 0.9rem + 1vw, 1.6rem);
+  display: grid;
+  gap: 0.7rem;
+  box-shadow: var(--shadow-sm);
+}
+.tslide__text { font-family: var(--font-display); font-size: 1.06rem; line-height: 1.45; margin: 0; letter-spacing: -0.01em; }
+.tslide__meta { margin: 0; font-size: 0.84rem; color: var(--ink-soft); }
+.tslide__meta strong { display: block; color: var(--ink); font-size: 0.93rem; }
+.tslide__stars { color: var(--gold-deep); letter-spacing: 0.1em; font-size: 0.88rem; }
+.tslider__dots { display: flex; gap: 0.4rem; }
+.tslider__dots span {
+  width: 26px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--line);
+}
+.tslider__dots span:first-child { background: var(--gold-deep); }
+
+/* Team. */
+.teamgrid { display: grid; gap: clamp(1rem, 0.7rem + 1.2vw, 1.6rem); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 60rem) { .teamgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.teammember { display: grid; gap: 0.6rem; }
+.teammember__pic { aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-md); background: var(--paper-2); }
+.teammember__pic img { width: 100%; height: 100%; object-fit: cover; }
+.teammember h3 { font-size: 1.02rem; margin: 0; }
+.teammember__role { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* Prisnivåer — tre nivåer med mittennivån markerad. */
+.tiers { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 56rem) { .tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tier {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: clamp(1.2rem, 0.95rem + 1.2vw, 1.8rem);
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+}
+.tier--featured {
+  background: color-mix(in oklab, var(--gold-wash) 55%, var(--paper));
+  border-color: var(--gold-deep);
+  box-shadow: var(--shadow-md);
+}
+.tier__badge {
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: var(--r-pill);
+  padding: 0.24rem 0.6rem;
+}
+.tier h3 { margin: 0; font-size: 1.14rem; }
+.tier__price { font-family: var(--font-mono); font-size: clamp(1.5rem, 1.2rem + 1.3vw, 1.95rem); font-weight: 600; letter-spacing: -0.03em; margin: 0; }
+.tier__price .unit { font-size: 0.8rem; color: var(--ink-soft); letter-spacing: 0; }
+.tier__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; font-size: 0.94rem; color: var(--ink-2); }
+.tier__list li { position: relative; padding-left: 1.25rem; }
+.tier__list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold-deep); font-weight: 600; }
+.tier__foot { margin-top: 0.3rem; }
+.tier__foot .btn { width: 100%; }
+
+/* FAQ i två kolumner (accordion, samma <details>-mönster). */
+.faqgrid { display: grid; gap: 0.6rem; }
+@media (min-width: 56rem) { .faqgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem 1.2rem; align-items: start; } }
+.faqitem {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 0.15rem 0.35rem;
+}
+.faqitem > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 56px;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  list-style: none;
+}
+.faqitem > summary::-webkit-details-marker { display: none; }
+.faqitem > summary::after { content: "+"; font-family: var(--font-mono); color: var(--gold-deep); flex: none; }
+.faqitem[open] > summary::after { content: "–"; }
+.faqitem[open] { box-shadow: var(--shadow-sm); }
+.faqitem__body { padding: 0 0.75rem 1rem; color: var(--ink-soft); font-size: 0.96rem; }
+
+/* Projektgalleri med rytm: några kort spänner två kolumner eller två rader. */
+.projgrid { display: grid; gap: 0.9rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 48rem) { .projgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 64rem) { .projgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.projcard {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.projcard img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1); }
+.projcard:hover img { transform: scale(1.04); }
+.projcard--wide { grid-column: span 2; }
+.projcard--wide img { aspect-ratio: 8 / 3; }
+@media (min-width: 48rem) {
+  .projcard--tall { grid-row: span 2; }
+  .projcard--tall img { aspect-ratio: 4 / 6.2; }
+}
+.projcard__body { padding: 0.7rem 0.8rem 0.85rem; }
+.projcard__loc { margin: 0 0 0.15rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; }
+.projcard__meta { margin: 0; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-soft); }
+.projcard__meta b { color: var(--ink-2); font-weight: 600; }
+
+/* CTA-band med guldlinje överst. */
+.ctaband {
+  background: var(--ink);
+  color: oklch(94% 0.008 252);
+  border-radius: var(--r-lg);
+  border-top: 4px solid var(--gold);
+  padding: clamp(1.6rem, 1.1rem + 2.4vw, 2.8rem);
+  display: grid;
+  gap: 1.2rem 2rem;
+  align-items: center;
+}
+@media (min-width: 52rem) { .ctaband { grid-template-columns: minmax(0, 1.4fr) auto; } }
+.ctaband h2 { color: #fff; margin: 0 0 0.5rem; }
+.ctaband p { color: oklch(88% 0.012 252); margin: 0; }
+.ctaband__body { display: grid; gap: 0.5rem; }
+.ctaband__actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.ctaband__note {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: oklch(78% 0.02 254);
+  margin: 0;
+}
+.ctaband__note a { color: var(--gold); }

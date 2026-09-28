@@ -1,0 +1,13 @@
+{
+  "name": "Flytt & Transport Stockholm",
+  "short_name": "Flytt Stockholm",
+  "description": "Flyttfirma i Stockholm med fast pris och RUT-avdrag.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#131A24",
+  "icons": [
+    { "src": "/assets/img/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
