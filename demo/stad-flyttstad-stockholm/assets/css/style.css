@@ -118,7 +118,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   /* Mått och rytm */
   --wrap: 76rem;
   --wrap-smal: 44rem;
-  --measure: 68ch;
+  --measure: 58ch;
   --gutter: clamp(1.1rem, 0.5rem + 2.6vw, 2.75rem);
   --sp-section: clamp(3rem, 2rem + 4.2vw, 6rem);
   --sp-1: 0.25rem;
@@ -188,7 +188,12 @@ strong { font-weight: 700; }
 .wrap-smal { width: 100%; max-width: var(--wrap-smal); margin-inline: auto; padding-inline: var(--gutter); }
 
 .section { padding-block: var(--sp-section); }
-.section-tight { padding-block: clamp(2.2rem, 1.5rem + 2.6vw, 3.6rem); }
+/* Tight-sektionerna får inte gå under kontraktets golv: 40 px luft på mobil och
+   72-96 px på desktop. Låg tidigare på 35,2 px / 57,6 px, alltså under båda. */
+.section-tight { padding-block: clamp(2.5rem, 1.5rem + 2.6vw, 4.5rem); }
+@media (min-width: 62rem) {
+  .section-tight { padding-block: clamp(4.5rem, 3rem + 2.5vw, 5.5rem); }
+}
 .section-mork { background: var(--hamn); color: var(--krita-2); }
 .section-mork h1, .section-mork h2, .section-mork h3 { color: var(--krita-2); }
 .section-mork p { color: oklch(88% 0.014 220); }

@@ -28,12 +28,18 @@ const PRISER = {
 const RUT_ANDEL = 0.5;
 
 /* ------------------------------------------------------ 2. Små hjälpmedel */
-const kr = new Intl.NumberFormat("sv-SE", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+/* Talformat (runda 5, EN regel för hela sajten):
+   jämna kronor skrivs utan öre ("2 995 kr") och belopp med öre skrivs alltid med
+   två decimaler ("1 497,50 kr"). Kalkylatorn, tabellerna och texterna använder
+   samma regel, så samma belopp skrivs aldrig på två olika sätt på samma sida. */
+const krHel = new Intl.NumberFormat("sv-SE", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const krOre = new Intl.NumberFormat("sv-SE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const tal = new Intl.NumberFormat("sv-SE", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
 
 function pengar(varde) {
   const avrundat = Math.round(varde * 100) / 100;
-  return kr.format(avrundat) + " kr";
+  const format = Number.isInteger(avrundat) ? krHel : krOre;
+  return format.format(avrundat) + " kr";
 }
 function timmarText(h) {
   const avrundat = Math.round(h * 2) / 2;

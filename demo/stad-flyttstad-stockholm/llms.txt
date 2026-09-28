@@ -31,7 +31,7 @@ RUT-avdraget är 50 procent av arbetskostnaden, maximalt 50 000 kr per person oc
 - Flyttstäd 95 m² (4 rum och kök): 12,5 timmar, 8 112,50 kr före RUT, 4 056,25 kr efter RUT
 - Hemstäd 75 m² varannan vecka: 3,5 timmar, 1 921,50 kr per tillfälle, 960,75 kr efter RUT
 - Storstädning 75 m²: 5 timmar, 2 995 kr före RUT, 1 497,50 kr efter RUT
-- Fönsterputs villa med 15 bågar: 1 185 kr före RUT, 592,50 kr efter RUT
+- Fönsterputs villa med 15 bågar: 1 200 kr före RUT, 600 kr efter RUT (minsta debitering 1 200 kr)
 - Kontorsstäd 120 m² två gånger per vecka: 12 timmar per månad, 5 388 kr exkl. moms
 
 ## Sidor
@@ -42,8 +42,7 @@ RUT-avdraget är 50 procent av arbetskostnaden, maximalt 50 000 kr per person oc
 - [Flyttstäd](https://stadflyttstockholm.se/tjanster/flyttstad.html): vad som ingår, pris per kvadratmeter och besiktningschecklista.
 - [Hemstäd](https://stadflyttstockholm.se/tjanster/hemstad.html): intervall varje, varannan eller var fjärde vecka med pris per tillfälle.
 - [Storstädning](https://stadflyttstockholm.se/tjanster/storstading.html): skillnaden mot hemstäd och pris per yta.
-- [Kontorsstäd](https://stadflyttstockholm.se/tjanster/kontorsstad.html): avtalsmodeller för företag och BRF, pris exkl. moms.
-- [Fönsterputs](https://stadflyttstockholm.se/tjanster/fonsterputs.html): pris per båge, metod och höga byggnader.
+- [Företagsstäd](https://stadflyttstockholm.se/tjanster/foretagsstad.html): kontorsstäd på avtal för företag och BRF samt fönsterputs per båge, inklusive höga byggnader.
 - [Om oss](https://stadflyttstockholm.se/om-oss.html): team, kollektivavtal, försäkring, kvalitetskontroll och områden.
 - [Kontakt](https://stadflyttstockholm.se/kontakt.html): bokningsformulär, öppettider, avbokningsvillkor och vanliga frågor.
 
