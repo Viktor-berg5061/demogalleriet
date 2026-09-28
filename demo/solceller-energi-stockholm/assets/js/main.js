@@ -18,7 +18,7 @@
      3. Fälten som skickas: namn, epost, telefon, ort, fastighetstyp,
         areal/kWh (om ifyllt), meddelande, sida, honeypot (_gotcha).
    -------------------------------------------------------------------------- */
-var LEAD_ENDPOINT = "http://127.0.0.1:8787/lead";
+var LEAD_ENDPOINT = "https://hermes-web-db.webbtjanst.com/lead?site=solceller-energi-stockholm";
 
 /* Site-nyckel som följer med varje lead så att demobackenden lägger leadet i
    rätt lista (solceller-energi-stockholm). Byt eller ta bort den om kunden

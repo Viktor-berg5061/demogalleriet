@@ -8,7 +8,7 @@
    Byt till kundens egen endpoint vid leverans (Formspree, e-posttjänst, eget
    API eller CRM). Demoversionen pekar på vår lokala lead-server.
    -------------------------------------------------------------------------- */
-const FORM_ENDPOINT = "http://127.0.0.1:8787/lead"; // <-- KUNDENS ENDPOINT
+const FORM_ENDPOINT = "https://hermes-web-db.webbtjanst.com/lead?site=flytt-transport-stockholm"; // <-- KUNDENS ENDPOINT
 
 /* Sajtnyckel: måste finnas i lead-serverns ALLOWED_SITE_KEYS, annars hamnar
    leadet i serverns standardlista. Byt här om sajten byter namn. */

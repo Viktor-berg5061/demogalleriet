@@ -4,7 +4,7 @@
 
    LEAD ENDPOINT (configure here — all form submissions POST here):
    ============================================================ */
-const LEAD_ENDPOINT = "http://127.0.0.1:8787/lead";
+const LEAD_ENDPOINT = "https://hermes-web-db.webbtjanst.com/lead?site=snickeri-bygg-stockholm";
 /* Site key sent with every lead so the shared lead backend stores this
    site's leads under its own file (snickeri-bygg-stockholm.jsonl). */
 const LEAD_SITE = "snickeri-bygg-stockholm";

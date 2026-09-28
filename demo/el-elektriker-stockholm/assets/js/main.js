@@ -6,7 +6,7 @@
    LEAD ENDPOINT — kontaktformuläret skickar leaddata hit (JSON POST).
    Ändra denna konstant om mottagaren av leads byts ut.
    ===================================================================== */
-const LEAD_ENDPOINT = "https://covered-bennett-parks-photographic.trycloudflare.com/lead";
+const LEAD_ENDPOINT = "https://hermes-web-db.webbtjanst.com/lead?site=el-elektriker-stockholm";
 
 (function () {
   "use strict";

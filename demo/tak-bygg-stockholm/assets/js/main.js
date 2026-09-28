@@ -5,7 +5,7 @@
    ============================================================
    LEAD ENDPOINT (configure here — all form submissions POST here)
    ============================================================ */
-const LEAD_ENDPOINT = "https://covered-bennett-parks-photographic.trycloudflare.com/lead";
+const LEAD_ENDPOINT = "https://hermes-web-db.webbtjanst.com/lead?site=tak-bygg-stockholm";
 /* Site key sent with every lead so the shared lead backend stores this
    site's leads under its own file (tak-bygg-stockholm.jsonl). */
 const LEAD_SITE = "tak-bygg-stockholm";

@@ -1172,7 +1172,7 @@ ul{list-style:none}
       <div class="form-body">
         <h3>Skicka en förfrågan</h3>
         <p>Vi återkommer inom 15 minuter på vardagar.</p>
-        <form id="leadForm" action="https://covered-bennett-parks-photographic.trycloudflare.com/lead" method="post" novalidate>
+        <form id="leadForm" action="https://hermes-web-db.webbtjanst.com/lead?site=ror-vvs-stockholm" method="post" novalidate>
           <div class="form-grid">
             <div class="field">
               <label for="f-name">Namn <i>*</i></label>
@@ -1307,11 +1307,11 @@ ul{list-style:none}
    /home/agentops/web-loop/leads/ror-vvs-stockholm.jsonl).
    Produktion: peka om till riktig lead-endpoint, t.ex.
      "https://formspree.io/f/YOUR_FORM_ID"
-     "https://api.example.com/leads"
+     "https://hermes-web-db.webbtjanst.com/lead?site=ror-vvs-stockholm"
    Endpointen måste tillåta CORS (Access-Control-Allow-Origin: *)
    så att formuläret kan skicka från valfri origin.
    ============================================================ */
-var LEAD_ENDPOINT = "https://covered-bennett-parks-photographic.trycloudflare.com/lead";
+var LEAD_ENDPOINT = "https://hermes-web-db.webbtjanst.com/lead?site=ror-vvs-stockholm";
 (function(){
   "use strict";
   var $ = function(s,c){ return (c||document).querySelector(s); };

@@ -16,8 +16,8 @@
    The old hard-coded tunnel host had expired (DNS dead), so every real
    submission would have failed with a network error = silent lead loss.
    ============================================================ */
-const LEAD_ENDPOINT_LOCAL = "http://127.0.0.1:8787/lead";
-const LEAD_ENDPOINT_PUBLIC = "https://neck-barriers-six-penny.trycloudflare.com/lead";
+const LEAD_ENDPOINT_LOCAL = "https://hermes-web-db.webbtjanst.com/lead?site=arkitekt-studio-stockholm";
+const LEAD_ENDPOINT_PUBLIC = "https://hermes-web-db.webbtjanst.com/lead?site=arkitekt-studio-stockholm";
 const LEAD_ENDPOINT = (function () {
   var h = (window.location.hostname || "").toLowerCase();
   var local = h === "" || h === "localhost" || h === "127.0.0.1" || h === "[::1]";
